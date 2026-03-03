@@ -1,0 +1,21 @@
+# Git and IDE
+.git
+.gitignore
+.cursor
+.vscode
+*.md
+!images/README.md
+
+# Netlify (keep for reference but don't ship)
+netlify.toml
+_headers
+
+# Docker (don't copy into image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Misc
+*.log
+.env
+.env.*

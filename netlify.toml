@@ -1,0 +1,29 @@
+# Netlify config for Merrill Digital Systems
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  publish = "."
+  # No build command (static site)
+
+# Pretty URL redirects (/terms → terms.html)
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy/primis"
+  to = "/privacy-primis.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy/ops-hub"
+  to = "/privacy-bookkeeping-os.html"
+  status = 301
+
+# SPA fallback: 404 → index (commented out; enable if using client-side routing)
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
+#   conditions = {Role = ["admin"]}

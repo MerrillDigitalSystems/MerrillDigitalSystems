@@ -1,0 +1,15 @@
+# Merrill Digital Systems – run on Raspberry Pi (or any host)
+# Usage: docker compose up -d
+
+services:
+  web:
+    build: .
+    container_name: merrill-digital-systems
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    # Optional: limit memory on Pi
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 256M
