@@ -1,4 +1,4 @@
-# Merrill Digital Systems – run on Raspberry Pi (or any host)
+# Merrill Digital Systems – Raspberry Pi with Cloudflare Tunnel
 # Usage: docker compose up -d
 
 services:
@@ -8,8 +8,19 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-    # Optional: limit memory on Pi
-    # deploy:
-    #   resources:
-    #     limits:
-    #       memory: 256M
+      - "443:443"
+    volumes:
+      # Mount Cloudflare origin certificates (keep these outside the repo)
+      - ./certs:/etc/nginx/certs:ro
+
+  # Cloudflare Tunnel – connects your Pi to Cloudflare without port forwarding
+  # Set TUNNEL_TOKEN in your .env file (see DEPLOY.md for steps)
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared-tunnel
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    depends_on:
+      - web

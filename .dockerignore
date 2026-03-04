@@ -15,6 +15,11 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 
+# Secrets and certs (mounted as volume, not baked into image)
+certs/
+*.pem
+*.key
+
 # Misc
 *.log
 .env
