@@ -228,7 +228,11 @@
       }
 
       function initParticles() {
-        const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 120);
+        const isNarrow = canvas.width < 768;
+        const count = Math.min(
+          Math.floor((canvas.width * canvas.height) / (isNarrow ? 18000 : 12000)),
+          isNarrow ? 60 : 120
+        );
         particles = [];
         for (let i = 0; i < count; i++) {
           particles.push(new Particle());
@@ -247,7 +251,7 @@
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+              ctx.strokeStyle = `rgba(74, 111, 165, ${opacity})`;
               ctx.lineWidth = 0.6;
               ctx.stroke();
             }
@@ -301,12 +305,15 @@
     });
   });
 
-  /* ── TILT EFFECT ON SERVICE CARDS ── */
+  /* ── TILT EFFECT ON SERVICE CARDS (desktop only to avoid squeezed layout on mobile) ── */
   const serviceCards = document.querySelectorAll('.service-card');
+  const tiltEnabled = () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    window.matchMedia('(min-width: 769px)').matches;
 
-  if (serviceCards.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (serviceCards.length) {
     serviceCards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
+        if (!tiltEnabled()) return;
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
