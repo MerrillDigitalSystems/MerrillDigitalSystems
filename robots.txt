@@ -1,6 +1,8 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-# Sitemap (update domain here and in sitemap.xml if not merrilldigitalsystems.com)
+# Block any admin or development paths if added later
+Disallow: /admin/
+Disallow: /dev/
+
 Sitemap: https://merrilldigitalsystems.com/sitemap.xml
