@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
   <url>
     <loc>https://merrilldigitalsystems.com/</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Core Service Pages -->
   <url>
     <loc>https://merrilldigitalsystems.com/web-design-utah.html</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
     <loc>https://merrilldigitalsystems.com/operations-software.html</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
   <url>
     <loc>https://merrilldigitalsystems.com/field-service-software.html</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://merrilldigitalsystems.com/bookkeeping-software.html</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Legal Pages -->
   <url>
-    <loc>https://merrilldigitalsystems.com/terms.html</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://merrilldigitalsystems.com/blog.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://merrilldigitalsystems.com/privacy-primis.html</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://merrilldigitalsystems.com/blog-field-service-software-vs-off-the-shelf.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://merrilldigitalsystems.com/privacy-bookkeeping-os.html</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://merrilldigitalsystems.com/blog-why-service-business-websites-dont-convert.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://merrilldigitalsystems.com/blog-how-to-know-youve-outgrown-spreadsheets.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

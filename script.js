@@ -114,7 +114,8 @@
   /* ── SERVICES DROPDOWN ── */
   document.querySelectorAll('.nav-has-dropdown').forEach(container => {
     const menu = container.querySelector('.nav-dropdown-menu');
-    if (!menu) return;
+    const trigger = container.querySelector('.nav-dropdown-trigger');
+    if (!menu || !trigger) return;
     let closeTimer = null;
 
     function openMenu() {
@@ -127,17 +128,31 @@
       closeTimer = setTimeout(() => {
         container.classList.remove('open');
         menu.classList.remove('open');
-      }, 180);
+      }, 420);
     }
 
-    container.addEventListener('mouseenter', openMenu);
-    container.addEventListener('mouseleave', scheduleClose);
-    menu.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+    // Track trigger and menu directly to avoid flaky wrapper mouseleave behavior.
+    trigger.addEventListener('mouseenter', openMenu);
+    trigger.addEventListener('mouseleave', scheduleClose);
+    menu.addEventListener('mouseenter', openMenu);
     menu.addEventListener('mouseleave', scheduleClose);
+
+    trigger.addEventListener('click', e => {
+      if (window.innerWidth > 640) {
+        e.preventDefault();
+        const isOpen = menu.classList.contains('open');
+        document.querySelectorAll('.nav-dropdown-menu.open').forEach(openMenuEl => {
+          openMenuEl.classList.remove('open');
+          openMenuEl.closest('.nav-has-dropdown')?.classList.remove('open');
+        });
+        if (!isOpen) openMenu();
+      }
+    });
 
     // Close on click outside (touch devices)
     document.addEventListener('click', e => {
       if (!container.contains(e.target)) {
+        clearTimeout(closeTimer);
         container.classList.remove('open');
         menu.classList.remove('open');
       }
