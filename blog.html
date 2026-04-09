@@ -31,20 +31,30 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://merrilldigitalsystems.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://merrilldigitalsystems.com/blog.html" }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260327f">
+  <link rel="stylesheet" href="styles.css?v=20260403a">
 </head>
 <body>
 <canvas id="pc"></canvas>
 
 <nav>
   <div class="ni">
-    <a href="index.html" class="logo"><div class="ld"></div>Merrill Digital</a>
+    <a href="/" class="logo"><div class="ld"></div>Merrill Digital</a>
     <div class="nl" id="navLinks">
-      <a href="index.html#about">About</a>
+      <a href="/#about">About</a>
       <div class="nav-has-dropdown">
-        <a class="nav-dropdown-trigger" href="index.html#services">Services <span class="dropdown-arrow">▾</span></a>
+        <a class="nav-dropdown-trigger" href="/#services">Services <span class="dropdown-arrow">▾</span></a>
         <div class="nav-dropdown-menu">
           <a href="web-design-utah.html">Website Design</a>
           <a href="operations-software.html">Operations Software</a>
@@ -52,12 +62,12 @@
           <a href="bookkeeping-software.html">Bookkeeping Software</a>
         </div>
       </div>
-      <a href="index.html#work">Work</a>
+      <a href="/#work">Work</a>
       <a href="blog.html" class="active">Blog</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="/#contact">Contact</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="index.html#contact" class="nav-cta">Book a Free Call <span class="arr">→</span></a>
+      <a href="/#contact" class="nav-cta">Book a Free Call <span class="arr">→</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -67,7 +77,7 @@
 
 <div class="breadcrumb z">
   <div class="w">
-    <a href="index.html">Home</a><span class="sep">›</span>Blog
+    <a href="/">Home</a><span class="sep">›</span>Blog
   </div>
 </div>
 
@@ -99,20 +109,20 @@
             <span class="blog-thumb-label">Lead story</span>
             <span class="blog-thumb-mark">01</span>
           </div>
+          <div class="blog-meta"><span>Operations Software</span><span>7 min read</span></div>
+          <h3>ServiceTitan vs. Custom Software - What Nobody Tells You</h3>
+          <p>When the subscription fits on paper but your team is still absorbing operational drag - and how an honest comparison to custom software changes the math.</p>
+          <a class="blog-link" href="blog-servicetitan-vs-custom-software.html">Read article <span class="arr">→</span></a>
+        </article>
+        <article class="blog-card rv d2">
+          <div class="blog-thumb">
+            <span class="blog-thumb-label">Field operations</span>
+            <span class="blog-thumb-mark">02</span>
+          </div>
           <div class="blog-meta"><span>Field Operations</span><span>7 min read</span></div>
           <h3>When Off-the-Shelf Field Service Software Starts Breaking Down</h3>
           <p>The warning signs that your operation has become too complex for generic field service tools - and what custom software actually fixes once edge cases become the real workflow.</p>
           <a class="blog-link" href="blog-field-service-software-vs-off-the-shelf.html">Read article <span class="arr">→</span></a>
-        </article>
-        <article class="blog-card rv d2">
-          <div class="blog-thumb">
-            <span class="blog-thumb-label">Most shared</span>
-            <span class="blog-thumb-mark">02</span>
-          </div>
-          <div class="blog-meta"><span>Web Design</span><span>6 min read</span></div>
-          <h3>Why Most Service Business Websites Don't Generate Leads</h3>
-          <p>What actually stops a website from converting - and why the answer is usually structure, positioning, search intent, and friction reduction, not just design polish.</p>
-          <a class="blog-link" href="blog-why-service-business-websites-dont-convert.html">Read article <span class="arr">→</span></a>
         </article>
         <article class="blog-card rv d3">
           <div class="blog-thumb">
@@ -123,6 +133,74 @@
           <h3>How to Know When Your Business Has Outgrown Spreadsheets</h3>
           <p>If reporting takes hours, data lives in five places, and status updates happen in Slack, this is probably the next bottleneck in your business.</p>
           <a class="blog-link" href="blog-how-to-know-youve-outgrown-spreadsheets.html">Read article <span class="arr">→</span></a>
+        </article>
+        <article class="blog-card blog-card--span rv d4">
+          <div class="blog-thumb">
+            <span class="blog-thumb-label">Web &amp; leads</span>
+            <span class="blog-thumb-mark">04</span>
+          </div>
+          <div class="blog-meta"><span>Web Design</span><span>6 min read</span></div>
+          <h3>Why Most Service Business Websites Don't Generate Leads</h3>
+          <p>What actually stops a website from converting - and why the answer is usually structure, positioning, search intent, and friction reduction, not just design polish.</p>
+          <a class="blog-link" href="blog-why-service-business-websites-dont-convert.html">Read article <span class="arr">→</span></a>
+        </article>
+      </div>
+
+      <div class="lh" style="margin-top:72px">
+        <div class="sl">Web design &amp; SEO</div>
+        <h2>Website Strategy for Utah Businesses</h2>
+        <p class="blog-kicker">Practical articles on web design decisions, costs, and lead generation for Utah service businesses.</p>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card rv d1">
+          <div class="blog-thumb">
+            <span class="blog-thumb-label">Pricing</span>
+            <span class="blog-thumb-mark">05</span>
+          </div>
+          <div class="blog-meta"><span>Web Design</span><span>8 min read</span></div>
+          <h3>How Much Does a Website Cost in Utah in 2026?</h3>
+          <p>A real breakdown of what Utah businesses pay for websites - from DIY builders to custom-coded sites - and what actually drives the price.</p>
+          <a class="blog-link" href="blog-website-cost-utah.html">Read article <span class="arr">→</span></a>
+        </article>
+        <article class="blog-card rv d2">
+          <div class="blog-thumb">
+            <span class="blog-thumb-label">Tech decisions</span>
+            <span class="blog-thumb-mark">06</span>
+          </div>
+          <div class="blog-meta"><span>Web Design</span><span>8 min read</span></div>
+          <h3>WordPress vs Custom Code: Which Is Better for Your Utah Business?</h3>
+          <p>WordPress powers 40% of the web. So why would a service business choose custom code? The answer comes down to speed, ownership, and what you're actually building.</p>
+          <a class="blog-link" href="blog-wordpress-vs-custom-code.html">Read article <span class="arr">→</span></a>
+        </article>
+        <article class="blog-card rv d3">
+          <div class="blog-thumb">
+            <span class="blog-thumb-label">Industry focus</span>
+            <span class="blog-thumb-mark">07</span>
+          </div>
+          <div class="blog-meta"><span>Web Design</span><span>8 min read</span></div>
+          <h3>HVAC Website Design: What Actually Gets Leads in Utah</h3>
+          <p>What HVAC companies need on their website to rank on Google and convert visitors into service calls. Specific tips from building sites in this vertical.</p>
+          <a class="blog-link" href="blog-hvac-website-design-utah.html">Read article <span class="arr">→</span></a>
+        </article>
+        <article class="blog-card rv d4">
+          <div class="blog-thumb">
+            <span class="blog-thumb-label">Lead generation</span>
+            <span class="blog-thumb-mark">08</span>
+          </div>
+          <div class="blog-meta"><span>Web Design</span><span>8 min read</span></div>
+          <h3>How to Get More Leads from Your Utah Business Website</h3>
+          <p>Eight practical steps to turn your Utah business website into a lead generation system  -  from SEO fixes to conversion optimization.</p>
+          <a class="blog-link" href="blog-get-more-leads-utah-website.html">Read article <span class="arr">→</span></a>
+        </article>
+        <article class="blog-card blog-card--span rv d5">
+          <div class="blog-thumb">
+            <span class="blog-thumb-label">Checklist</span>
+            <span class="blog-thumb-mark">09</span>
+          </div>
+          <div class="blog-meta"><span>Web Design</span><span>9 min read</span></div>
+          <h3>Utah Small Business Website Checklist: What Google Actually Looks For</h3>
+          <p>A 28-point checklist covering SEO, speed, mobile, local signals, and conversion elements. Use it to audit your current site or spec a new one.</p>
+          <a class="blog-link" href="blog-utah-website-checklist.html">Read article <span class="arr">→</span></a>
         </article>
       </div>
     </div>
@@ -137,7 +215,7 @@
         <p class="ctap">If one of these articles sounds uncomfortably familiar, book a call and we can scope the workflow, the constraints, and the fastest path forward.</p>
       </div>
       <div class="ctaact">
-        <a href="index.html#contact" class="bprim" style="white-space:nowrap">Book a Free Discovery Call <span class="arr">→</span></a>
+        <a href="/#contact" class="bprim" style="white-space:nowrap">Book a Free Discovery Call <span class="arr">→</span></a>
         <div class="ctanote">Free consultation - No commitment - Reply within 24hrs</div>
       </div>
     </div>
@@ -151,7 +229,7 @@
         <div class="flogo">Merrill Digital</div>
         <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses.</div>
       </div>
-      <div><div class="fhdr">Company</div><div class="flinks2"><a href="index.html#about">About</a><a href="index.html#work">Work</a><a href="blog.html">Blog</a><a href="index.html#contact">Contact</a></div></div>
+      <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
       <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
       <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
     </div>
@@ -162,6 +240,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=20260327f"></script>
+<script src="script.js?v=20260403a"></script>
 </body>
 </html>

@@ -21,6 +21,11 @@
   to = "/privacy-bookkeeping-os.html"
   status = 301
 
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
 # SPA fallback: 404 → index (commented out; enable if using client-side routing)
 # [[redirects]]
 #   from = "/*"
