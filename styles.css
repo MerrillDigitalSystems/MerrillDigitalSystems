@@ -146,7 +146,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(12,18,32,.92);backdrop-fil
 .nc2::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--faint),transparent);opacity:0;transition:opacity .3s}
 .nc2:hover{border-color:rgba(91,155,213,.24);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.3)}
 .nc2:hover::before{opacity:1}
-.nicicon{width:42px;height:42px;border-radius:10px;background:var(--glow);border:1px solid rgba(91,155,213,.18);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px;transition:transform .25s var(--ease)}
+.nicicon{width:42px;height:42px;border-radius:10px;background:var(--glow);border:1px solid rgba(91,155,213,.18);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px;transition:transform .25s var(--ease);color:var(--acc)}
+.nicicon svg{width:20px;height:20px}
 .nc2:hover .nicicon{transform:scale(1.1) rotate(-4deg)}
 .nt{font-size:15px;font-weight:500;margin-bottom:8px}.nd{font-size:13px;color:var(--muted);line-height:1.65}
 
@@ -286,7 +287,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(12,18,32,.92);backdrop-fil
 .ccal h3{font-family:var(--serif);font-size:22px;margin:8px 0 8px}
 .ccal>p{font-size:13px;color:var(--muted);margin-bottom:20px;font-weight:300;line-height:1.6}
 .crow{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}
-.cicon{width:36px;height:36px;border-radius:8px;background:var(--bg4);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.cicon{width:36px;height:36px;border-radius:8px;background:var(--bg4);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--acc)}
+.cicon svg{width:16px;height:16px}
 .clbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
 .cval{font-size:14px;font-weight:500}
 .ctrust{display:flex;gap:10px;margin:24px 0}
@@ -334,7 +336,8 @@ footer{background:var(--bg2);border-top:1px solid var(--b);padding:52px 0 32px;p
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
 .feat-card{background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:24px;transition:all .2s var(--ease)}
 .feat-card:hover{border-color:var(--b2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
-.feat-icon{font-size:24px;margin-bottom:14px}
+.feat-icon{margin-bottom:14px;color:var(--acc);width:24px;height:24px}
+.feat-icon svg{width:100%;height:100%;display:block}
 .feat-card h3{font-size:16px;font-weight:500;margin-bottom:8px}
 .feat-card p{font-size:13px;color:var(--muted);line-height:1.65}
 
@@ -400,6 +403,16 @@ footer{background:var(--bg2);border-top:1px solid var(--b);padding:52px 0 32px;p
 .article-head{margin-bottom:32px}
 .article-head h1{font-family:var(--serif);font-size:clamp(38px,5vw,58px);line-height:1.08;letter-spacing:-.03em;margin:14px 0 18px}
 .article-dek{font-size:18px;color:var(--muted);line-height:1.8;font-weight:300}
+.article-author{display:flex;align-items:center;gap:14px;padding:20px 0;margin-bottom:8px;border-bottom:1px solid var(--b)}
+.author-av{width:42px;height:42px;border-radius:50%;background:var(--glow);border:1px solid rgba(91,155,213,.2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--acc);flex-shrink:0}
+.author-name{font-size:14px;font-weight:500;color:var(--text);text-decoration:none}
+.author-name:hover{color:var(--acc)}
+.author-role{font-size:12px;color:var(--muted);margin-top:2px}
+.article-toc{background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:20px 24px;margin-bottom:32px;position:static;z-index:auto;backdrop-filter:none}
+.toc-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px;font-weight:600}
+.article-toc ol{list-style:decimal;padding-left:20px;display:flex;flex-direction:column;gap:8px;margin:0}
+.article-toc a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .15s}
+.article-toc a:hover{color:var(--acc)}
 .article-prose{font-size:17px;line-height:1.9;color:var(--text)}
 .article-prose p{margin:0 0 18px}
 .article-prose h2{font-family:var(--serif);font-size:34px;line-height:1.18;letter-spacing:-.02em;margin:42px 0 16px}

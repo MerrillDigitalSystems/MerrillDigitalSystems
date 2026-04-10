@@ -267,7 +267,7 @@
         });
 
         if (res.ok) {
-          sbtn.innerHTML = 'Message Sent! ✓';
+          sbtn.innerHTML = 'Message Sent';
           sbtn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
           contactForm.reset();
           setTimeout(() => {
