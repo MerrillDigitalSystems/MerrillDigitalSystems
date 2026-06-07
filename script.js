@@ -23,7 +23,7 @@
 
     /* Build a soft-grid of nodes so the layout feels architectural, not random */
     function buildNodes() {
-      const count = isMobile() ? 38 : 62;
+      const count = isMobile() ? 70 : 130;
       const cols  = Math.ceil(Math.sqrt(count * W / H));
       const rows  = Math.ceil(count / cols);
       const cw = W / cols, ch = H / rows;
@@ -59,7 +59,7 @@
       }, []);
     }
 
-    const LINK       = 170;   // max edge length
+    const LINK       = 185;   // max edge length
     const MOUSE_R    = 195;   // cursor repulsion radius
     const MOUSE_F    = 5.8;   // repulsion strength
 
@@ -78,7 +78,7 @@
       buildNodes();
       packets = [];
       rings   = [];
-      const target = isMobile() ? 12 : 18;
+      const target = isMobile() ? 22 : 36;
       for (let i = 0; i < target; i++) {
         const p = mkPacket();
         if (p) packets.push(p);
@@ -143,7 +143,7 @@
       });
 
       /* ── Update & draw packets ── */
-      const target = isMobile() ? 12 : 18;
+      const target = isMobile() ? 22 : 36;
       packets.forEach((p, idx) => {
         p.t += p.spd;
 
