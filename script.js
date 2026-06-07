@@ -5,6 +5,222 @@
 (function () {
   'use strict';
 
+  /* ── CANVAS FLOWING NETWORK ── */
+  (function () {
+    const cv = document.getElementById('pc');
+    if (!cv) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const ctx = cv.getContext('2d');
+    const R = 91, G = 155, B = 213; // --acc colour
+    const isMobile = () => window.innerWidth < 768;
+
+    let W, H, nodes, raf;
+    const mouse = { x: -9999, y: -9999 };
+
+    function rc(a) { return `rgba(${R},${G},${B},${a})`; }
+    function rand(lo, hi) { return lo + Math.random() * (hi - lo); }
+
+    /* Build a soft-grid of nodes so the layout feels architectural, not random */
+    function buildNodes() {
+      const count = isMobile() ? 38 : 62;
+      const cols  = Math.ceil(Math.sqrt(count * W / H));
+      const rows  = Math.ceil(count / cols);
+      const cw = W / cols, ch = H / rows;
+      nodes = [];
+      for (let i = 0; i < count; i++) {
+        const c = i % cols, r = Math.floor(i / cols);
+        const bx = cw * (c + 0.5), by = ch * (r + 0.5);
+        nodes.push({
+          x:  bx + rand(-cw * 0.32, cw * 0.32),
+          y:  by + rand(-ch * 0.32, ch * 0.32),
+          bx, by,          // home position — nodes spring back here
+          vx: rand(-0.25, 0.25),
+          vy: rand(-0.25, 0.25),
+          r:  rand(1.8, 3.2),
+          ph: rand(0, Math.PI * 2),  // individual pulse phase
+        });
+      }
+    }
+
+    /* ── Data packets & arrival rings ── */
+    let packets = [];
+    let rings   = [];
+
+    function neighbours(idx) {
+      const n  = nodes[idx];
+      const D2 = LINK * LINK;
+      return nodes.reduce((a, m, j) => {
+        if (j !== idx) {
+          const dx = n.x - m.x, dy = n.y - m.y;
+          if (dx * dx + dy * dy < D2) a.push(j);
+        }
+        return a;
+      }, []);
+    }
+
+    const LINK       = 170;   // max edge length
+    const MOUSE_R    = 195;   // cursor repulsion radius
+    const MOUSE_F    = 5.8;   // repulsion strength
+
+    function mkPacket() {
+      const fi = Math.floor(Math.random() * nodes.length);
+      const nb = neighbours(fi);
+      if (!nb.length) return null;
+      const ti = nb[Math.floor(Math.random() * nb.length)];
+      return { fi, ti, t: rand(0, 0.6), spd: rand(0.005, 0.012) };
+    }
+
+    function resize() {
+      cancelAnimationFrame(raf);
+      W = cv.width  = window.innerWidth;
+      H = cv.height = window.innerHeight;
+      buildNodes();
+      packets = [];
+      rings   = [];
+      const target = isMobile() ? 12 : 18;
+      for (let i = 0; i < target; i++) {
+        const p = mkPacket();
+        if (p) packets.push(p);
+      }
+      tick();
+    }
+
+    function tick() {
+      raf = requestAnimationFrame(tick);
+      ctx.clearRect(0, 0, W, H);
+      const now = performance.now() / 1000;
+
+      /* ── Simulate nodes ── */
+      nodes.forEach(n => {
+        const dx = n.x - mouse.x, dy = n.y - mouse.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < MOUSE_R * MOUSE_R && d2 > 4) {
+          const d = Math.sqrt(d2);
+          const f = MOUSE_F * (1 - d / MOUSE_R) / d;
+          n.vx += dx * f;
+          n.vy += dy * f;
+        }
+        // Spring back toward home
+        n.vx += (n.bx - n.x) * 0.007;
+        n.vy += (n.by - n.y) * 0.007;
+        // Damping
+        n.vx *= 0.86;
+        n.vy *= 0.86;
+        n.x  += n.vx;
+        n.y  += n.vy;
+      });
+
+      /* ── Draw edges ── */
+      ctx.lineWidth = 0.75;
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b  = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < LINK) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = rc((1 - d / LINK) * 0.26);
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* ── Draw arrival pulse rings ── */
+      rings = rings.filter(rg => {
+        rg.age += 0.038;
+        if (rg.age > 1) return false;
+        const ease = 1 - (1 - rg.age) * (1 - rg.age); // ease-out
+        ctx.beginPath();
+        ctx.arc(rg.x, rg.y, ease * 24, 0, Math.PI * 2);
+        ctx.strokeStyle = rc((1 - rg.age) * 0.55);
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+        return true;
+      });
+
+      /* ── Update & draw packets ── */
+      const target = isMobile() ? 12 : 18;
+      packets.forEach((p, idx) => {
+        p.t += p.spd;
+
+        if (p.t >= 1) {
+          // Emit arrival ring at destination
+          const dest = nodes[p.ti];
+          if (dest) rings.push({ x: dest.x, y: dest.y, age: 0 });
+
+          // Chain the packet to a new neighbour from here
+          const nb = neighbours(p.ti);
+          if (nb.length) {
+            p.fi  = p.ti;
+            p.ti  = nb[Math.floor(Math.random() * nb.length)];
+            p.t   = 0;
+            p.spd = rand(0.005, 0.012);
+          } else {
+            packets[idx] = mkPacket();
+          }
+          return;
+        }
+
+        const a = nodes[p.fi], b = nodes[p.ti];
+        if (!a || !b) { packets[idx] = mkPacket(); return; }
+
+        const x = a.x + (b.x - a.x) * p.t;
+        const y = a.y + (b.y - a.y) * p.t;
+
+        // Glow halo
+        const grd = ctx.createRadialGradient(x, y, 0, x, y, 13);
+        grd.addColorStop(0,   rc(0.88));
+        grd.addColorStop(0.4, rc(0.28));
+        grd.addColorStop(1,   rc(0));
+        ctx.beginPath();
+        ctx.arc(x, y, 13, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Bright core
+        ctx.beginPath();
+        ctx.arc(x, y, 2.4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(215,238,255,0.97)';
+        ctx.fill();
+      });
+
+      // Top up packets if any were replaced with null
+      while (packets.filter(Boolean).length < target) {
+        const p = mkPacket();
+        if (p) packets.push(p);
+        else break;
+      }
+      packets = packets.filter(Boolean);
+
+      /* ── Draw nodes ── */
+      nodes.forEach(n => {
+        const pulse = 0.5 + 0.5 * Math.sin(now * 1.7 + n.ph);
+        const alpha = 0.48 + 0.38 * pulse;
+
+        // Soft glow halo
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * 3.8, 0, Math.PI * 2);
+        ctx.fillStyle = rc(0.055 + 0.055 * pulse);
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * (0.82 + 0.18 * pulse), 0, Math.PI * 2);
+        ctx.fillStyle = rc(alpha);
+        ctx.fill();
+      });
+    }
+
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+  })();
+
   /* ── STICKY MOBILE CTA ── */
   (function () {
     const bar = document.getElementById('stickyCta');
