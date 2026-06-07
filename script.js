@@ -23,7 +23,7 @@
 
     /* Build a soft-grid of nodes so the layout feels architectural, not random */
     function buildNodes() {
-      const count = isMobile() ? 70 : 130;
+      const count = isMobile() ? 90 : 180;
       const cols  = Math.ceil(Math.sqrt(count * W / H));
       const rows  = Math.ceil(count / cols);
       const cw = W / cols, ch = H / rows;
