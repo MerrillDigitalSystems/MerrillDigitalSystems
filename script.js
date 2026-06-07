@@ -5,75 +5,34 @@
 (function () {
   'use strict';
 
-  /* ── PARTICLE NETWORK ── */
+  /* ── STICKY MOBILE CTA ── */
   (function () {
-    const c = document.getElementById('pc');
-    if (!c) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      c.style.display = 'none';
-      return;
-    }
-    const ctx = c.getContext('2d');
-    let W, H, pts = [];
-    const N = 90, CD = 145, MD = 170;
-    const G = 'rgba(91,155,213,', B = 'rgba(74,111,165,';
-    let mx = -9999, my = -9999;
+    const bar = document.getElementById('stickyCta');
+    if (!bar) return;
+    const hero = document.querySelector('.hero');
+    const contact = document.getElementById('contact');
+    let heroBottom = 0;
 
-    function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
-
-    function Pt() {
-      this.x = Math.random() * W; this.y = Math.random() * H;
-      this.vx = (Math.random() - .5) * .38; this.vy = (Math.random() - .5) * .38;
-      this.r = Math.random() * 1.8 + .5;
-      this.col = Math.random() > .6 ? G : B;
+    function measure() {
+      heroBottom = hero ? hero.getBoundingClientRect().bottom + window.scrollY : 400;
     }
 
-    function init() { pts = []; for (let i = 0; i < N; i++) pts.push(new Pt()); }
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      for (let i = 0; i < N; i++) {
-        const a = pts[i];
-        for (let j = i + 1; j < N; j++) {
-          const b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
-          if (d < CD) {
-            const op = (1 - d / CD) * .35;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = G + op + ')'; ctx.lineWidth = .55; ctx.stroke();
-          }
-        }
-        const ddx = a.x - mx, ddy = a.y - my, dd = Math.hypot(ddx, ddy);
-        if (dd < MD) {
-          const op = (1 - dd / MD) * .6;
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mx, my);
-          ctx.strokeStyle = G + op + ')'; ctx.lineWidth = .8; ctx.stroke();
-        }
-      }
-      for (let i = 0; i < N; i++) {
-        const p = pts[i];
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.col + '.65)'; ctx.fill();
+    function onScroll() {
+      const y = window.scrollY;
+      const nearContact = contact && (window.scrollY + window.innerHeight >= contact.offsetTop - 80);
+      if (y > heroBottom && !nearContact) {
+        bar.classList.add('visible');
+        bar.setAttribute('aria-hidden', 'false');
+      } else {
+        bar.classList.remove('visible');
+        bar.setAttribute('aria-hidden', 'true');
       }
     }
 
-    function update() {
-      for (let i = 0; i < N; i++) {
-        const p = pts[i], dx = p.x - mx, dy = p.y - my, d = Math.hypot(dx, dy);
-        if (d < 85) { p.vx += (dx / d) * .045; p.vy += (dy / d) * .045; }
-        const s = Math.hypot(p.vx, p.vy);
-        if (s > .85) { p.vx *= .85 / s; p.vy *= .85 / s; }
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-      }
-    }
-
-    function loop() { update(); draw(); requestAnimationFrame(loop); }
-
-    window.addEventListener('resize', () => { resize(); init(); });
-    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    window.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
-    resize(); init(); loop();
+    measure();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { measure(); onScroll(); });
+    onScroll();
   })();
 
   /* ── SCROLL REVEAL (.rv, .rl, .rr → .up) ── */
@@ -214,6 +173,7 @@
   const roiMo   = document.getElementById('roi-monthly');
   const roiAn   = document.getElementById('roi-annual');
   const roiPb   = document.getElementById('roi-payback');
+  const roiCta  = document.getElementById('roi-cta');
 
   if (calcEmp && calcHrs && calcRt && roiMo && roiAn && roiPb) {
     const fmt = n => new Intl.NumberFormat('en-US', {
@@ -233,8 +193,10 @@
       if (monthly > 0) {
         const pb = 15000 / monthly;
         roiPb.textContent = pb < 1 ? '< 1 Month' : pb > 24 ? '24+ Months' : `${pb.toFixed(1)} Months`;
+        if (roiCta) roiCta.innerHTML = `Save ${fmt(monthly)}/mo on Admin Work <span class="arr">→</span>`;
       } else {
         roiPb.textContent = 'N/A';
+        if (roiCta) roiCta.innerHTML = `Stop Burning Money on Busywork <span class="arr">→</span>`;
       }
     }
 
