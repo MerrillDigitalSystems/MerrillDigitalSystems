@@ -5,218 +5,147 @@
 (function () {
   'use strict';
 
-  /* ── CANVAS FLOWING NETWORK ── */
+  /* ── CANVAS CIRCUIT BOARD ── */
   (function () {
     const cv = document.getElementById('pc');
     if (!cv) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = cv.getContext('2d');
-    const R = 91, G = 155, B = 213; // --acc colour
-    const isMobile = () => window.innerWidth < 768;
+    const R = 91, G = 155, B = 213;
 
-    let W, H, nodes, raf;
-    const mouse = { x: -9999, y: -9999 };
-
-    function rc(a) { return `rgba(${R},${G},${B},${a})`; }
+    function rgba(a) { return `rgba(${R},${G},${B},${a})`; }
     function rand(lo, hi) { return lo + Math.random() * (hi - lo); }
+    function snap(v, g) { return Math.round(v / g) * g; }
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function cell() { return window.innerWidth < 768 ? 68 : 56; }
 
-    /* Build a soft-grid of nodes so the layout feels architectural, not random */
-    function buildNodes() {
-      const count = isMobile() ? 90 : 180;
-      const cols  = Math.ceil(Math.sqrt(count * W / H));
-      const rows  = Math.ceil(count / cols);
-      const cw = W / cols, ch = H / rows;
-      nodes = [];
-      for (let i = 0; i < count; i++) {
-        const c = i % cols, r = Math.floor(i / cols);
-        const bx = cw * (c + 0.5), by = ch * (r + 0.5);
-        nodes.push({
-          x:  bx + rand(-cw * 0.32, cw * 0.32),
-          y:  by + rand(-ch * 0.32, ch * 0.32),
-          bx, by,          // home position — nodes spring back here
-          vx: rand(-0.25, 0.25),
-          vy: rand(-0.25, 0.25),
-          r:  rand(1.8, 3.2),
-          ph: rand(0, Math.PI * 2),  // individual pulse phase
-        });
+    let W, H, routes, sparks, raf;
+
+    /* Build PCB-style orthogonal routes via right-angle walks on a snapped grid */
+    function buildRoutes() {
+      routes = [];
+      const g = cell();
+      const target = Math.round((W * H) / (g * g * 2.8));
+
+      for (let i = 0; i < target; i++) {
+        const pts = [];
+        let x = snap(rand(g, W - g), g);
+        let y = snap(rand(g, H - g), g);
+        pts.push({ x, y });
+
+        const turns = Math.floor(rand(2, 7));
+        let horiz = Math.random() > 0.5;
+
+        for (let t = 0; t < turns; t++) {
+          const steps = Math.ceil(rand(1, 4));
+          const sign  = Math.random() > 0.5 ? 1 : -1;
+          if (horiz) x = clamp(x + sign * steps * g, 0, W);
+          else       y = clamp(y + sign * steps * g, 0, H);
+          pts.push({ x, y });
+          horiz = !horiz;
+        }
+
+        /* Remove consecutive duplicate points (zero-length segments) */
+        const clean = pts.filter((p, i) =>
+          i === 0 || p.x !== pts[i - 1].x || p.y !== pts[i - 1].y
+        );
+        if (clean.length >= 2) routes.push(clean);
       }
     }
 
-    /* ── Data packets & arrival rings ── */
-    let packets = [];
-    let rings   = [];
-
-    function neighbours(idx) {
-      const n  = nodes[idx];
-      const D2 = LINK * LINK;
-      return nodes.reduce((a, m, j) => {
-        if (j !== idx) {
-          const dx = n.x - m.x, dy = n.y - m.y;
-          if (dx * dx + dy * dy < D2) a.push(j);
-        }
-        return a;
-      }, []);
-    }
-
-    const LINK       = 185;   // max edge length
-    const MOUSE_R    = 195;   // cursor repulsion radius
-    const MOUSE_F    = 5.8;   // repulsion strength
-
-    function mkPacket() {
-      const fi = Math.floor(Math.random() * nodes.length);
-      const nb = neighbours(fi);
-      if (!nb.length) return null;
-      const ti = nb[Math.floor(Math.random() * nb.length)];
-      return { fi, ti, t: rand(0, 0.6), spd: rand(0.005, 0.012) };
+    /* Sparks: small electrons that travel along a route then jump to a new one */
+    function newSpark() {
+      if (!routes.length) return null;
+      const route = routes[Math.floor(Math.random() * routes.length)];
+      const fwd   = Math.random() > 0.5;
+      return {
+        route,
+        seg: fwd ? 0 : route.length - 2,
+        t:   Math.random(),
+        spd: rand(0.004, 0.010),
+        fwd,
+      };
     }
 
     function resize() {
       cancelAnimationFrame(raf);
       W = cv.width  = window.innerWidth;
       H = cv.height = window.innerHeight;
-      buildNodes();
-      packets = [];
-      rings   = [];
-      const target = isMobile() ? 22 : 36;
-      for (let i = 0; i < target; i++) {
-        const p = mkPacket();
-        if (p) packets.push(p);
-      }
+      buildRoutes();
+      const count = Math.min(Math.floor(routes.length * 0.48), 90);
+      sparks = Array.from({ length: count }, newSpark).filter(Boolean);
       tick();
     }
 
     function tick() {
       raf = requestAnimationFrame(tick);
       ctx.clearRect(0, 0, W, H);
-      const now = performance.now() / 1000;
 
-      /* ── Simulate nodes ── */
-      nodes.forEach(n => {
-        const dx = n.x - mouse.x, dy = n.y - mouse.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < MOUSE_R * MOUSE_R && d2 > 4) {
-          const d = Math.sqrt(d2);
-          const f = MOUSE_F * (1 - d / MOUSE_R) / d;
-          n.vx += dx * f;
-          n.vy += dy * f;
-        }
-        // Spring back toward home
-        n.vx += (n.bx - n.x) * 0.007;
-        n.vy += (n.by - n.y) * 0.007;
-        // Damping
-        n.vx *= 0.86;
-        n.vy *= 0.86;
-        n.x  += n.vx;
-        n.y  += n.vy;
+      /* ── Traces — one batched stroke call ── */
+      ctx.beginPath();
+      routes.forEach(route => {
+        ctx.moveTo(route[0].x, route[0].y);
+        for (let i = 1; i < route.length; i++) ctx.lineTo(route[i].x, route[i].y);
       });
+      ctx.strokeStyle = rgba(0.07);
+      ctx.lineWidth   = 1;
+      ctx.stroke();
 
-      /* ── Draw edges ── */
-      ctx.lineWidth = 0.75;
-      for (let i = 0; i < nodes.length; i++) {
-        const a = nodes[i];
-        for (let j = i + 1; j < nodes.length; j++) {
-          const b  = nodes[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const d  = Math.sqrt(dx * dx + dy * dy);
-          if (d < LINK) {
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = rc((1 - d / LINK) * 0.26);
-            ctx.stroke();
-          }
-        }
-      }
+      /* ── Junction pads — one batched fill call ── */
+      ctx.fillStyle = rgba(0.14);
+      ctx.beginPath();
+      routes.forEach(route =>
+        route.forEach(pt => {
+          ctx.moveTo(pt.x + 2.5, pt.y);          // move before arc to start new subpath
+          ctx.arc(pt.x, pt.y, 2.5, 0, Math.PI * 2);
+        })
+      );
+      ctx.fill();
 
-      /* ── Draw arrival pulse rings ── */
-      rings = rings.filter(rg => {
-        rg.age += 0.038;
-        if (rg.age > 1) return false;
-        const ease = 1 - (1 - rg.age) * (1 - rg.age); // ease-out
-        ctx.beginPath();
-        ctx.arc(rg.x, rg.y, ease * 24, 0, Math.PI * 2);
-        ctx.strokeStyle = rc((1 - rg.age) * 0.55);
-        ctx.lineWidth = 1.4;
-        ctx.stroke();
-        return true;
-      });
+      /* ── Sparks ── */
+      const targetCount = Math.min(Math.floor(routes.length * 0.48), 90);
+      sparks = sparks.map(s => {
+        if (!s) return newSpark();
+        s.t += s.spd;
 
-      /* ── Update & draw packets ── */
-      const target = isMobile() ? 22 : 36;
-      packets.forEach((p, idx) => {
-        p.t += p.spd;
-
-        if (p.t >= 1) {
-          // Emit arrival ring at destination
-          const dest = nodes[p.ti];
-          if (dest) rings.push({ x: dest.x, y: dest.y, age: 0 });
-
-          // Chain the packet to a new neighbour from here
-          const nb = neighbours(p.ti);
-          if (nb.length) {
-            p.fi  = p.ti;
-            p.ti  = nb[Math.floor(Math.random() * nb.length)];
-            p.t   = 0;
-            p.spd = rand(0.005, 0.012);
-          } else {
-            packets[idx] = mkPacket();
-          }
-          return;
+        if (s.t > 1) {
+          s.t   = 0;
+          s.seg += s.fwd ? 1 : -1;
+          if (s.seg < 0 || s.seg >= s.route.length - 1) return newSpark(); // reached end → new route
         }
 
-        const a = nodes[p.fi], b = nodes[p.ti];
-        if (!a || !b) { packets[idx] = mkPacket(); return; }
+        const a = s.route[s.seg], b = s.route[s.seg + 1];
+        if (!a || !b) return newSpark();
 
-        const x = a.x + (b.x - a.x) * p.t;
-        const y = a.y + (b.y - a.y) * p.t;
+        const x = a.x + (b.x - a.x) * s.t;
+        const y = a.y + (b.y - a.y) * s.t;
 
-        // Glow halo
-        const grd = ctx.createRadialGradient(x, y, 0, x, y, 13);
-        grd.addColorStop(0,   rc(0.88));
-        grd.addColorStop(0.4, rc(0.28));
-        grd.addColorStop(1,   rc(0));
+        /* Small soft glow — intentionally subtle so it reads as background */
+        const grd = ctx.createRadialGradient(x, y, 0, x, y, 7);
+        grd.addColorStop(0, rgba(0.55));
+        grd.addColorStop(1, rgba(0));
         ctx.beginPath();
-        ctx.arc(x, y, 13, 0, Math.PI * 2);
+        ctx.arc(x, y, 7, 0, Math.PI * 2);
         ctx.fillStyle = grd;
         ctx.fill();
 
-        // Bright core
+        /* Bright core dot (small) */
         ctx.beginPath();
-        ctx.arc(x, y, 2.4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(215,238,255,0.97)';
+        ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(208,235,255,0.95)';
         ctx.fill();
-      });
 
-      // Top up packets if any were replaced with null
-      while (packets.filter(Boolean).length < target) {
-        const p = mkPacket();
-        if (p) packets.push(p);
-        else break;
+        return s;
+      }).filter(Boolean);
+
+      /* Top up if any sparks were culled */
+      while (sparks.length < targetCount) {
+        const s = newSpark();
+        if (s) sparks.push(s); else break;
       }
-      packets = packets.filter(Boolean);
-
-      /* ── Draw nodes ── */
-      nodes.forEach(n => {
-        const pulse = 0.5 + 0.5 * Math.sin(now * 1.7 + n.ph);
-        const alpha = 0.48 + 0.38 * pulse;
-
-        // Soft glow halo
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r * 3.8, 0, Math.PI * 2);
-        ctx.fillStyle = rc(0.055 + 0.055 * pulse);
-        ctx.fill();
-
-        // Core dot
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r * (0.82 + 0.18 * pulse), 0, Math.PI * 2);
-        ctx.fillStyle = rc(alpha);
-        ctx.fill();
-      });
     }
 
-    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-    window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
     window.addEventListener('resize', resize, { passive: true });
     resize();
   })();

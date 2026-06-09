@@ -508,7 +508,7 @@ footer{background:var(--bg2);border-top:1px solid var(--b);padding:52px 0 32px;p
   .hero{padding:64px 0 56px}.hero h1{font-size:38px}.hsub{font-size:15px}
   .hctas{flex-direction:column;align-items:flex-start}
   .bprim{width:100%;justify-content:center}.bghost{width:100%;text-align:center;display:block}
-  .ng{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}
+  .ng{grid-template-columns:repeat(2,1fr);gap:8px}.pgrid{grid-template-columns:1fr}
   .rgrid{grid-template-columns:1fr}.ranks{grid-template-columns:1fr}
   .sh h2,.lh h2{font-size:32px}.page-hero h1{font-size:32px}
   .frow{grid-template-columns:1fr}
@@ -528,6 +528,33 @@ footer{background:var(--bg2);border-top:1px solid var(--b);padding:52px 0 32px;p
   .article-head h1{font-size:34px}
   .article-dek,.article-prose{font-size:16px}
   .section-longform .sh h2{font-size:26px}
+
+  /* ── Section padding: 90px → 52px on mobile ── */
+  .niches,.services,.process,.founder,.recognition,.portfolio,.roi,.faq,.ctasec,.contact{padding:52px 0}
+
+  /* ── Section header spacing ── */
+  .sh{margin-bottom:32px}.lh{margin-bottom:28px}
+
+  /* ── Hero: hide the stat card entirely on mobile (trust row below covers all the same info) ── */
+  .hc{display:none}
+
+  /* ── Trust row: hide separators so items wrap cleanly ── */
+  .tsep{display:none}
+  .tr{gap:8px;padding-top:16px}
+
+  /* ── Niche cards: compact 2-col, hide descriptions (scan-friendly grid of icon + title) ── */
+  .nc2{padding:16px 13px}
+  .nd{display:none}
+  .nt{font-size:12px;line-height:1.4;font-weight:500}
+  .nicicon{width:32px;height:32px;margin-bottom:8px}
+  .nicicon svg{width:16px;height:16px}
+
+  /* ── Service card tags: smaller on mobile ── */
+  .sc{padding:22px 18px}
+  .stag{font-size:10px;padding:2px 8px}
+
+  /* ── Founder strip: hide the long description sentence ── */
+  .fstrip-note{display:none}
 }
 /* ── STICKY MOBILE CTA ── */
 .sticky-cta{
