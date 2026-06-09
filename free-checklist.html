@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10 Signs Your Software Is Holding Your Service Business Back | Free Checklist — MDS</title>
+  <meta name="description" content="Free checklist: 10 operational warning signs that your current software is costing you money, time, and growth. Utah service businesses — download and score your operation." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0c1220" />
+  <link rel="canonical" href="https://merrilldigitalsystems.com/free-checklist.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="10 Signs Your Software Is Holding Your Service Business Back" />
+  <meta property="og:description" content="Free checklist for Utah service businesses — score your operation against 10 warning signs and see exactly what's costing you." />
+  <meta property="og:url" content="https://merrilldigitalsystems.com/free-checklist.html" />
+  <meta property="og:image" content="https://merrilldigitalsystems.com/og-image.png" />
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKXPYR32LK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TKXPYR32LK');</script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260607g">
+  <style>
+    .checklist-item{display:flex;gap:16px;align-items:flex-start;padding:20px 24px;background:var(--bg2);border:1px solid var(--b2);border-radius:12px;transition:border-color .2s,background .2s;cursor:pointer;user-select:none}
+    .checklist-item:hover{border-color:rgba(91,155,213,.3);background:rgba(91,155,213,.04)}
+    .checklist-item.checked{border-color:rgba(91,155,213,.4);background:rgba(91,155,213,.07)}
+    .ci-box{width:22px;height:22px;border:2px solid var(--b2);border-radius:5px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+    .checklist-item.checked .ci-box{background:var(--acc);border-color:var(--acc)}
+    .ci-check{display:none;color:#fff;font-size:13px;font-weight:700}
+    .checklist-item.checked .ci-check{display:block}
+    .ci-content{flex:1}
+    .ci-num{font-size:11px;color:var(--muted2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+    .ci-title{font-weight:500;font-size:15px;margin-bottom:5px;line-height:1.4}
+    .ci-body{font-size:14px;color:var(--muted);line-height:1.6}
+    .score-bar-wrap{background:var(--bg3);border-radius:99px;height:8px;overflow:hidden;margin:12px 0 8px}
+    .score-bar-fill{height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc));border-radius:99px;transition:width .4s ease,background .4s}
+    #scoreResult{font-family:var(--serif);font-size:42px;letter-spacing:-.02em;transition:color .3s}
+    .score-msg{font-size:15px;color:var(--muted);line-height:1.6;margin-top:8px;min-height:3em;transition:opacity .2s}
+  </style>
+</head>
+<body>
+<canvas id="pc"></canvas>
+
+<nav>
+  <div class="ni">
+    <a href="/" class="logo"><div class="ld"></div>Merrill Digital</a>
+    <div class="nl" id="navLinks">
+      <a href="/#about">About</a>
+      <div class="nav-has-dropdown">
+        <a class="nav-dropdown-trigger" href="/#services">Services <span class="dropdown-arrow">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="web-design-utah.html">Website Design</a>
+          <a href="operations-software.html">Operations Software</a>
+          <a href="field-service-software.html">Field Service Software</a>
+          <a href="bookkeeping-software.html">Bookkeeping Software</a>
+          <a href="managed-services.html">Managed Services</a>
+        </div>
+      </div>
+      <a href="/#work">Work</a>
+      <a href="blog.html">Blog</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="/#contact" class="nav-cta">Get a Free Scope &amp; Estimate <span class="arr">→</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb z">
+  <div class="w">
+    <a href="/">Home</a><span class="sep">›</span>Free Checklist
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="page-hero z" style="padding:72px 0 52px">
+  <div class="w">
+    <div style="max-width:660px">
+      <div class="sl rv">Free Assessment</div>
+      <h1 class="rv d1" style="font-family:var(--serif);font-size:clamp(30px,5vw,52px);letter-spacing:-.02em;line-height:1.1;margin:14px 0 20px">10 Signs Your Software Is Holding Your Service Business Back</h1>
+      <p class="rv d2" style="font-size:17px;color:var(--muted);line-height:1.7;max-width:540px">Check every sign that applies to your operation. Your score will tell you where you stand — and what it's actually costing you.</p>
+      <div class="rv d3" style="display:flex;gap:20px;flex-wrap:wrap;margin-top:24px">
+        <div style="display:flex;gap:8px;align-items:center"><span style="color:var(--acc)">✓</span><span style="color:var(--muted);font-size:14px">Takes 2 minutes</span></div>
+        <div style="display:flex;gap:8px;align-items:center"><span style="color:var(--acc)">✓</span><span style="color:var(--muted);font-size:14px">No email required</span></div>
+        <div style="display:flex;gap:8px;align-items:center"><span style="color:var(--acc)">✓</span><span style="color:var(--muted);font-size:14px">See your score instantly</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ INTERACTIVE CHECKLIST ══ -->
+<section class="z" style="padding:64px 0">
+  <div class="w">
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start">
+
+      <!-- Checklist -->
+      <div>
+        <div style="display:flex;flex-direction:column;gap:10px" id="checklistWrap">
+
+          <div class="checklist-item rv" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 1</div>
+              <div class="ci-title">Reporting requires manual cleanup before anyone trusts it</div>
+              <div class="ci-body">If someone reconciles, corrects, or reformats data before a report can be used, the system is creating work rather than saving it. The bigger the team, the more expensive this gets.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d1" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 2</div>
+              <div class="ci-title">Job or project status lives in multiple places — and nobody's 100% sure which is right</div>
+              <div class="ci-body">The spreadsheet says one thing, Slack says another, the project board says a third. Your team wastes time hunting for the truth instead of just knowing it.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d1" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 3</div>
+              <div class="ci-title">The system only works because one person understands how it's set up</div>
+              <div class="ci-body">If one person being out sick or leaving would break the workflow, that's not a tool — it's a key-person risk. The operation is more fragile than it looks.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d2" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 4</div>
+              <div class="ci-title">You've built manual side-processes around your software to handle exceptions</div>
+              <div class="ci-body">Side-processes that start as temporary fixes tend to become permanent. Every manual workaround is a recurring time tax on your team — and a source of errors.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d2" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 5</div>
+              <div class="ci-title">You pay for features you never use — and lack features you actually need</div>
+              <div class="ci-body">Generic platforms are built for the average business. If your operation is not perfectly average, you end up funding features that don't apply while working around gaps that do.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d2" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 6</div>
+              <div class="ci-title">Data gets entered more than once across multiple tools</div>
+              <div class="ci-body">A job gets created in the field app, re-entered into accounting software, and re-entered again into the customer record. Every re-entry is a chance for error and a cost in time.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d3" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 7</div>
+              <div class="ci-title">Your software can't represent the way your business actually prices or quotes</div>
+              <div class="ci-body">Multi-phase quotes, hybrid pricing models, service + install + subscription combos, or custom line-item logic — if your software forces you to fake it, customers notice and you lose deals.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d3" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 8</div>
+              <div class="ci-title">Adding new team members doesn't get easier — it gets more complicated</div>
+              <div class="ci-body">If onboarding a new hire means training them on a patchwork of tools, workarounds, and undocumented processes, your software is slowing your ability to grow.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d3" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 9</div>
+              <div class="ci-title">You can't easily see how the business is actually performing in real time</div>
+              <div class="ci-body">If getting a clear picture of job margins, team utilization, or revenue by service line requires a 2-hour analysis, you're making decisions on stale data — or gut feel.</div>
+            </div>
+          </div>
+
+          <div class="checklist-item rv d3" onclick="toggleItem(this)">
+            <div class="ci-box"><span class="ci-check">✓</span></div>
+            <div class="ci-content">
+              <div class="ci-num">Sign 10</div>
+              <div class="ci-title">You've said "the software should do this" more than once in the last 90 days</div>
+              <div class="ci-body">Every time you say that, you're accepting a gap between how your business should run and how it actually runs. Those gaps compound quietly — until they stop being quiet.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Score sidebar -->
+      <div style="position:sticky;top:88px">
+        <div style="background:var(--bg2);border:1px solid var(--b2);border-radius:16px;padding:28px">
+          <div style="font-size:12px;color:var(--muted2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Your score</div>
+          <div id="scoreResult" style="color:var(--acc)">0 / 10</div>
+          <div class="score-bar-wrap"><div class="score-bar-fill" id="scoreBarFill" style="width:0%"></div></div>
+          <div class="score-msg" id="scoreMsg">Check any signs that apply to your business above.</div>
+        </div>
+
+        <div id="scoreCta" style="display:none;margin-top:16px;background:rgba(91,155,213,.06);border:1px solid rgba(91,155,213,.22);border-radius:14px;padding:22px 24px">
+          <div style="font-weight:500;font-size:15px;margin-bottom:8px" id="scoreCtaTitle">Ready to close these gaps?</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 16px" id="scoreCtaBody">A free 30-minute call is enough to scope exactly what needs to change and estimate what it would cost to fix it.</p>
+          <a href="/#contact" class="bprim" style="font-size:14px;padding:12px 18px;display:flex;justify-content:center" id="scoreCtaBtn">Get a Free Scope &amp; Estimate <span class="arr">→</span></a>
+        </div>
+
+        <div style="margin-top:16px;background:var(--bg2);border:1px solid var(--b2);border-radius:14px;padding:20px 22px">
+          <div style="font-size:12px;color:var(--muted2);margin-bottom:10px">Related reading</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="blog-how-to-know-youve-outgrown-spreadsheets.html" style="font-size:13px;color:var(--acc);line-height:1.4">When You've Outgrown Spreadsheets →</a>
+            <a href="custom-software-vs-servicetitan-utah.html" style="font-size:13px;color:var(--acc);line-height:1.4">Custom Software vs. ServiceTitan →</a>
+            <a href="blog-field-service-software-vs-off-the-shelf.html" style="font-size:13px;color:var(--acc);line-height:1.4">When Off-the-Shelf Breaks Down →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ WHAT THE SCORE MEANS ══ -->
+<section class="z" style="padding:64px 0;background:var(--bg2)">
+  <div class="w">
+    <div class="lh rv"><div class="sl">What your score means</div><h2>Here's What Each Range Tells You</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px" class="rv d1">
+      <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r2);padding:24px">
+        <div style="font-family:var(--serif);font-size:28px;color:#4ade80;margin-bottom:10px">0–2</div>
+        <div style="font-weight:500;margin-bottom:8px">You're in good shape</div>
+        <p style="color:var(--muted);font-size:14px;line-height:1.65;margin:0">Your current tools are holding up. No urgent action needed — but keep an eye on the gaps. They tend to compound as the operation grows.</p>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r2);padding:24px">
+        <div style="font-family:var(--serif);font-size:28px;color:#f59e0b;margin-bottom:10px">3–5</div>
+        <div style="font-weight:500;margin-bottom:8px">Some friction worth addressing</div>
+        <p style="color:var(--muted);font-size:14px;line-height:1.65;margin:0">You're probably spending more management time than you should on compensating for software gaps. The hidden costs are real, even if the operation still runs. Now is a good time to evaluate options.</p>
+      </div>
+      <div style="background:var(--bg3);border:1px solid rgba(91,155,213,.3);border-radius:var(--r2);padding:24px">
+        <div style="font-family:var(--serif);font-size:28px;color:var(--acc);margin-bottom:10px">6–10</div>
+        <div style="font-weight:500;margin-bottom:8px">Your software is actively costing you</div>
+        <p style="color:var(--muted);font-size:14px;line-height:1.65;margin:0">At this score, the software isn't just inconvenient — it's limiting your growth, creating errors, and burning hours that should be going toward the work. A 30-minute conversation is worth it at this point.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ BOTTOM CTA ══ -->
+<section class="z" style="padding:72px 0">
+  <div class="w">
+    <div style="max-width:600px;margin:0 auto;text-align:center">
+      <div class="sl rv" style="justify-content:center">Next step</div>
+      <h2 class="rv d1" style="font-family:var(--serif);font-size:clamp(26px,4vw,38px);letter-spacing:-.02em;margin:12px 0 16px;line-height:1.2">Know Your Score. Now Know Your Options.</h2>
+      <p class="rv d2" style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:28px">A free 30-minute call is enough to scope exactly what's causing friction in your operation and give you an honest estimate of what it would cost to fix it. No pitch — just a clear picture.</p>
+      <div class="rv d3" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+        <a href="/#contact" class="bprim">Get a Free Scope &amp; Estimate <span class="arr">→</span></a>
+        <a href="free-audit.html" class="bsec">Free Website Audit Instead</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="w">
+    <div class="fgrid2">
+      <div>
+        <div class="flogo">Merrill Digital</div>
+        <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses.</div>
+      </div>
+      <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
+      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
+      <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Merrill Digital Systems LLC. All rights reserved.</span>
+      <span>Utah · Remote-first · contact@merrilldigitalsystems.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js?v=20260607g"></script>
+<script>
+(function () {
+  const msgs = [
+    '', // 0
+    'One sign — worth keeping an eye on, but you\'re mostly fine.',
+    'Two signs. Some friction building in the background.',
+    'Three signs. You\'re spending more time compensating than you should be.',
+    'Four signs. The workarounds are becoming the system.',
+    'Five signs. This is costing real time and money every week.',
+    'Six signs. Your software is actively limiting your growth.',
+    'Seven signs. This is a meaningful bottleneck in your operation.',
+    'Eight signs. You\'re working around your tools more than with them.',
+    'Nine signs. Your current setup is holding your business back significantly.',
+    'Ten signs. It\'s time for a different approach.',
+  ];
+  const ctaTitles = [
+    '', '', 'A couple of gaps — worth a quick look.',
+    'Enough friction to be worth a conversation.',
+    'These gaps have a cost. Let\'s talk through them.',
+    'At 5+, a 30-minute call typically pays for itself fast.',
+    'At 6, your software is costing you more than it\'s saving.',
+    'Seven signs — let\'s scope what it would take to fix this.',
+    'Eight signs — this needs to change.',
+    'Nine signs — a custom solution would almost certainly pay off.',
+    'Ten for ten — your operation deserves better tools.',
+  ];
+
+  function getScore() {
+    return document.querySelectorAll('.checklist-item.checked').length;
+  }
+
+  function updateScore() {
+    const n = getScore();
+    const el = document.getElementById('scoreResult');
+    const bar = document.getElementById('scoreBarFill');
+    const msg = document.getElementById('scoreMsg');
+    const cta = document.getElementById('scoreCta');
+    const ctaTitle = document.getElementById('scoreCtaTitle');
+    const ctaBody = document.getElementById('scoreCtaBody');
+    const ctaBtn = document.getElementById('scoreCtaBtn');
+
+    el.textContent = n + ' / 10';
+
+    const pct = n * 10;
+    bar.style.width = pct + '%';
+
+    // Color scale
+    if (n <= 2) {
+      el.style.color = '#4ade80';
+      bar.style.background = 'linear-gradient(90deg,#22c55e,#4ade80)';
+    } else if (n <= 5) {
+      el.style.color = '#f59e0b';
+      bar.style.background = 'linear-gradient(90deg,#d97706,#f59e0b)';
+    } else {
+      el.style.color = 'var(--acc)';
+      bar.style.background = 'linear-gradient(90deg,var(--acc2),var(--acc))';
+    }
+
+    msg.textContent = n === 0 ? 'Check any signs that apply to your business above.' : msgs[n];
+
+    if (n >= 3) {
+      cta.style.display = 'block';
+      ctaTitle.textContent = ctaTitles[n];
+
+      let bodyText = 'A free 30-minute call is enough to scope exactly what needs to change and give you an honest estimate.';
+      if (n >= 7) bodyText = 'At ' + n + ' signs, there\'s a real cost being absorbed by your team every week. Let\'s scope what it would take to fix it.';
+      else if (n >= 5) bodyText = 'At ' + n + ' signs, the friction is measurable. A 30-minute call can scope the problem and give you an honest path forward.';
+      ctaBody.textContent = bodyText;
+
+      if (n >= 6) {
+        ctaBtn.innerHTML = 'Get a Free Scope &amp; Estimate <span class="arr">→</span>';
+      }
+
+      // Fire GA4 event when score threshold hit
+      if (n === 6 && typeof gtag !== 'undefined') {
+        gtag('event', 'checklist_high_score', { event_category: 'Engagement', event_label: 'Checklist Score 6+', value: n });
+      }
+    } else {
+      cta.style.display = 'none';
+    }
+  }
+
+  window.toggleItem = function (el) {
+    el.classList.toggle('checked');
+    updateScore();
+  };
+
+  updateScore();
+})();
+</script>
+</body>
+</html>

@@ -5,76 +5,54 @@
 (function () {
   'use strict';
 
-  /* ── CANVAS CIRCUIT BOARD ── */
+  /* ── CANVAS AMBIENT CIRCUIT ── */
   (function () {
     const cv = document.getElementById('pc');
     if (!cv) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = cv.getContext('2d');
-    const R = 91, G = 155, B = 213;
+    const [R, G, B] = [91, 155, 213];
+    const rgba = a  => `rgba(${R},${G},${B},${a.toFixed(3)})`;
+    const rand = (lo, hi) => lo + Math.random() * (hi - lo);
 
-    function rgba(a) { return `rgba(${R},${G},${B},${a})`; }
-    function rand(lo, hi) { return lo + Math.random() * (hi - lo); }
-    function snap(v, g) { return Math.round(v / g) * g; }
-    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-    function cell() { return window.innerWidth < 768 ? 68 : 56; }
+    let W, H, walkers, raf;
 
-    let W, H, routes, sparks, raf;
+    const CELL  = 62;   // grid cell px — matches the dot-grid texture visually
+    const SPEED = 1.4;  // px per frame (one cell ≈ 0.74s at 60fps)
+    const TRAIL = 9;    // max trail nodes per walker
+    const COUNT = 22;   // concurrent walker target
+    const DIR   = [[1,0],[0,1],[-1,0],[0,-1]]; // R  D  L  U
 
-    /* Build PCB-style orthogonal routes via right-angle walks on a snapped grid */
-    function buildRoutes() {
-      routes = [];
-      const g = cell();
-      const target = Math.round((W * H) / (g * g * 2.8));
-
-      for (let i = 0; i < target; i++) {
-        const pts = [];
-        let x = snap(rand(g, W - g), g);
-        let y = snap(rand(g, H - g), g);
-        pts.push({ x, y });
-
-        const turns = Math.floor(rand(2, 7));
-        let horiz = Math.random() > 0.5;
-
-        for (let t = 0; t < turns; t++) {
-          const steps = Math.ceil(rand(1, 4));
-          const sign  = Math.random() > 0.5 ? 1 : -1;
-          if (horiz) x = clamp(x + sign * steps * g, 0, W);
-          else       y = clamp(y + sign * steps * g, 0, H);
-          pts.push({ x, y });
-          horiz = !horiz;
-        }
-
-        /* Remove consecutive duplicate points (zero-length segments) */
-        const clean = pts.filter((p, i) =>
-          i === 0 || p.x !== pts[i - 1].x || p.y !== pts[i - 1].y
-        );
-        if (clean.length >= 2) routes.push(clean);
-      }
+    function mkWalker() {
+      const dir = Math.floor(rand(0, 4));
+      const gx  = Math.floor(rand(0, Math.ceil(W / CELL)));
+      const gy  = Math.floor(rand(0, Math.ceil(H / CELL)));
+      const x   = gx * CELL, y = gy * CELL;
+      return {
+        gx, gy, dir,
+        x, y,
+        nx: x + DIR[dir][0] * CELL,
+        ny: y + DIR[dir][1] * CELL,
+        trail:  [],                          // historical grid points [{x,y}]
+        age:    0,
+        maxAge: Math.floor(rand(6, TRAIL + 1)),
+        spd:    rand(0.8, 1.6),              // per-walker speed variance
+        done:   false,
+        fadeT:  0,                           // frame counter for fade-out
+      };
     }
 
-    /* Sparks: small electrons that travel along a route then jump to a new one */
-    function newSpark() {
-      if (!routes.length) return null;
-      const route = routes[Math.floor(Math.random() * routes.length)];
-      const fwd   = Math.random() > 0.5;
-      return {
-        route,
-        seg: fwd ? 0 : route.length - 2,
-        t:   Math.random(),
-        spd: rand(0.004, 0.010),
-        fwd,
-      };
+    function turn(d) {
+      const r = Math.random();
+      return r < 0.52 ? d : r < 0.76 ? (d + 1) % 4 : (d + 3) % 4;
     }
 
     function resize() {
       cancelAnimationFrame(raf);
       W = cv.width  = window.innerWidth;
       H = cv.height = window.innerHeight;
-      buildRoutes();
-      const count = Math.min(Math.floor(routes.length * 0.48), 90);
-      sparks = Array.from({ length: count }, newSpark).filter(Boolean);
+      walkers = Array.from({ length: Math.floor(COUNT * 0.65) }, mkWalker);
       tick();
     }
 
@@ -82,68 +60,79 @@
       raf = requestAnimationFrame(tick);
       ctx.clearRect(0, 0, W, H);
 
-      /* ── Traces — one batched stroke call ── */
-      ctx.beginPath();
-      routes.forEach(route => {
-        ctx.moveTo(route[0].x, route[0].y);
-        for (let i = 1; i < route.length; i++) ctx.lineTo(route[i].x, route[i].y);
-      });
-      ctx.strokeStyle = rgba(0.07);
-      ctx.lineWidth   = 1;
-      ctx.stroke();
+      /* Maintain target walker count */
+      while (walkers.length < COUNT) walkers.push(mkWalker());
+      walkers = walkers.filter(w => !(w.done && w.trail.length === 0));
 
-      /* ── Junction pads — one batched fill call ── */
-      ctx.fillStyle = rgba(0.14);
-      ctx.beginPath();
-      routes.forEach(route =>
-        route.forEach(pt => {
-          ctx.moveTo(pt.x + 2.5, pt.y);          // move before arc to start new subpath
-          ctx.arc(pt.x, pt.y, 2.5, 0, Math.PI * 2);
-        })
-      );
-      ctx.fill();
+      walkers.forEach(w => {
 
-      /* ── Sparks ── */
-      const targetCount = Math.min(Math.floor(routes.length * 0.48), 90);
-      sparks = sparks.map(s => {
-        if (!s) return newSpark();
-        s.t += s.spd;
+        /* ── Advance head ── */
+        if (!w.done) {
+          const dx = w.nx - w.x, dy = w.ny - w.y;
+          const d  = Math.sqrt(dx * dx + dy * dy);
 
-        if (s.t > 1) {
-          s.t   = 0;
-          s.seg += s.fwd ? 1 : -1;
-          if (s.seg < 0 || s.seg >= s.route.length - 1) return newSpark(); // reached end → new route
+          if (d <= w.spd * SPEED) {
+            /* Snapped to next grid point */
+            w.x = w.nx; w.y = w.ny;
+            w.gx += DIR[w.dir][0];
+            w.gy += DIR[w.dir][1];
+            w.trail.push({ x: w.x, y: w.y });
+            while (w.trail.length > w.maxAge) w.trail.shift(); // sliding window
+            w.age++;
+
+            const cw = Math.ceil(W / CELL) + 1, ch = Math.ceil(H / CELL) + 1;
+            if (w.gx < -1 || w.gx > cw || w.gy < -1 || w.gy > ch || w.age >= w.maxAge) {
+              w.done = true;   // out of bounds or lifespan reached → start dying
+            } else {
+              w.dir = turn(w.dir);
+              w.nx  = w.x + DIR[w.dir][0] * CELL;
+              w.ny  = w.y + DIR[w.dir][1] * CELL;
+            }
+          } else {
+            w.x += dx / d * w.spd * SPEED;
+            w.y += dy / d * w.spd * SPEED;
+          }
+
+        } else {
+          /* Dying: erode trail from the tail, one node every 4 frames */
+          w.fadeT++;
+          if (w.fadeT % 4 === 0 && w.trail.length > 0) w.trail.shift();
         }
 
-        const a = s.route[s.seg], b = s.route[s.seg + 1];
-        if (!a || !b) return newSpark();
+        /* ── Draw ── */
+        const pts = w.done
+          ? w.trail
+          : [...w.trail, { x: w.x, y: w.y }];
+        const n = pts.length;
+        if (n < 2) return;
 
-        const x = a.x + (b.x - a.x) * s.t;
-        const y = a.y + (b.y - a.y) * s.t;
+        for (let i = 0; i < n - 1; i++) {
+          const t = (i + 1) / n;        // 0 at tail → 1 at head
+          const a = t * t * 0.25;       // quadratic fade, max ~0.25 — stays subtle
 
-        /* Small soft glow — intentionally subtle so it reads as background */
-        const grd = ctx.createRadialGradient(x, y, 0, x, y, 7);
-        grd.addColorStop(0, rgba(0.55));
-        grd.addColorStop(1, rgba(0));
-        ctx.beginPath();
-        ctx.arc(x, y, 7, 0, Math.PI * 2);
-        ctx.fillStyle = grd;
-        ctx.fill();
+          /* Trace segment */
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[i + 1].x, pts[i + 1].y);
+          ctx.strokeStyle = rgba(a);
+          ctx.lineWidth   = 1;
+          ctx.stroke();
 
-        /* Bright core dot (small) */
-        ctx.beginPath();
-        ctx.arc(x, y, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(208,235,255,0.95)';
-        ctx.fill();
+          /* PCB junction pad at each waypoint */
+          ctx.beginPath();
+          ctx.arc(pts[i].x, pts[i].y, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = rgba(a * 0.7);
+          ctx.fill();
+        }
 
-        return s;
-      }).filter(Boolean);
-
-      /* Top up if any sparks were culled */
-      while (sparks.length < targetCount) {
-        const s = newSpark();
-        if (s) sparks.push(s); else break;
-      }
+        /* Bright lead dot — the only element that "moves" visibly */
+        if (!w.done) {
+          ctx.beginPath();
+          ctx.arc(w.x, w.y, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = rgba(0.50);
+          ctx.fill();
+        }
+      });
     }
 
     window.addEventListener('resize', resize, { passive: true });
@@ -377,6 +366,10 @@
           sbtn.innerHTML = 'Message Sent';
           sbtn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
           contactForm.reset();
+          // Fire GA4 conversion event
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'generate_lead', { event_category: 'Contact', event_label: 'Form Submission', value: 1 });
+          }
           setTimeout(() => {
             sbtn.innerHTML = orig;
             sbtn.style.background = '';
