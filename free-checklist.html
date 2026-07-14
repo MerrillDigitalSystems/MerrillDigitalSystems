@@ -13,6 +13,12 @@
   <meta property="og:description" content="Free checklist for Utah service businesses — score your operation against 10 warning signs and see exactly what's costing you." />
   <meta property="og:url" content="https://merrilldigitalsystems.com/free-checklist.html" />
   <meta property="og:image" content="https://merrilldigitalsystems.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="10 Signs Your Software Is Holding Your Service Business Back" />
+  <meta name="twitter:description" content="Free checklist — score your operation against 10 warning signs and see exactly what's costing you. No email required." />
+  <meta name="twitter:image" content="https://merrilldigitalsystems.com/og-image.png" />
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKXPYR32LK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TKXPYR32LK');</script>
@@ -207,6 +213,18 @@
           <div style="font-weight:500;font-size:15px;margin-bottom:8px" id="scoreCtaTitle">Ready to close these gaps?</div>
           <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 16px" id="scoreCtaBody">A free 30-minute call is enough to scope exactly what needs to change and estimate what it would cost to fix it.</p>
           <a href="/#contact" class="bprim" style="font-size:14px;padding:12px 18px;display:flex;justify-content:center" id="scoreCtaBtn">Get a Free Scope &amp; Estimate <span class="arr">→</span></a>
+          <a href="free-audit.html#contact" id="scoreAuditCta" style="display:none;margin-top:12px;font-size:13px;color:var(--acc);line-height:1.5;text-align:center">Your site is likely costing you leads — claim a free audit →</a>
+        </div>
+
+        <div style="margin-top:16px;background:var(--bg2);border:1px solid var(--b2);border-radius:14px;padding:20px 22px">
+          <div style="font-size:12px;color:var(--muted2);margin-bottom:12px">Want this checklist + your results in your inbox? <span style="color:var(--muted)">(optional)</span></div>
+          <form id="checklistForm" action="https://formspree.io/f/meerjqwp" method="POST">
+            <input type="hidden" name="_subject" value="Checklist results email request" />
+            <input type="hidden" name="page" value="free-checklist.html" />
+            <input type="hidden" name="score" id="checklistScoreInput" value="0 / 10" />
+            <div class="fg"><label class="flab">Email</label><input class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
+            <button type="submit" class="sbtn" style="font-size:14px;padding:12px 18px">Email Me My Results <span class="arr">→</span></button>
+          </form>
         </div>
 
         <div style="margin-top:16px;background:var(--bg2);border:1px solid var(--b2);border-radius:14px;padding:20px 22px">
@@ -274,7 +292,8 @@
         <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses.</div>
       </div>
       <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
-      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
+      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a><a href="managed-services.html">Managed Services</a></div></div>
+      <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-ogden.html">Ogden</a><a href="web-design-provo.html">Provo</a></div></div>
       <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
     </div>
     <div class="fbot">
@@ -328,6 +347,9 @@
 
     el.textContent = n + ' / 10';
 
+    const scoreInput = document.getElementById('checklistScoreInput');
+    if (scoreInput) scoreInput.value = n + ' / 10';
+
     const pct = n * 10;
     bar.style.width = pct + '%';
 
@@ -354,8 +376,12 @@
       else if (n >= 5) bodyText = 'At ' + n + ' signs, the friction is measurable. A 30-minute call can scope the problem and give you an honest path forward.';
       ctaBody.textContent = bodyText;
 
+      const auditCta = document.getElementById('scoreAuditCta');
       if (n >= 6) {
         ctaBtn.innerHTML = 'Get a Free Scope &amp; Estimate <span class="arr">→</span>';
+        if (auditCta) auditCta.style.display = 'block';
+      } else if (auditCta) {
+        auditCta.style.display = 'none';
       }
 
       // Fire GA4 event when score threshold hit

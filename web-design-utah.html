@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Web Design Utah | Custom Websites for Service Businesses | Merrill Digital</title>
-  <meta name="description" content="Custom web design in Utah for service businesses. Hand-coded, SEO-optimized sites that rank on Google and generate leads. Google Business Profile, Search Console, and analytics included. Starting at $2,000." />
+  <meta name="description" content="Custom web design in Utah for service businesses. Hand-coded, SEO-optimized sites that rank on Google and generate leads. Starting at $2,000." />
   <meta name="author" content="Merrill Digital Systems LLC" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0c1220" />
@@ -15,6 +15,8 @@
   <meta property="og:description" content="Custom web design in Utah for service businesses. Hand-coded, SEO-optimized sites that rank on Google and generate leads. Starting at $2,000." />
   <meta property="og:url" content="https://merrilldigitalsystems.com/web-design-utah.html" />
   <meta property="og:image" content="https://merrilldigitalsystems.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Merrill Digital Systems" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Web Design Utah | Custom Websites for Service Businesses | Merrill Digital" />
@@ -31,6 +33,7 @@
       "@type": "LocalBusiness",
       "name": "Merrill Digital Systems",
       "url": "https://merrilldigitalsystems.com",
+      "telephone": "+13854210455",
       "address": { "@type": "PostalAddress", "addressLocality": "Salt Lake City", "addressRegion": "UT", "addressCountry": "US" },
       "geo": { "@type": "GeoCoordinates", "latitude": "40.7608", "longitude": "-111.8910" },
       "founder": { "@type": "Person", "name": "Kruz Merrill", "jobTitle": "Founder & Engineer", "url": "https://www.linkedin.com/company/merrill-digital-systems-llc/" },
@@ -103,6 +106,7 @@
           <a href="operations-software.html">Operations Software</a>
           <a href="field-service-software.html">Field Service Software</a>
           <a href="bookkeeping-software.html">Bookkeeping Software</a>
+          <a href="managed-services.html">Managed Services</a>
         </div>
       </div>
       <a href="/#work">Work</a>
@@ -110,7 +114,7 @@
       <a href="/#contact">Contact</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/#contact" class="nav-cta">Book a Free Call <span class="arr">→</span></a>
+      <a href="#contact" class="nav-cta">Book a Free Call <span class="arr">→</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -137,7 +141,7 @@
     </div>
     <div class="rv d3">
       <div class="hctas">
-        <a href="/#contact" class="bprim">Get a Free Website Audit <span class="arr">→</span></a>
+        <a href="#contact" class="bprim">Get a Free Website Audit <span class="arr">→</span></a>
         <a href="#portfolio" class="bghost">See recent work</a>
       </div>
     </div>
@@ -385,7 +389,7 @@
         <div class="pthumb has-preview">
           <div class="pscreen-bar"><span class="pscreen-dot"></span><span class="pscreen-dot"></span><span class="pscreen-dot"></span><span class="pscreen-url"></span></div>
           <img src="img/preview-cclpro-opt.jpg" alt="CCL Pro Landscaping website" loading="lazy">
-          <span class="pbadge live">Preview</span>
+          <span class="pbadge dev">Preview</span>
         </div>
         <div class="pbody">
           <div class="pcat">Landscaping · Utah</div>
@@ -514,7 +518,7 @@
         </ul>
       </div>
     </div>
-    <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:24px">Need something different? We scope every project custom. <a href="/#contact" style="color:var(--acc)">Get a free estimate →</a></p>
+    <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:24px">Need something different? We scope every project custom. <a href="#contact" style="color:var(--acc)">Get a free estimate →</a></p>
   </div>
 </section>
 
@@ -627,9 +631,28 @@
         <p class="ctap">Book a free, no-pressure audit of your current site. We'll show you exactly what's costing you leads and what a custom site would change  -  no strings attached.</p>
       </div>
       <div class="ctaact">
-        <a href="/#contact" class="bprim" style="white-space:nowrap">Get Your Free Website Audit <span class="arr">→</span></a>
+        <a href="#contact" class="bprim" style="white-space:nowrap">Get Your Free Website Audit <span class="arr">→</span></a>
         <div class="ctanote">Free · No commitment · Reply within 24hrs</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact z" id="contact">
+  <div class="w">
+    <div class="contact-hdr rv"><div class="sl">Start your project</div><h2>Tell Us About Your Website</h2><p>Four fields. No spec needed — we'll reply within 24 hours with next steps and an honest estimate.</p></div>
+    <div class="cform rv" style="max-width:560px;margin:0 auto">
+      <form id="webDesignUtahForm" action="https://formspree.io/f/meerjqwp" method="POST">
+        <input type="hidden" name="_subject" value="Web design inquiry (Utah) from MDS website" />
+        <input type="hidden" name="page" value="web-design-utah.html" />
+        <div class="fg"><label class="flab">Your name</label><input class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="fg"><label class="flab">Your business</label><input class="fin" type="text" name="company" placeholder="Your company name" required></div>
+        <div class="fg"><label class="flab">What are you trying to fix or build?</label><textarea class="fta" name="message" placeholder="Even 'my current site isn't getting calls' is a perfect starting point." style="min-height:110px" required></textarea></div>
+        <div class="fg"><label class="flab">Email</label><input class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
+        <button type="submit" class="sbtn">Send — we'll reply within 24 hrs <span class="arr">→</span></button>
+      </form>
+      <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap"><div style="font-size:13px;color:var(--muted)">Or reach us directly:</div><a href="tel:+13854210455" style="font-size:13px;color:var(--acc)">(385) 421-0455</a><a href="mailto:contact@merrilldigitalsystems.com" style="font-size:13px;color:var(--acc)">contact@merrilldigitalsystems.com</a></div>
     </div>
   </div>
 </section>
@@ -643,7 +666,8 @@
         <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses in Utah and beyond.</div>
       </div>
       <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#recognition">Recognition</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
-      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
+      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a><a href="managed-services.html">Managed Services</a></div></div>
+      <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-ogden.html">Ogden</a><a href="web-design-provo.html">Provo</a></div></div>
       <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
     </div>
     <div class="fbot">

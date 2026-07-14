@@ -15,6 +15,8 @@
   <meta property="og:description" content="A free, personalized review of your website, tools, and what's costing you leads — with a written breakdown of what to fix first." />
   <meta property="og:url" content="https://merrilldigitalsystems.com/free-audit.html" />
   <meta property="og:image" content="https://merrilldigitalsystems.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Merrill Digital Systems" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Free Website & Ops Audit | Merrill Digital Systems" />
@@ -94,7 +96,7 @@
       <a href="/#contact">Contact</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="/#contact" class="nav-cta">Claim Free Audit <span class="arr">→</span></a>
+      <a href="#contact" class="nav-cta">Claim Free Audit <span class="arr">→</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -120,7 +122,7 @@
     </div>
     <div class="rv d3">
       <div class="hctas">
-        <a href="/#contact" class="bprim">Claim Your Free Audit <span class="arr">→</span></a>
+        <a href="#contact" class="bprim">Claim Your Free Audit <span class="arr">→</span></a>
         <a href="#what-we-review" class="bghost">See what's covered</a>
       </div>
     </div>
@@ -237,7 +239,7 @@
       <div class="fitem rv d2"><div class="fq">What do I need to prepare? <span class="fchev">▼</span></div><div class="fa">Just your website URL and a quick sentence about your business. We'll prepare the rest before the call. If you have specific frustrations — "my site isn't ranking" or "we're entering data in three different places" — those are helpful to share in the booking form.</div></div>
       <div class="fitem rv d3"><div class="fq">Who does the audit? <span class="fchev">▼</span></div><div class="fa">Kruz Merrill, the founder and engineer of MDS. Every audit is done personally — not outsourced, not run through a tool and formatted. You get an honest assessment from someone who has built websites and software for service businesses.</div></div>
       <div class="fitem rv d4"><div class="fq">How long does the written breakdown take? <span class="fchev">▼</span></div><div class="fa">The call is 30 minutes. The written breakdown is delivered within 2 business days after the call. It's not a template — we actually write it based on what we found during the review.</div></div>
-      <div class="fitem rv d5"><div class="fq">Will I be pressured to hire you? <span class="fchev">▼</span></div><div class="fa">No. The audit is valuable whether or not you hire us afterward. We'll give you honest findings — including things you or your current developer could fix without involving us. If something we build would solve a problem we find, we'll mention it once. That's it. <a href="/#contact" style="color:var(--acc)">Claim your audit →</a></div></div>
+      <div class="fitem rv d5"><div class="fq">Will I be pressured to hire you? <span class="fchev">▼</span></div><div class="fa">No. The audit is valuable whether or not you hire us afterward. We'll give you honest findings — including things you or your current developer could fix without involving us. If something we build would solve a problem we find, we'll mention it once. That's it. <a href="#contact" style="color:var(--acc)">Claim your audit →</a></div></div>
       <div class="fitem rv d6"><div class="fq">Do you only audit Utah businesses? <span class="fchev">▼</span></div><div class="fa">No. We're remote-first and work with service businesses across the US. The audit is available regardless of location — the call is virtual and the breakdown is delivered by email.</div></div>
     </div>
   </div>
@@ -252,9 +254,28 @@
         <p class="ctap">Claim the free audit and get a written breakdown of exactly what's holding your site and operations back — specific, actionable, and no obligation. Takes 30 minutes of your time.</p>
       </div>
       <div class="ctaact">
-        <a href="/#contact" class="bprim" style="white-space:nowrap">Claim Your Free Audit <span class="arr">→</span></a>
+        <a href="#contact" class="bprim" style="white-space:nowrap">Claim Your Free Audit <span class="arr">→</span></a>
         <div class="ctanote">Free · No obligation · Written breakdown included</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT REQUEST FORM -->
+<section class="contact z" id="contact">
+  <div class="w">
+    <div class="contact-hdr rv"><div class="sl">Claim your audit</div><h2>Get Your Free Site &amp; Ops Audit</h2><p>Four fields. We'll send a written review within a few days — no call required, no obligation.</p></div>
+    <div class="cform rv" style="max-width:560px;margin:0 auto">
+      <form id="auditForm" action="https://formspree.io/f/meerjqwp" method="POST">
+        <input type="hidden" name="_subject" value="FREE AUDIT request from MDS website" />
+        <input type="hidden" name="page" value="free-audit.html" />
+        <div class="fg"><label class="flab">Your name</label><input class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="fg"><label class="flab">Email</label><input class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
+        <div class="fg"><label class="flab">Your website URL <span style="color:var(--muted2);font-weight:400">(if you have one)</span></label><input class="fin" type="url" name="website" placeholder="https://yourcompany.com"></div>
+        <div class="fg"><label class="flab">What's your biggest frustration right now?</label><textarea class="fta" name="message" placeholder="Even 'my site isn't getting calls' is a perfect starting point." style="min-height:110px" required></textarea></div>
+        <button type="submit" class="sbtn">Request My Free Audit <span class="arr">→</span></button>
+      </form>
+      <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap"><div style="font-size:13px;color:var(--muted)">Or reach us directly:</div><a href="tel:+13854210455" style="font-size:13px;color:var(--acc)">(385) 421-0455</a><a href="mailto:contact@merrilldigitalsystems.com" style="font-size:13px;color:var(--acc)">contact@merrilldigitalsystems.com</a></div>
     </div>
   </div>
 </section>
@@ -268,6 +289,7 @@
       </div>
       <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#recognition">Recognition</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
       <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a><a href="managed-services.html">Managed Services</a></div></div>
+      <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-ogden.html">Ogden</a><a href="web-design-provo.html">Provo</a></div></div>
       <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
     </div>
     <div class="fbot">
