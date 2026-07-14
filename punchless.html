@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punchless — GPS Timecards for Field Service Teams | Built by Merrill Digital</title>
+  <meta name="description" content="Punchless is a GPS-geofenced timecard app for field service teams — HVAC, plumbing, landscaping, and trades. Automatic draft timecards, live crew visibility, and payroll-ready exports. Built and operated by Merrill Digital Systems." />
+  <meta name="author" content="Merrill Digital Systems LLC" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0c1220" />
+  <link rel="canonical" href="https://merrilldigitalsystems.com/punchless.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Punchless — GPS Timecards for Field Service Teams | Merrill Digital" />
+  <meta property="og:description" content="Automatic GPS-verified timecards for field service crews. Live crew visibility, payroll-ready exports, and an audit trail. A production SaaS built and run by Merrill Digital Systems." />
+  <meta property="og:url" content="https://merrilldigitalsystems.com/punchless.html" />
+  <meta property="og:image" content="https://merrilldigitalsystems.com/og-image.png" />
+  <meta property="og:site_name" content="Merrill Digital Systems" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Punchless — GPS Timecards for Field Service Teams" />
+  <meta name="twitter:description" content="Automatic GPS-verified timecards for field service crews. A production SaaS built and run by Merrill Digital Systems." />
+  <meta name="twitter:image" content="https://merrilldigitalsystems.com/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Punchless",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS, Android, Web",
+    "description": "GPS-geofenced timecard software for field service teams. Automatically generates draft timecards when crews arrive at and leave job sites, with live crew visibility, approval workflows, and payroll-ready exports.",
+    "url": "https://getpunchless.com",
+    "publisher": { "@type": "Organization", "name": "Merrill Digital Systems", "url": "https://merrilldigitalsystems.com" },
+    "offers": [
+      { "@type": "Offer", "name": "Essentials", "price": "29", "priceCurrency": "USD", "description": "Per technician, per month" },
+      { "@type": "Offer", "name": "Pro", "price": "49", "priceCurrency": "USD", "description": "Per technician, per month" },
+      { "@type": "Offer", "name": "Elite", "price": "79", "priceCurrency": "USD", "description": "Per technician, per month" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is Punchless?", "acceptedAnswer": { "@type": "Answer", "text": "Punchless is a GPS-geofenced timecard app for field service teams. When a crew crosses a geofence at a job site or shop, Punchless automatically drafts a timecard from verified arrival and departure times — so payroll runs on GPS records, not memory." } },
+      { "@type": "Question", "name": "Who is Punchless for?", "acceptedAnswer": { "@type": "Answer", "text": "Field service businesses with crews on the move: HVAC, plumbing, pool service, landscaping, electrical, pest control, property management, and general contracting." } },
+      { "@type": "Question", "name": "Does Punchless integrate with payroll?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Approved timecards export to QuickBooks, ADP, Gusto, Paychex, or CSV, so payroll is a review-and-approve step instead of manual data entry." } },
+      { "@type": "Question", "name": "How much does Punchless cost?", "acceptedAnswer": { "@type": "Answer", "text": "Essentials is $29 per tech per month, Pro is $49, and Elite is $79. Every plan starts with a 30-day free trial and no credit card required." } },
+      { "@type": "Question", "name": "Merrill Digital builds custom software you own — why is Punchless a subscription?", "acceptedAnswer": { "@type": "Answer", "text": "Because timecards are a universal problem, not a business-specific one. When a need is shared by thousands of field service companies, a custom build for each one is wasteful — so we productized it. When your problem is specific to how your business actually works, we still build custom software you own outright. Same team, two ways to buy." } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://merrilldigitalsystems.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://merrilldigitalsystems.com/#work" },
+      { "@type": "ListItem", "position": 3, "name": "Punchless", "item": "https://merrilldigitalsystems.com/punchless.html" }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260713a">
+  <style>
+    .pl-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+    @media(max-width:900px){.pl-grid3{grid-template-columns:1fr}}
+  </style>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKXPYR32LK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TKXPYR32LK');</script>
+</head>
+<body>
+
+<canvas id="pc"></canvas>
+
+<nav>
+  <div class="ni">
+    <a href="/" class="logo"><div class="ld"></div>Merrill Digital</a>
+    <div class="nl" id="navLinks">
+      <a href="/#about">About</a>
+      <div class="nav-has-dropdown">
+        <a class="nav-dropdown-trigger" href="/#services">Services <span class="dropdown-arrow">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="web-design-utah.html">Website Design</a>
+          <a href="operations-software.html">Operations Software</a>
+          <a href="field-service-software.html">Field Service Software</a>
+          <a href="bookkeeping-software.html">Bookkeeping Software</a>
+          <a href="managed-services.html">Managed Services</a>
+        </div>
+      </div>
+      <a href="/#work">Work</a>
+      <a href="blog.html">Blog</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="https://getpunchless.com" target="_blank" rel="noopener noreferrer" class="nav-cta">Try Punchless Free <span class="arr">→</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb z">
+  <div class="w">
+    <a href="/">Home</a><span class="sep">›</span><a href="/#work">Work</a><span class="sep">›</span>Punchless
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero z" id="about">
+  <div class="w">
+    <div class="rv"><div class="ep"><span class="ep-dot"></span>A production SaaS built &amp; operated by Merrill Digital Systems</div></div>
+    <div class="rv d1">
+      <h1>GPS Timecards for Field Service Teams<br><em>Punchless</em></h1>
+    </div>
+    <div class="rv d2">
+      <p class="sub">Timecards from memory aren't timecards — they're guesses. Punchless drafts a timecard automatically the moment a crew crosses a geofence at a job site or shop, so payroll runs on GPS-verified arrival and departure times instead of end-of-week recollection. Less admin, fewer disputes, an audit trail behind every hour.</p>
+    </div>
+    <div class="rv d3">
+      <div class="hctas">
+        <a href="https://getpunchless.com" target="_blank" rel="noopener noreferrer" class="bprim">Start a Free 30-Day Trial <span class="arr">→</span></a>
+        <a href="#how" class="bghost">See how it works</a>
+      </div>
+    </div>
+    <div class="rv d4">
+      <div class="tr">
+        <div class="ti"><span class="ttxt"><strong>30-day</strong> free trial</span></div>
+        <div class="tsep"></div>
+        <div class="ti"><span class="ttxt"><strong>No credit card</strong> to start</span></div>
+        <div class="tsep"></div>
+        <div class="ti"><span class="ttxt">iOS · Android · Web</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- STATS -->
+<section class="z" style="padding:56px 0;background:var(--bg2)">
+  <div class="w">
+    <div class="stats-row">
+      <div class="stat-item rv d1"><div class="stat-num">GPS</div><div class="stat-label">Verified arrival &amp; departure on every timecard</div></div>
+      <div class="stat-item rv d2"><div class="stat-num">0</div><div class="stat-label">Manual punches — timecards draft themselves</div></div>
+      <div class="stat-item rv d3"><div class="stat-num">5</div><div class="stat-label">Payroll exports: QuickBooks, ADP, Gusto, Paychex, CSV</div></div>
+      <div class="stat-item rv d4"><div class="stat-num">1</div><div class="stat-label">Dashboard for live crew visibility</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- THE ANTI-SAAS RECONCILIATION -->
+<section class="z" style="padding:90px 0" id="why">
+  <div class="w">
+    <div class="section-longform" style="max-width:820px;margin:0 auto">
+      <div class="sl rv">Why we, of all people, built a SaaS</div>
+      <h2 class="rv d1" style="font-family:var(--serif);font-size:clamp(28px,3.4vw,40px);letter-spacing:-.02em;line-height:1.15;margin:12px 0 22px">We build software you own outright. Punchless is the deliberate exception.</h2>
+      <p class="rv d2" style="color:var(--muted);line-height:1.8;font-size:17px">Almost everything Merrill Digital builds is custom and yours the day it ships — no per-seat fees, no vendor lock-in, no subscription required to keep using your own system. That's the whole point of custom software.</p>
+      <p class="rv d2" style="color:var(--muted);line-height:1.8;font-size:17px;margin-top:18px">So why does a studio that's practically anti-SaaS sell one? Because <strong style="color:var(--text)">timecards are a universal problem, not a business-specific one.</strong> Every field service company on earth needs the same thing here: an honest record of who was where, and for how long. Billing a thousand companies for the same custom build would be wasteful — so we productized it once, and priced it so a two-truck shop can afford it.</p>
+      <p class="rv d2" style="color:var(--muted);line-height:1.8;font-size:17px;margin-top:18px">When your problem <em>is</em> specific to how your business actually works — your job stages, your handoffs, your reporting — we still build custom software you own outright. Same engineers, two ways to buy. And the fact that we build and operate a real production SaaS is exactly the proof that we can run the software behind your project, too.</p>
+      <div class="rv d3" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
+        <a href="https://getpunchless.com" target="_blank" rel="noopener noreferrer" class="bprim">Explore Punchless <span class="arr">→</span></a>
+        <a href="/operations-software.html" class="bghost">Or see our custom software →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- HOW IT WORKS -->
+<section class="z" style="padding:90px 0;background:var(--bg2)" id="how">
+  <div class="w">
+    <div class="sh rv"><div class="sl">How it works</div><h2>Timecards that write themselves</h2><p>No app to remember to open, no punch to forget. The geofence does the work.</p></div>
+    <div class="psteps">
+      <div class="step rv d1"><div class="snum2">01</div><div class="stitle">Set a geofence</div><div class="sdesc2">Draw a boundary around each job site and your shop. Punchless watches for crew phones crossing it — no beacons, no hardware, no manual clock.</div></div>
+      <div class="step rv d2"><div class="snum2">02</div><div class="stitle">Crews just work</div><div class="sdesc2">When a tech arrives, the clock starts. When they leave, it stops. A pause button protects privacy off the clock. Managers watch it happen live on one dashboard.</div></div>
+      <div class="step rv d3"><div class="snum2">03</div><div class="stitle">Review the drafts</div><div class="sdesc2">At period's end, every timecard is already drafted from GPS-verified times. You review, adjust, and approve — an audit trail sits behind each entry.</div></div>
+      <div class="step rv d4"><div class="snum2">04</div><div class="stitle">Run payroll</div><div class="sdesc2">Approved hours export straight to QuickBooks, ADP, Gusto, Paychex, or CSV. Payroll becomes a review step, not a data-entry afternoon.</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- FEATURES -->
+<section class="z" style="padding:90px 0" id="features">
+  <div class="w">
+    <div class="sh rv"><div class="sl">What's inside</div><h2>Everything a crew-based business needs to trust its hours</h2></div>
+    <div class="pl-grid3 rv d1" style="margin-top:8px">
+      <div style="background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:26px">
+        <div style="font-weight:600;margin-bottom:6px">Automatic timecards</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.65">Geofence-triggered drafts from verified arrival and departure times. No punching in.</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:26px">
+        <div style="font-weight:600;margin-bottom:6px">Live crew visibility</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.65">A manager dashboard that shows who's on site, who's en route, and who's clocked in right now.</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:26px">
+        <div style="font-weight:600;margin-bottom:6px">Review &amp; approval flow</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.65">Draft timecards land in a queue. Adjust, approve, and lock — nothing goes to payroll unreviewed.</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:26px">
+        <div style="font-weight:600;margin-bottom:6px">Payroll integrations</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.65">Export to QuickBooks, ADP, Gusto, Paychex, or CSV. Hours flow to payroll without retyping.</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:26px">
+        <div style="font-weight:600;margin-bottom:6px">Jobs &amp; work orders</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.65">Tie hours to jobs and work orders so you know true labor cost per site, not just per week.</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--b);border-radius:var(--r2);padding:26px">
+        <div style="font-weight:600;margin-bottom:6px">Audit trail &amp; privacy</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.65">Every GPS-verified entry is logged. A pause button keeps tracking off the clock — privacy by design.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- WHO IT'S FOR -->
+<section class="z" style="padding:72px 0;background:var(--bg2)" id="industries">
+  <div class="w">
+    <div class="sh rv"><div class="sl">Built for the field</div><h2>Made for crews on the move</h2></div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:760px;margin:8px auto 0" class="rv d1">
+      <span class="stag" style="font-size:14px">HVAC</span>
+      <span class="stag" style="font-size:14px">Plumbing</span>
+      <span class="stag" style="font-size:14px">Pool Service</span>
+      <span class="stag" style="font-size:14px">Landscaping</span>
+      <span class="stag" style="font-size:14px">Electrical</span>
+      <span class="stag" style="font-size:14px">Pest Control</span>
+      <span class="stag" style="font-size:14px">Property Management</span>
+      <span class="stag" style="font-size:14px">General Contracting</span>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PRICING -->
+<section class="z" style="padding:90px 0" id="pricing">
+  <div class="w">
+    <div class="sh rv"><div class="sl">Pricing</div><h2>Priced so a two-truck shop can start today</h2><p>Every plan includes a 30-day free trial. No credit card to begin.</p></div>
+    <div class="pl-grid3 rv d1">
+      <div class="price-card">
+        <div class="price-label">Essentials</div>
+        <div class="price-amount">$29<span style="font-size:15px;color:var(--muted);font-family:var(--sans)">/tech/mo</span></div>
+        <div class="price-note">The core: automatic GPS timecards</div>
+        <ul class="price-features">
+          <li>Geofence auto-timecards</li>
+          <li>Mobile app (iOS &amp; Android)</li>
+          <li>Draft review &amp; approval</li>
+          <li>CSV payroll export</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-label">Pro</div>
+        <div class="price-amount">$49<span style="font-size:15px;color:var(--muted);font-family:var(--sans)">/tech/mo</span></div>
+        <div class="price-note">For growing crews that run payroll software</div>
+        <ul class="price-features">
+          <li>Everything in Essentials</li>
+          <li>Live crew dashboard</li>
+          <li>Jobs &amp; work orders</li>
+          <li>QuickBooks, ADP, Gusto, Paychex</li>
+          <li>Audit trail</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-label">Elite</div>
+        <div class="price-amount">$79<span style="font-size:15px;color:var(--muted);font-family:var(--sans)">/tech/mo</span></div>
+        <div class="price-note">For multi-crew operations at scale</div>
+        <ul class="price-features">
+          <li>Everything in Pro</li>
+          <li>Advanced reporting</li>
+          <li>Priority support</li>
+          <li>Team &amp; role controls</li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:24px">See full plan details and start your trial at <a href="https://getpunchless.com" target="_blank" rel="noopener noreferrer" style="color:var(--acc)">getpunchless.com →</a></p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- FAQ -->
+<section class="faq z" id="faq" style="background:var(--bg)">
+  <div class="w">
+    <div class="sh rv"><div class="sl">Common questions</div><h2>Punchless FAQ</h2></div>
+    <div class="faq-grid">
+      <div class="fitem rv d1"><div class="fq">How does the GPS timecard actually work? <span class="fchev">▼</span></div><div class="fa">You draw a geofence around each job site and your shop. When a crew member's phone crosses that boundary, Punchless timestamps it and drafts a timecard from the verified arrival and departure times. No punching in, no beacons, no extra hardware.</div></div>
+      <div class="fitem rv d2"><div class="fq">Who is Punchless built for? <span class="fchev">▼</span></div><div class="fa">Field service businesses with crews on the move  -  <span class="pe">HVAC, plumbing, pool service, landscaping, electrical, pest control, property management, and general contracting</span>. If your team's day is spent at job sites rather than a desk, Punchless fits.</div></div>
+      <div class="fitem rv d3"><div class="fq">Does it connect to our payroll? <span class="fchev">▼</span></div><div class="fa">Yes. Approved timecards export to QuickBooks, ADP, Gusto, Paychex, or CSV, so payroll becomes a review-and-approve step instead of manual entry.</div></div>
+      <div class="fitem rv d4"><div class="fq">What about employee privacy? <span class="fchev">▼</span></div><div class="fa">Punchless tracks location for timecard purposes on the clock, and a pause button lets technicians stop tracking during breaks or off-duty time. Every entry is logged to an audit trail, so the record is transparent for both sides.</div></div>
+      <div class="fitem rv d5"><div class="fq">How much does it cost? <span class="fchev">▼</span></div><div class="fa">Essentials is <span class="pe">$29</span> per tech per month, Pro is <span class="pe">$49</span>, and Elite is <span class="pe">$79</span>. Every plan starts with a 30-day free trial and no credit card required.</div></div>
+      <div class="fitem rv d6"><div class="fq">Merrill Digital builds software I own — so why is this a subscription? <span class="fchev">▼</span></div><div class="fa">Because timecards are a universal problem, not a business-specific one, productizing it once is far cheaper for you than a custom build. When your need <em>is</em> specific to how you work, we still build custom software you own outright  -  see our <a href="operations-software.html" style="color:var(--acc)">operations software</a> page. Same team, two ways to buy.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ctasec z">
+  <div class="w">
+    <div class="ctai rv">
+      <div>
+        <h2 class="ctah">Stop paying for hours<br><em>nobody can verify.</em></h2>
+        <p class="ctap">Start a free 30-day trial of Punchless  -  no credit card. Set a geofence, put it on your crew's phones, and let the timecards draft themselves.</p>
+      </div>
+      <div class="ctaact">
+        <a href="https://getpunchless.com" target="_blank" rel="noopener noreferrer" class="bprim" style="white-space:nowrap">Start Free Trial <span class="arr">→</span></a>
+        <div class="ctanote">30-day trial · No credit card · getpunchless.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="w">
+    <div class="fgrid2">
+      <div>
+        <div class="flogo">Merrill Digital</div>
+        <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses.</div>
+      </div>
+      <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#recognition">Recognition</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
+      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
+      <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Merrill Digital Systems LLC. All rights reserved.</span>
+      <span>Utah · Remote-first · contact@merrilldigitalsystems.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js?v=20260713a"></script>
+</body>
+</html>
