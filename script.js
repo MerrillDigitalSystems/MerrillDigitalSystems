@@ -341,13 +341,11 @@
     updateROI();
   }
 
-  /* ── CONTACT FORM (FORMSPREE) ── */
-  const contactForm = document.getElementById('contactForm');
+  /* ── LEAD FORMS (FORMSPREE, ALL PAGES) ── */
+  document.querySelectorAll('form[action*="formspree.io"]').forEach(form => {
+    const formAction = form.getAttribute('action');
 
-  if (contactForm) {
-    const formAction = contactForm.getAttribute('action');
-
-    contactForm.addEventListener('submit', async function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
       const sbtn = this.querySelector('.sbtn, button[type="submit"]');
       if (!sbtn) return;
@@ -358,17 +356,21 @@
       try {
         const res = await fetch(formAction, {
           method: 'POST',
-          body: new FormData(contactForm),
+          body: new FormData(form),
           headers: { Accept: 'application/json' }
         });
 
         if (res.ok) {
           sbtn.innerHTML = 'Message Sent';
           sbtn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
-          contactForm.reset();
-          // Fire GA4 conversion event
+          form.reset();
           if (typeof gtag !== 'undefined') {
-            gtag('event', 'generate_lead', { event_category: 'Contact', event_label: 'Form Submission', value: 1 });
+            gtag('event', 'generate_lead', {
+              event_category: 'Contact',
+              event_label: form.id || 'Form Submission',
+              form_page: location.pathname,
+              value: 1
+            });
           }
           setTimeout(() => {
             sbtn.innerHTML = orig;
@@ -388,7 +390,36 @@
         }, 4000);
       }
     });
-  }
+  });
+
+  /* ── LEAD CHANNEL TRACKING (PHONE / EMAIL / CALENDLY) ── */
+  (function () {
+    function track(name, label) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', name, {
+          event_category: 'Contact',
+          event_label: label,
+          form_page: location.pathname,
+          value: 1
+        });
+      }
+    }
+
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (href.indexOf('tel:') === 0) track('phone_call_click', href.replace('tel:', ''));
+      else track('email_click', href.replace('mailto:', ''));
+    });
+
+    // Calendly embed fires postMessage events from its iframe
+    window.addEventListener('message', e => {
+      if (e.origin.indexOf('calendly.com') === -1) return;
+      const ev = e.data && e.data.event;
+      if (ev === 'calendly.event_scheduled') track('calendly_booked', 'Discovery Call');
+    });
+  })();
 
   /* ── SHIMMER EFFECT ON FEATURED SERVICE CARD BARS ── */
   const ftCard = document.querySelector('.sc.ft');
