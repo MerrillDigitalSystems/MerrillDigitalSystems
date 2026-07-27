@@ -30,11 +30,18 @@
     "name": "Managed Services & Software Support",
     "serviceType": "Managed IT Services",
     "provider": {
-      "@type": "LocalBusiness",
+      "@type": "ProfessionalService",
+      "@id": "https://merrilldigitalsystems.com/#organization",
       "name": "Merrill Digital Systems",
-      "url": "https://merrilldigitalsystems.com",
-      "address": { "@type": "PostalAddress", "addressLocality": "Salt Lake City", "addressRegion": "UT", "addressCountry": "US" },
-      "telephone": "+13854210455"
+      "legalName": "Merrill Digital Systems LLC",
+      "url": "https://merrilldigitalsystems.com/",
+      "telephone": "+1-385-421-0455",
+      "email": "contact@merrilldigitalsystems.com",
+      "logo": "https://merrilldigitalsystems.com/images/logo-mds.png",
+      "priceRange": "$$",
+      "address": { "@type": "PostalAddress", "addressLocality": "West Jordan", "addressRegion": "UT", "postalCode": "84088", "addressCountry": "US" },
+      "geo": { "@type": "GeoCoordinates", "latitude": "40.6097", "longitude": "-111.9391" },
+      "founder": { "@type": "Person", "@id": "https://merrilldigitalsystems.com/#kruz-merrill", "name": "Kruz Merrill", "jobTitle": "Founder & Engineer" }
     },
     "areaServed": "US",
     "description": "Monthly managed services retainer for custom software and websites: dedicated hosting, uptime monitoring, direct developer access, and ongoing feature development at a reduced rate.",
@@ -118,10 +125,10 @@
   <div class="w">
     <div class="rv"><div class="ep"><span class="ep-dot"></span>Dedicated hosting · Direct dev access · Ongoing support · Feature development</div></div>
     <div class="rv d1">
-      <h1>A Part-Time Tech Person<br>Who Already <em>Knows Your System</em></h1>
+      <h1>Managed Services &amp; Software Support<br><em>From the Person Who Built It</em></h1>
     </div>
     <div class="rv d2">
-      <p class="sub">After your project launches, your system needs someone who understands how it was built. Our managed services retainer gives you dedicated hosting, uptime monitoring, and direct access to the developer who wrote your code — not a generic support ticket queue.</p>
+      <p class="sub">Think of it as a part-time tech person who already knows your system. After your project launches, our managed services retainer gives you dedicated hosting, uptime monitoring, and direct access to the developer who wrote your code — not a generic support ticket queue.</p>
     </div>
     <div class="rv d3">
       <div class="hctas">
@@ -283,6 +290,7 @@
       </div>
     </div>
     <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:24px">Pricing is scoped to your project's complexity and your ongoing needs. <a href="#contact" style="color:var(--acc)">Book a free call to discuss →</a></p>
+    <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:10px">See what we support day to day: the <a href="work/brightpath-dental.html" style="color:var(--acc)">BrightPath Dental internal directory</a> and the <a href="work/bktoolbox.html" style="color:var(--acc)">BK Toolbox platform migration</a>.</p>
   </div>
 </section>
 
@@ -293,12 +301,12 @@
   <div class="w">
     <div class="sh rv"><div class="sl">Common questions</div><h2>Managed Services FAQ</h2><p>Straight answers about ongoing support and hosting.</p></div>
     <div class="faq-grid">
-      <div class="fitem rv d1"><div class="fq">What's included in managed services? <span class="fchev">▼</span></div><div class="fa">Dedicated hosting on infrastructure we monitor directly, uptime and error monitoring, security patches, backup management, and direct access to the developer who built your system for questions, fixes, and feature requests.</div></div>
-      <div class="fitem rv d2"><div class="fq">Do I need this after my project launches? <span class="fchev">▼</span></div><div class="fa">Every build ships with a bug warranty — 90 days for websites, up to 150 days for software. After that, managed services is the best way to keep your system healthy and growing without re-engaging from scratch every time something needs to change. Most clients move to a retainer after the warranty window.</div></div>
-      <div class="fitem rv d3"><div class="fq">How is this different from regular hosting? <span class="fchev">▼</span></div><div class="fa">Standard hosting puts your files on shared infrastructure with no-context support. With a managed retainer, your site or app runs on dedicated infrastructure we manage personally, monitored 24/7. When something needs attention, you message the person who built it — not a help desk that's never seen your code.</div></div>
-      <div class="fitem rv d4"><div class="fq">Can I add new features under the retainer? <span class="fchev">▼</span></div><div class="fa">Yes. Most retainers include a monthly dev hours block at a reduced rate. Small changes and updates are handled within that block. Larger features are scoped separately — you stay at the front of the queue and at a better rate than a new engagement.</div></div>
-      <div class="fitem rv d5"><div class="fq">What if I have hosting somewhere else already? <span class="fchev">▼</span></div><div class="fa">We can migrate your project to managed infrastructure during onboarding, or work with your existing setup if it meets requirements. We'll assess on the onboarding call and recommend the cleanest path.</div></div>
-      <div class="fitem rv d6"><div class="fq">Can I cancel the retainer? <span class="fchev">▼</span></div><div class="fa">Yes. Retainers run month-to-month with 30 days notice to cancel. We'll handle a clean handoff — full access to code, hosting credentials, and any documentation you need to move forward with another developer.</div></div>
+      <div class="fitem rv d1"><button type="button" class="fq" id="faq-managed-services-1-q" aria-expanded="false" aria-controls="faq-managed-services-1-a">What's included in managed services? <span class="fchev">▼</span></button><div class="fa" id="faq-managed-services-1-a" role="region" aria-labelledby="faq-managed-services-1-q">Dedicated hosting on infrastructure we monitor directly, uptime and error monitoring, security patches, backup management, and direct access to the developer who built your system for questions, fixes, and feature requests.</div></div>
+      <div class="fitem rv d2"><button type="button" class="fq" id="faq-managed-services-2-q" aria-expanded="false" aria-controls="faq-managed-services-2-a">Do I need this after my project launches? <span class="fchev">▼</span></button><div class="fa" id="faq-managed-services-2-a" role="region" aria-labelledby="faq-managed-services-2-q">Every build ships with a bug warranty — 90 days for websites, up to 150 days for software. After that, managed services is the best way to keep your system healthy and growing without re-engaging from scratch every time something needs to change. Most clients move to a retainer after the warranty window.</div></div>
+      <div class="fitem rv d3"><button type="button" class="fq" id="faq-managed-services-3-q" aria-expanded="false" aria-controls="faq-managed-services-3-a">How is this different from regular hosting? <span class="fchev">▼</span></button><div class="fa" id="faq-managed-services-3-a" role="region" aria-labelledby="faq-managed-services-3-q">Standard hosting puts your files on shared infrastructure with no-context support. With a managed retainer, your site or app runs on dedicated infrastructure we manage personally, monitored 24/7. When something needs attention, you message the person who built it — not a help desk that's never seen your code.</div></div>
+      <div class="fitem rv d4"><button type="button" class="fq" id="faq-managed-services-4-q" aria-expanded="false" aria-controls="faq-managed-services-4-a">Can I add new features under the retainer? <span class="fchev">▼</span></button><div class="fa" id="faq-managed-services-4-a" role="region" aria-labelledby="faq-managed-services-4-q">Yes. Most retainers include a monthly dev hours block at a reduced rate. Small changes and updates are handled within that block. Larger features are scoped separately — you stay at the front of the queue and at a better rate than a new engagement.</div></div>
+      <div class="fitem rv d5"><button type="button" class="fq" id="faq-managed-services-5-q" aria-expanded="false" aria-controls="faq-managed-services-5-a">What if I have hosting somewhere else already? <span class="fchev">▼</span></button><div class="fa" id="faq-managed-services-5-a" role="region" aria-labelledby="faq-managed-services-5-q">We can migrate your project to managed infrastructure during onboarding, or work with your existing setup if it meets requirements. We'll assess on the onboarding call and recommend the cleanest path.</div></div>
+      <div class="fitem rv d6"><button type="button" class="fq" id="faq-managed-services-6-q" aria-expanded="false" aria-controls="faq-managed-services-6-a">Can I cancel the retainer? <span class="fchev">▼</span></button><div class="fa" id="faq-managed-services-6-a" role="region" aria-labelledby="faq-managed-services-6-q">Yes. Retainers run month-to-month with 30 days notice to cancel. We'll handle a clean handoff — full access to code, hosting credentials, and any documentation you need to move forward with another developer.</div></div>
     </div>
   </div>
 </section>
@@ -331,10 +339,10 @@
       <form id="leadForm" action="https://formspree.io/f/meerjqwp" method="POST">
         <input type="hidden" name="_subject" value="Managed services inquiry from MDS website" />
         <input type="hidden" name="page" value="managed-services.html" />
-        <div class="fg"><label class="flab">Your name</label><input class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
-        <div class="fg"><label class="flab">Your business</label><input class="fin" type="text" name="company" placeholder="Your company name"></div>
-        <div class="fg"><label class="flab">What are you trying to fix or build?</label><textarea class="fta" name="message" placeholder="Even a rough idea is a perfect starting point." style="min-height:110px" required></textarea></div>
-        <div class="fg"><label class="flab">Email</label><input class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
+        <div class="fg"><label class="flab" for="leadForm-name">Your name</label><input id="leadForm-name" class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="fg"><label class="flab" for="leadForm-company">Your business</label><input id="leadForm-company" class="fin" type="text" name="company" placeholder="Your company name"></div>
+        <div class="fg"><label class="flab" for="leadForm-message">What are you trying to fix or build?</label><textarea id="leadForm-message" class="fta" name="message" placeholder="Even a rough idea is a perfect starting point." style="min-height:110px" required></textarea></div>
+        <div class="fg"><label class="flab" for="leadForm-email">Email</label><input id="leadForm-email" class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
         <button type="submit" class="sbtn">Send — we'll reply within 24 hrs <span class="arr">→</span></button>
       </form>
       <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
@@ -354,13 +362,14 @@
         <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses.</div>
       </div>
       <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#recognition">Recognition</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
-      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a><a href="managed-services.html">Managed Services</a></div></div>
+      <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
       <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-ogden.html">Ogden</a><a href="web-design-provo.html">Provo</a></div></div>
-      <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
+      <div><div class="fhdr">Resources</div><div class="flinks2"><a href="roi-calculator.html">ROI Calculator</a><a href="free-audit.html">Free Website Audit</a><a href="free-checklist.html">Free Checklist</a><a href="punchless.html">Punchless</a><a href="custom-software-vs-servicetitan-utah.html">Custom vs. ServiceTitan</a></div></div>
     </div>
     <div class="fbot">
       <span>&copy; 2026 Merrill Digital Systems LLC. All rights reserved.</span>
-      <span>Utah &middot; Remote-first &middot; <a href="tel:+13854210455" style="color:inherit">(385) 421-0455</a> &middot; contact@merrilldigitalsystems.com</span>
+      <span><a href="privacy-primis.html" style="color:inherit">Privacy: Primis</a> &middot; <a href="privacy-bookkeeping-os.html" style="color:inherit">Privacy: Ops Hub</a> &middot; <a href="terms.html" style="color:inherit">Terms</a></span>
+      <span>West Jordan, UT &middot; Remote-first &middot; <a href="tel:+13854210455" style="color:inherit">(385) 421-0455</a> &middot; contact@merrilldigitalsystems.com</span>
     </div>
   </div>
 </footer>

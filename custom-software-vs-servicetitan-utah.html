@@ -27,13 +27,10 @@
     "headline": "Custom Software vs. ServiceTitan — Which Is Right for Your Business?",
     "description": "ServiceTitan costs $300–$600/month per user and forces your business to fit its workflow. Custom software fits yours. Here's an honest breakdown.",
     "image": "https://merrilldigitalsystems.com/og-image.png",
-    "author": { "@type": "Person", "name": "Kruz Merrill", "jobTitle": "Founder & Engineer", "url": "https://www.linkedin.com/company/merrill-digital-systems-llc/" },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Merrill Digital Systems",
-      "logo": { "@type": "ImageObject", "url": "https://merrilldigitalsystems.com/favicon.svg" }
-    },
+    "author": { "@type": "Person", "@id": "https://merrilldigitalsystems.com/#kruz-merrill", "name": "Kruz Merrill", "jobTitle": "Founder & Engineer" },
+    "publisher": { "@type": "Organization", "@id": "https://merrilldigitalsystems.com/#organization", "name": "Merrill Digital Systems", "url": "https://merrilldigitalsystems.com/", "logo": { "@type": "ImageObject", "url": "https://merrilldigitalsystems.com/images/logo-mds.png" } },
     "datePublished": "2026-06-09",
+    "dateModified": "2026-07-14",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://merrilldigitalsystems.com/custom-software-vs-servicetitan-utah.html"
@@ -369,10 +366,10 @@
       <form id="leadForm" action="https://formspree.io/f/meerjqwp" method="POST">
         <input type="hidden" name="_subject" value="ServiceTitan comparison inquiry from MDS website" />
         <input type="hidden" name="page" value="custom-software-vs-servicetitan-utah.html" />
-        <div class="fg"><label class="flab">Your name</label><input class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
-        <div class="fg"><label class="flab">Your business</label><input class="fin" type="text" name="company" placeholder="Your company name"></div>
-        <div class="fg"><label class="flab">What are you trying to fix or build?</label><textarea class="fta" name="message" placeholder="Even a rough idea is a perfect starting point." style="min-height:110px" required></textarea></div>
-        <div class="fg"><label class="flab">Email</label><input class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
+        <div class="fg"><label class="flab" for="leadForm-name">Your name</label><input id="leadForm-name" class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="fg"><label class="flab" for="leadForm-company">Your business</label><input id="leadForm-company" class="fin" type="text" name="company" placeholder="Your company name"></div>
+        <div class="fg"><label class="flab" for="leadForm-message">What are you trying to fix or build?</label><textarea id="leadForm-message" class="fta" name="message" placeholder="Even a rough idea is a perfect starting point." style="min-height:110px" required></textarea></div>
+        <div class="fg"><label class="flab" for="leadForm-email">Email</label><input id="leadForm-email" class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
         <button type="submit" class="sbtn">Send — we'll reply within 24 hrs <span class="arr">→</span></button>
       </form>
       <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
@@ -394,11 +391,12 @@
       <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
       <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
       <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-ogden.html">Ogden</a><a href="web-design-provo.html">Provo</a></div></div>
-      <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
+      <div><div class="fhdr">Resources</div><div class="flinks2"><a href="roi-calculator.html">ROI Calculator</a><a href="free-audit.html">Free Website Audit</a><a href="free-checklist.html">Free Checklist</a><a href="punchless.html">Punchless</a></div></div>
     </div>
     <div class="fbot">
       <span>© 2026 Merrill Digital Systems LLC. All rights reserved.</span>
-      <span>Utah · Remote-first · contact@merrilldigitalsystems.com</span>
+      <span><a href="privacy-primis.html" style="color:inherit">Privacy: Primis</a> &middot; <a href="privacy-bookkeeping-os.html" style="color:inherit">Privacy: Ops Hub</a> &middot; <a href="terms.html" style="color:inherit">Terms</a></span>
+      <span>West Jordan, UT · Remote-first · contact@merrilldigitalsystems.com</span>
     </div>
   </div>
 </footer>

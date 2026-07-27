@@ -138,6 +138,52 @@ docker compose up -d
 
 ---
 
+## Canonical hostname: www → apex
+
+The site canonicalises on the **apex** (`merrilldigitalsystems.com`). Every `<link rel="canonical">`
+and every JSON-LD URL points there, and `nginx.conf` has returned `301` for the `www` hostname
+since March 2026.
+
+Despite that, Search Console has been reporting `www.` and apex as **two separate indexed URLs**
+with separate impressions — which means www traffic is being answered *before* it reaches nginx.
+Splitting one domain across two hostnames splits link equity and crawl budget, so this is worth
+running down.
+
+**Verify first — this tells you which layer is answering:**
+
+```bash
+curl -sSI https://www.merrilldigitalsystems.com/ | head -n 12
+```
+
+- `301` + `location: https://merrilldigitalsystems.com/` → already fixed, nothing to do.
+- `200` → something upstream of nginx is serving www directly. Check, in order:
+  1. **Cloudflare Tunnel** (Zero Trust → Networks → Tunnels → public hostnames). If `www` is
+     mapped as its own public hostname, it reaches nginx and should already redirect. If it is
+     mapped to a *different* service, that is the bug.
+  2. **Caddy on the Pi.** If Caddy fronts both sites, a `www` site block (or a wildcard) may be
+     answering before nginx ever sees the request. Add the redirect there:
+
+     ```
+     www.merrilldigitalsystems.com {
+         redir https://merrilldigitalsystems.com{uri} permanent
+     }
+     ```
+  3. **Cloudflare cache.** Purge everything after changing either of the above, or a cached `200`
+     will keep being served.
+
+Belt-and-braces (independent of origin config): Cloudflare → Rules → **Redirect Rules**, matching
+`http.host eq "www.merrilldigitalsystems.com"` → dynamic redirect to
+`concat("https://merrilldigitalsystems.com", http.request.uri.path)`, status **301**. This runs at
+the edge, so it fixes the problem regardless of which origin answers.
+
+Finally, add a **Domain property** in Search Console (not just URL-prefix). Domain properties
+aggregate both hostnames and all protocols, so the split disappears from reporting too.
+
+> **Note:** `netlify.toml` in the repo root is left over from an earlier Netlify deploy and has no
+> effect on this Pi/Docker setup. Don't edit it expecting redirects to change.
+
+---
+
 ## Troubleshooting
 
 - **502 Bad Gateway**: Check `docker compose logs tunnel` — make sure the tunnel token is correct.

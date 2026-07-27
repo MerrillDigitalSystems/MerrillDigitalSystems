@@ -196,11 +196,20 @@
   })();
 
   /* ── FAQ ACCORDION ── */
+  /* The trigger is a <button class="fq">, so Enter/Space work natively. */
+  function setFaqOpen(item, open) {
+    item.classList.toggle('open', open);
+    const btn = item.querySelector('.fq');
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
   document.querySelectorAll('.fitem').forEach(item => {
-    item.addEventListener('click', () => {
+    const btn = item.querySelector('.fq');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
       const was = item.classList.contains('open');
-      document.querySelectorAll('.fitem.open').forEach(i => i.classList.remove('open'));
-      if (!was) item.classList.add('open');
+      document.querySelectorAll('.fitem.open').forEach(i => setFaqOpen(i, false));
+      if (!was) setFaqOpen(item, true);
     });
   });
 
@@ -345,6 +354,14 @@
   document.querySelectorAll('form[action*="formspree.io"]').forEach(form => {
     const formAction = form.getAttribute('action');
 
+    /* Changing the submit button's label is a visual-only cue — screen readers
+       need a live region to hear the result. */
+    const status = document.createElement('p');
+    status.className = 'sr-only';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    form.appendChild(status);
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       const sbtn = this.querySelector('.sbtn, button[type="submit"]');
@@ -352,6 +369,7 @@
       const orig = sbtn.innerHTML;
       sbtn.disabled = true;
       sbtn.innerHTML = 'Sending...';
+      status.textContent = 'Sending your message.';
 
       try {
         const res = await fetch(formAction, {
@@ -363,6 +381,7 @@
         if (res.ok) {
           sbtn.innerHTML = 'Message Sent';
           sbtn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+          status.textContent = 'Message sent. We will reply within 24 hours.';
           form.reset();
           if (typeof gtag !== 'undefined') {
             gtag('event', 'generate_lead', {
@@ -383,6 +402,7 @@
       } catch (err) {
         sbtn.innerHTML = 'Failed  -  email us directly';
         sbtn.style.background = 'linear-gradient(135deg,#dc2626,#b91c1c)';
+        status.textContent = 'Something went wrong. Please email contact@merrilldigitalsystems.com or call (385) 421-0455.';
         setTimeout(() => {
           sbtn.innerHTML = orig;
           sbtn.style.background = '';

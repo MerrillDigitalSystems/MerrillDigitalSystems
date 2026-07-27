@@ -30,12 +30,18 @@
     "name": "Web Design Ogden",
     "serviceType": "Website Design",
     "provider": {
-      "@type": "LocalBusiness",
+      "@type": "ProfessionalService",
+      "@id": "https://merrilldigitalsystems.com/#organization",
       "name": "Merrill Digital Systems",
-      "url": "https://merrilldigitalsystems.com",
-      "telephone": "+13854210455",
-      "address": { "@type": "PostalAddress", "addressLocality": "Salt Lake City", "addressRegion": "UT", "addressCountry": "US" },
-      "geo": { "@type": "GeoCoordinates", "latitude": "40.7608", "longitude": "-111.8910" }
+      "legalName": "Merrill Digital Systems LLC",
+      "url": "https://merrilldigitalsystems.com/",
+      "telephone": "+1-385-421-0455",
+      "email": "contact@merrilldigitalsystems.com",
+      "logo": "https://merrilldigitalsystems.com/images/logo-mds.png",
+      "priceRange": "$$",
+      "address": { "@type": "PostalAddress", "addressLocality": "West Jordan", "addressRegion": "UT", "postalCode": "84088", "addressCountry": "US" },
+      "geo": { "@type": "GeoCoordinates", "latitude": "40.6097", "longitude": "-111.9391" },
+      "founder": { "@type": "Person", "@id": "https://merrilldigitalsystems.com/#kruz-merrill", "name": "Kruz Merrill", "jobTitle": "Founder & Engineer" }
     },
     "areaServed": {
       "@type": "City",
@@ -258,9 +264,9 @@
   <div class="w">
     <div class="sh rv"><div class="sl">Common questions</div><h2>Ogden Web Design FAQ</h2></div>
     <div class="faq-grid">
-      <div class="fitem rv d1"><div class="fq">Do you build websites for Ogden service businesses? <span class="fchev">▼</span></div><div class="fa">Yes. We build custom websites for service companies in Ogden, Layton, Roy, Clearfield, and surrounding Weber/Davis county areas.</div></div>
-      <div class="fitem rv d2"><div class="fq">Can this help us rank in Ogden local search? <span class="fchev">▼</span></div><div class="fa">Yes. We build pages around service plus location intent, implement local schema, and align your website with Google Business Profile signals.</div></div>
-      <div class="fitem rv d3"><div class="fq">What's the starting budget for website design in Ogden? <span class="fchev">▼</span></div><div class="fa">Most projects start at <span class="pe">$2,000</span>. Final pricing depends on your page count, SEO scope, and integrations.</div></div>
+      <div class="fitem rv d1"><button type="button" class="fq" id="faq-web-design-ogden-1-q" aria-expanded="false" aria-controls="faq-web-design-ogden-1-a">Do you build websites for Ogden service businesses? <span class="fchev">▼</span></button><div class="fa" id="faq-web-design-ogden-1-a" role="region" aria-labelledby="faq-web-design-ogden-1-q">Yes. We build custom websites for service companies in Ogden, Layton, Roy, Clearfield, and surrounding Weber/Davis county areas.</div></div>
+      <div class="fitem rv d2"><button type="button" class="fq" id="faq-web-design-ogden-2-q" aria-expanded="false" aria-controls="faq-web-design-ogden-2-a">Can this help us rank in Ogden local search? <span class="fchev">▼</span></button><div class="fa" id="faq-web-design-ogden-2-a" role="region" aria-labelledby="faq-web-design-ogden-2-q">Yes. We build pages around service plus location intent, implement local schema, and align your website with Google Business Profile signals.</div></div>
+      <div class="fitem rv d3"><button type="button" class="fq" id="faq-web-design-ogden-3-q" aria-expanded="false" aria-controls="faq-web-design-ogden-3-a">What's the starting budget for website design in Ogden? <span class="fchev">▼</span></button><div class="fa" id="faq-web-design-ogden-3-a" role="region" aria-labelledby="faq-web-design-ogden-3-q">Most projects start at <span class="pe">$2,000</span>. Final pricing depends on your page count, SEO scope, and integrations.</div></div>
     </div>
   </div>
 </section>
@@ -290,10 +296,10 @@
       <form id="leadForm" action="https://formspree.io/f/meerjqwp" method="POST">
         <input type="hidden" name="_subject" value="Web design inquiry (Ogden) from MDS website" />
         <input type="hidden" name="page" value="web-design-ogden.html" />
-        <div class="fg"><label class="flab">Your name</label><input class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
-        <div class="fg"><label class="flab">Your business</label><input class="fin" type="text" name="company" placeholder="Your company name"></div>
-        <div class="fg"><label class="flab">What are you trying to fix or build?</label><textarea class="fta" name="message" placeholder="Even 'my current site isn't getting calls' is a perfect starting point." style="min-height:110px" required></textarea></div>
-        <div class="fg"><label class="flab">Email</label><input class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
+        <div class="fg"><label class="flab" for="leadForm-name">Your name</label><input id="leadForm-name" class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="fg"><label class="flab" for="leadForm-company">Your business</label><input id="leadForm-company" class="fin" type="text" name="company" placeholder="Your company name"></div>
+        <div class="fg"><label class="flab" for="leadForm-message">What are you trying to fix or build?</label><textarea id="leadForm-message" class="fta" name="message" placeholder="Even 'my current site isn't getting calls' is a perfect starting point." style="min-height:110px" required></textarea></div>
+        <div class="fg"><label class="flab" for="leadForm-email">Email</label><input id="leadForm-email" class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
         <button type="submit" class="sbtn">Send — we'll reply within 24 hrs <span class="arr">→</span></button>
       </form>
       <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
@@ -313,12 +319,13 @@
         <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses.</div>
       </div>
       <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="#contact">Contact</a></div></div>
-      <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-ogden.html">Ogden</a><a href="web-design-provo.html">Provo</a></div></div>
-      <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
+      <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-provo.html">Provo</a></div></div>
+      <div><div class="fhdr">Resources</div><div class="flinks2"><a href="roi-calculator.html">ROI Calculator</a><a href="free-audit.html">Free Website Audit</a><a href="free-checklist.html">Free Checklist</a><a href="punchless.html">Punchless</a><a href="custom-software-vs-servicetitan-utah.html">Custom vs. ServiceTitan</a></div></div>
     </div>
     <div class="fbot">
       <span>© 2026 Merrill Digital Systems LLC. All rights reserved.</span>
-      <span>Utah · Remote-first · contact@merrilldigitalsystems.com</span>
+      <span><a href="privacy-primis.html" style="color:inherit">Privacy: Primis</a> &middot; <a href="privacy-bookkeeping-os.html" style="color:inherit">Privacy: Ops Hub</a> &middot; <a href="terms.html" style="color:inherit">Terms</a></span>
+      <span>West Jordan, UT · Remote-first · contact@merrilldigitalsystems.com</span>
     </div>
   </div>
 </footer>

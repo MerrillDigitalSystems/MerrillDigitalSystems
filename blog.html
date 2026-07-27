@@ -26,11 +26,7 @@
     "name": "MDS Blog",
     "description": "Insights on custom software, field operations, and service business websites from Merrill Digital Systems.",
     "url": "https://merrilldigitalsystems.com/blog.html",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Merrill Digital Systems",
-      "url": "https://merrilldigitalsystems.com"
-    }
+    "publisher": { "@type": "Organization", "@id": "https://merrilldigitalsystems.com/#organization", "name": "Merrill Digital Systems", "url": "https://merrilldigitalsystems.com/", "logo": { "@type": "ImageObject", "url": "https://merrilldigitalsystems.com/images/logo-mds.png" } }
   }
   </script>
   <script type="application/ld+json">
@@ -260,6 +256,36 @@
   </div>
 </section>
 
+<hr class="rule">
+
+<!-- ══ LEAD FORM ══ -->
+<!-- On-page conversion: these articles rank, so don't make readers click away to convert. -->
+<section class="contact z" id="contact">
+  <div class="w">
+    <div class="contact-hdr rv">
+      <div class="sl">Get in touch</div>
+      <h2>Rather just ask a person?</h2>
+      <p>Skip the reading. Tell us what you're trying to fix and you'll get a straight answer within 24 hours.</p>
+    </div>
+    <div class="cform rv" style="max-width:560px;margin:0 auto">
+      <form id="leadForm" action="https://formspree.io/f/meerjqwp" method="POST">
+        <input type="hidden" name="_subject" value="Inquiry from blog.html" />
+        <input type="hidden" name="page" value="blog.html" />
+        <div class="fg"><label class="flab" for="leadForm-name">Your name</label><input id="leadForm-name" class="fin" type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="fg"><label class="flab" for="leadForm-company">Your business</label><input id="leadForm-company" class="fin" type="text" name="company" placeholder="Your company name"></div>
+        <div class="fg"><label class="flab" for="leadForm-message">What are you trying to fix or build?</label><textarea id="leadForm-message" class="fta" name="message" placeholder="Even 'my current site isn't getting calls' is a perfect starting point." style="min-height:110px" required></textarea></div>
+        <div class="fg"><label class="flab" for="leadForm-email">Email</label><input id="leadForm-email" class="fin" type="email" name="email" placeholder="jane@company.com" required></div>
+        <button type="submit" class="sbtn">Send — we'll reply within 24 hrs <span class="arr">→</span></button>
+      </form>
+      <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+        <div style="font-size:13px;color:var(--muted)">Or reach us directly:</div>
+        <a href="tel:+13854210455" style="font-size:13px;color:var(--acc)">(385) 421-0455</a>
+        <a href="mailto:contact@merrilldigitalsystems.com" style="font-size:13px;color:var(--acc)">contact@merrilldigitalsystems.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="w">
     <div class="fgrid2">
@@ -267,14 +293,15 @@
         <div class="flogo">Merrill Digital</div>
         <div class="ftag">Founder-led software studio building custom websites, operations software, and mobile apps for service businesses.</div>
       </div>
-      <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#work">Work</a><a href="blog.html">Blog</a><a href="/#contact">Contact</a></div></div>
+      <div><div class="fhdr">Company</div><div class="flinks2"><a href="/#about">About</a><a href="/#work">Work</a><a href="/#contact">Contact</a></div></div>
       <div><div class="fhdr">Services</div><div class="flinks2"><a href="web-design-utah.html">Website Design Utah</a><a href="operations-software.html">Operations Software</a><a href="field-service-software.html">Field Service Software</a><a href="bookkeeping-software.html">Bookkeeping Software</a></div></div>
       <div><div class="fhdr">Areas We Serve</div><div class="flinks2"><a href="web-design-utah.html">Utah (Statewide)</a><a href="web-design-salt-lake-city.html">Salt Lake City</a><a href="web-design-ogden.html">Ogden</a><a href="web-design-provo.html">Provo</a></div></div>
-      <div><div class="fhdr">Legal</div><div class="flinks2"><a href="privacy-primis.html">Privacy: Primis</a><a href="privacy-bookkeeping-os.html">Privacy: Ops Hub</a><a href="terms.html">Terms of Service</a></div></div>
+      <div><div class="fhdr">Resources</div><div class="flinks2"><a href="roi-calculator.html">ROI Calculator</a><a href="free-audit.html">Free Website Audit</a><a href="free-checklist.html">Free Checklist</a><a href="punchless.html">Punchless</a><a href="custom-software-vs-servicetitan-utah.html">Custom vs. ServiceTitan</a></div></div>
     </div>
     <div class="fbot">
       <span>© 2026 Merrill Digital Systems LLC. All rights reserved.</span>
-      <span>Utah · Remote-first · contact@merrilldigitalsystems.com</span>
+      <span><a href="privacy-primis.html" style="color:inherit">Privacy: Primis</a> &middot; <a href="privacy-bookkeeping-os.html" style="color:inherit">Privacy: Ops Hub</a> &middot; <a href="terms.html" style="color:inherit">Terms</a></span>
+      <span>West Jordan, UT · Remote-first · contact@merrilldigitalsystems.com</span>
     </div>
   </div>
 </footer>
