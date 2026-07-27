@@ -54,9 +54,54 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Can field technicians use the software on their phone?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We build mobile-first web apps or native mobile apps so your crew can see their assignments, log check-ins, capture photos, and mark jobs complete from the field  -  no laptop required." } },
-      { "@type": "Question", "name": "Does it integrate with QuickBooks for invoicing?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We commonly integrate with QuickBooks Online and Xero so completed jobs flow directly to invoicing without manual data entry." } },
-      { "@type": "Question", "name": "Why not just use ServiceTitan or Jobber?", "acceptedAnswer": { "@type": "Answer", "text": "ServiceTitan and Jobber are great generic tools, but they have fixed workflows. Custom software is built around your exact process  -  how you dispatch, how crews report, how you bill  -  so there are no workarounds. And no per-technician monthly fees that compound as you grow." } }
+      {
+        "@type": "Question",
+        "name": "Can field techs use this on their phone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We build mobile-first so your crew can see their route, log check-ins, capture photos, complete checklists, and mark jobs done - all from their phone, with or without reliable cell service (offline-capable builds available)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it integrate with QuickBooks for invoicing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We commonly build two-way QuickBooks Online and Xero integrations so completed jobs flow directly into invoicing without manual re-entry. Stripe payment collection is also a standard option."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from ServiceTitan or Jobber?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Generic tools have fixed workflows and per-seat pricing. Custom software is built around your exact process, including the edge cases those platforms structurally can't handle - custom pay logic, no-address job sites, unusual dispatch flows, or time tracking that has to work in the real world. You also own the code outright - no vendor risk."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to build?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most V1 field service systems ship in 6–12 weeks . The timeline is defined and fixed at the start based on what's in scope for V1. No surprises, no open-ended timeline."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can it handle GPS or location tracking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We can build technician location tracking, job-site verification (check-in within a radius of the address), and live map views of where your crew is. Scope determines which level of location features makes sense for V1."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do we own the source code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Always. All source code, databases, and infrastructure configurations are handed to you on final payment. You can hire any developer to maintain it. No subscription, no vendor dependency."
+        }
+      }
     ]
   }
   </script>
@@ -76,7 +121,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260607g">
+  <link rel="stylesheet" href="styles.css?v=20260724a">
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKXPYR32LK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TKXPYR32LK');</script>
@@ -340,6 +385,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=20260607g"></script>
+<script src="script.js?v=20260724a"></script>
 </body>
 </html>

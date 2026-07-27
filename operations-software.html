@@ -54,12 +54,70 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "How is custom operations software different from tools like Monday.com or Asana?", "acceptedAnswer": { "@type": "Answer", "text": "Generic tools make you adapt your workflow to their system. Custom software is built around how your business actually works  -  your terminology, your job stages, your reporting needs. No workarounds, no unused features, no per-seat pricing as you grow." } },
-      { "@type": "Question", "name": "How long does V1 of an operations hub take?", "acceptedAnswer": { "@type": "Answer", "text": "Most V1 builds take 6–12 weeks from signed scope to deployment. The timeline is fixed at the start and holds because we define exactly what V1 includes before writing any code." } },
-      { "@type": "Question", "name": "Do we own the code?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, fully. Your custom system is yours upon final payment  -  no vendor lock-in, no subscription required to keep using it. We build on proven internal frameworks that speed up delivery, but everything built specifically for your business belongs to you." } },
-      { "@type": "Question", "name": "Can it integrate with QuickBooks or our existing tools?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We commonly integrate with QuickBooks, Xero, Stripe, payroll platforms, and scheduling tools. If there's an API, we can connect to it." } },
-      { "@type": "Question", "name": "Do you build job tracking software for Utah trades businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We build job and task tracking, crew visibility, and reporting for HVAC, electrical, plumbing, pool, lawn, and other Utah field and service businesses. The system matches your terminology and job stages  -  not a generic template." } },
-      { "@type": "Question", "name": "How is this different from field service management software like ServiceTitan?", "acceptedAnswer": { "@type": "Answer", "text": "Off-the-shelf field service management fits average dispatch workflows. Custom operations software is for when your real process breaks those tools: unusual handoffs, reporting logic, role rules, and integrations across admin, field, and accounting. If your pain is mostly dispatch and mobile field workflows, we also build dedicated custom field service software." } }
+      {
+        "@type": "Question",
+        "name": "How is this different from Monday.com or Asana?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Generic tools make you adapt your workflow to their system. Custom software adapts to how you work - your terminology, your job stages, your reporting logic, your approval flow, and the edge cases generic tools keep forcing your team to work around. No workarounds. No features you'll never use. And no per-seat pricing that grows faster than your revenue."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does V1 take to build?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most V1 builds ship in 6–12 weeks from signed scope. The timeline is fixed at the start. We define scope before writing any code so there are no surprises and no scope creep without your sign-off."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do we own the code when it's done?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, fully. Your custom system is yours upon final payment - no vendor lock-in, no subscription required to keep using it. We build on proven internal frameworks that speed up delivery, but everything built specifically for your business belongs to you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can it integrate with QuickBooks or our payroll tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We regularly integrate with QuickBooks, Xero, Stripe, payroll tools, and scheduling platforms. If it has an API, we can connect to it. Integrations are scoped in V1 if they're core to the workflow."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "I just have a rough idea, not a full spec. Is that okay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That's exactly what the discovery phase is for. Most of our clients come with \"we have five spreadsheets and nothing talks to anything\" - not a 40-page spec doc. We help you define what V1 should actually include before building anything."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if our needs change after V1 launches?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We design V1 with iteration in mind - clean, modular architecture that's easy to extend. Your build includes a 120-150 day bug warranty, and new features after that are scoped and quoted as standalone projects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you build job tracking for Utah trades businesses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We build job and task tracking, crew visibility, and reporting for HVAC, electrical, plumbing, pool, lawn, and other Utah field and service businesses. Your job stages and language drive the system - not a generic template."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from field service management software like ServiceTitan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Off-the-shelf FSM fits average dispatch workflows. Custom operations software is for when your real process breaks those tools: handoffs, reporting, roles, and integrations across admin, field, and accounting. If dispatch and mobile field workflows are the main pain, see our custom field service software page - we often scope field and hub together in V1. For the full head-to-head, read our ServiceTitan vs custom software comparison ."
+        }
+      }
     ]
   }
   </script>
@@ -79,7 +137,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260607g">
+  <link rel="stylesheet" href="styles.css?v=20260724a">
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKXPYR32LK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TKXPYR32LK');</script>
@@ -511,7 +569,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=20260607g"></script>
+<script src="script.js?v=20260724a"></script>
 <script>
 (function(){
   function calcROI(){
