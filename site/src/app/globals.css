@@ -1,0 +1,371 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Modernist — Merrill Digital Systems
+   Flat, architectural, one family (Archivo). Zero radius, 2px rules, flush
+   left, grayscale photography, cobalt used sparingly. The rules are load
+   bearing: soften them and the design stops working.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Ground and ink */
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-ink: #201e1d;
+  --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+
+  /* Cobalt accent ramp — overrides the system's default red.
+     Base against --color-bg is ~3:1: fine for large text, icons and chrome,
+     NOT for paragraph copy. Use accent-700 on light, accent-400 on dark. */
+  --color-accent: #1442cf;
+  --color-accent-100: #eef2ff;
+  --color-accent-200: #dbe4ff;
+  --color-accent-300: #b8c8ff;
+  --color-accent-400: #7f9bff;
+  --color-accent-500: #3b6bf5;
+  --color-accent-600: #0f36ab;
+  --color-accent-700: #0b2a86;
+  --color-accent-800: #081f63;
+  --color-accent-900: #071642;
+
+  /* Neutral ramp — OKLCH on a shared perceptual lightness scale */
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+
+  /* Radius is zero everywhere. Not a default — a rule. */
+  --radius-none: 0px;
+  --radius-sm: 0px;
+  --radius: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+
+  --container-site: 1360px;
+
+  --ease-mod: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 400;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Themed interaction states — never the browser defaults. */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 26%, transparent);
+  }
+
+  :disabled {
+    opacity: 0.45;
+  }
+
+  input[type="range"] {
+    margin: 0;
+  }
+}
+
+/* ── Utilities ─────────────────────────────────────────────────────────── */
+
+/* Hard offset shadows — flat, zero blur, single color. The modernist
+   substitute for elevation. Never swap these for soft shadows. */
+@utility shadow-hard-cta {
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+
+@utility shadow-hard-cta-pressed {
+  box-shadow: 1px 1px 0 var(--color-ink);
+}
+
+@utility shadow-hard-door {
+  box-shadow: 8px 8px 0 var(--color-accent);
+}
+
+@utility shadow-hard-lift {
+  box-shadow: 0 10px 0 var(--color-accent);
+}
+
+@utility shadow-hard-pill {
+  box-shadow: 4px 4px 0 var(--color-ink);
+}
+
+/* Every content photograph goes through this. Never tint or colorize. */
+@utility grayscale-photo {
+  filter: grayscale(1) contrast(1.08);
+}
+
+/* Section rhythm from the design system. */
+@utility section-pad {
+  padding: clamp(50px, 7vw, 110px) clamp(18px, 4vw, 56px);
+}
+
+@utility site-container {
+  max-width: var(--container-site);
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Uppercase micro-label used for eyebrows, kickers and stat captions. */
+@utility eyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ── Long-form prose ───────────────────────────────────────────────────── */
+
+.prose-mds > * + * {
+  margin-top: 1.1em;
+}
+
+.prose-mds h2 {
+  margin-top: 2em;
+  font-size: clamp(24px, 2.8vw, 34px);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.prose-mds h3 {
+  margin-top: 1.6em;
+  font-size: clamp(18px, 2vw, 22px);
+  letter-spacing: -0.02em;
+}
+
+.prose-mds ul,
+.prose-mds ol {
+  padding-left: 1.1em;
+  list-style-position: outside;
+}
+
+.prose-mds ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.prose-mds ul > li {
+  position: relative;
+  padding-left: 1.4em;
+}
+
+.prose-mds ul > li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-700);
+}
+
+.prose-mds ol {
+  list-style-type: decimal;
+}
+
+.prose-mds li + li {
+  margin-top: 0.5em;
+}
+
+.prose-mds a {
+  color: var(--color-accent-700);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-mds strong {
+  font-weight: 800;
+}
+
+.prose-mds blockquote {
+  border-left: 6px solid var(--color-accent);
+  padding-left: 1.2em;
+  font-size: 1.08em;
+  font-weight: 600;
+}
+
+.prose-mds hr {
+  height: 2px;
+  border: 0;
+  background: var(--color-divider);
+  margin: 2.4em 0;
+}
+
+/* ── Themed range slider ───────────────────────────────────────────────── */
+/* Native controls are never left as-is: 2px track, square cobalt thumb,
+   zero radius, grab cursor. Vendor pseudo-elements can't be combined into
+   one selector list — a browser drops the whole rule if it sees an unknown
+   one — so they are written out separately. */
+
+.roi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  background: transparent;
+  cursor: grab;
+}
+
+.roi-slider:active {
+  cursor: grabbing;
+}
+
+.roi-slider::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--color-neutral-400);
+}
+
+.roi-slider::-moz-range-track {
+  height: 2px;
+  background: var(--color-neutral-400);
+}
+
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  margin-top: -9px;
+  border: 2px solid var(--color-ink);
+  border-radius: 0;
+  background: var(--color-accent);
+}
+
+.roi-slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--color-ink);
+  border-radius: 0;
+  background: var(--color-accent);
+}
+
+/* ── Animation ─────────────────────────────────────────────────────────── */
+
+@keyframes mdRise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mdClipUp {
+  from {
+    clip-path: inset(108% 0 0 0);
+    transform: translateY(0.16em);
+  }
+  to {
+    clip-path: inset(-40% 0 0 0);
+    transform: none;
+  }
+}
+
+@keyframes mdMarq {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes mdBlink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0.15;
+  }
+}
+
+@utility animate-rise {
+  animation: mdRise 0.7s ease both;
+}
+
+@utility animate-clip-up {
+  animation: mdClipUp 0.95s var(--ease-mod) both;
+}
+
+@utility animate-marquee {
+  animation: mdMarq 34s linear infinite;
+}
+
+@utility animate-blink {
+  animation: mdBlink 2.2s steps(1) infinite;
+}
+
+/* Reduced motion: collapse everything, including the JS-driven pieces
+   (the word cycler and marquee also check the media query in JS). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+}

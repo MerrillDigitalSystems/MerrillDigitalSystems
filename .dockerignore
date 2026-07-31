@@ -1,21 +1,47 @@
+# The image is built from site/ only — the Dockerfile copies site/ in stage 1
+# and the built out/ dir in stage 2. Everything below is either irrelevant to
+# the build or must never be baked into an image.
+
 # Git and IDE
 .git
 .gitignore
 .cursor
 .vscode
+.claude
+
+# Node artifacts — npm ci in the builder recreates these from the lockfile
+site/node_modules
+site/.next
+site/out
+
+# Legacy flat site, retired at cutover. Removing it from the build context
+# keeps the layer small and guarantees a stale .html can never be served.
+*.html
+work/
+styles.css
+script.js
+favicon.svg
+favicon-32.png
+apple-touch-icon.png
+og-image.png
+kruz-merrill.png
+images/
+img/
+sitemap.xml
+robots.txt
+_headers
+netlify.toml
+
+# Docs
 *.md
 !images/README.md
-
-# Netlify (keep for reference but don't ship)
-netlify.toml
-_headers
 
 # Docker (don't copy into image)
 Dockerfile
 docker-compose.yml
 .dockerignore
 
-# Secrets and certs (mounted as volume, not baked into image)
+# Secrets and certs (mounted as a volume, never baked in)
 certs/
 *.pem
 *.key
