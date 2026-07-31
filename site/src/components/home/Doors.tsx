@@ -1,10 +1,20 @@
-import Link from "next/link";
+"use client";
+
 import { Section, SectionLabel } from "@/components/ui/Section";
 import { Tag } from "@/components/ui/Tag";
 import { Reveal } from "@/components/ui/Reveal";
+import { useScopeType } from "@/components/scope/ScopeContext";
 import { DOORS } from "@/content/home";
 
+/**
+ * Self-qualification: route software buyers and website buyers apart before
+ * they read anything else. Clicking a door also pre-selects that project type
+ * in the scope builder further down, so the price they eventually see is
+ * already the right one.
+ */
 export function Doors() {
+  const setScopeType = useScopeType();
+
   return (
     <Section id="doors" ground="surface" borderTop>
       <SectionLabel number="02">TWO DOORS IN</SectionLabel>
@@ -22,12 +32,18 @@ export function Doors() {
       <div className="mt-[clamp(28px,4vw,56px)] grid gap-[clamp(14px,2vw,26px)] min-[900px]:grid-cols-2">
         {DOORS.map((door, i) => (
           <Reveal key={door.label} index={i}>
-            <Link
-              href={`/#contact?door=${door.scope}`}
+            {/*
+              Plain "#contact", not "/#contact?door=ops". A query string after
+              a fragment is read as part of the fragment id, matches nothing,
+              and dumps the visitor at the top of the page.
+            */}
+            <a
+              href="#contact"
+              onClick={() => setScopeType(door.scope)}
               className="flex h-full flex-col border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)] no-underline transition-all duration-200 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-hard-door"
             >
               <p className="eyebrow text-accent-700">{door.label}</p>
-              <h3 className="mt-4 text-[clamp(20px,2.2vw,28px)] font-extrabold leading-[1.12] tracking-[-.02em]">
+              <h3 className="mt-4 text-[clamp(20px,2.2vw,28px)] font-extrabold leading-[1.12] tracking-[-.02em] text-ink">
                 {door.headline}
               </h3>
               <p className="mt-4 text-[14px] leading-[1.6] text-neutral-800">
@@ -41,14 +57,14 @@ export function Doors() {
               </div>
 
               <div className="mt-auto flex flex-wrap items-baseline justify-between gap-3 border-t-2 border-t-ink pt-6">
-                <p className="text-[clamp(18px,2vw,24px)] font-extrabold tracking-[-.03em]">
+                <p className="text-[clamp(18px,2vw,24px)] font-extrabold tracking-[-.03em] text-ink">
                   {door.price}
                 </p>
                 <p className="text-[10px] font-bold uppercase tracking-[.15em] text-accent-700">
                   {door.timeline}
                 </p>
               </div>
-            </Link>
+            </a>
           </Reveal>
         ))}
       </div>

@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "eslint",
     "check:pricing": "node scripts/check-pricing.mjs",
-    "audit": "node scripts/parity-audit.mjs"
+    "audit": "node scripts/parity-audit.mjs",
+    "crawl": "node scripts/crawl-site.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

@@ -110,3 +110,12 @@ export function useScope() {
 export function useScopePayload(): ScopePayload | null {
   return useContext(Ctx)?.sent ?? null;
 }
+
+/**
+ * Lets the two doors pre-select a project type without needing the rest of
+ * the builder's state. No-op when there is no builder on the page.
+ */
+export function useScopeType(): (t: ScopeType) => void {
+  const ctx = useContext(Ctx);
+  return ctx ? ctx.setType : () => {};
+}

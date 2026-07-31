@@ -155,15 +155,21 @@
   filter: grayscale(1) contrast(1.08);
 }
 
-/* Section rhythm from the design system. */
+/* Vertical rhythm only.
+   The horizontal inset lives on .site-container instead, because these two
+   used to apply it at different levels: the header padded inside its
+   container while sections padded outside theirs, so the logo sat 56px right
+   of every heading below it. In a system where alignment does all the
+   organising, that is not a small bug. One inset, one left edge. */
 @utility section-pad {
-  padding: clamp(50px, 7vw, 110px) clamp(18px, 4vw, 56px);
+  padding-block: clamp(50px, 7vw, 110px);
 }
 
 @utility site-container {
   max-width: var(--container-site);
   margin-inline: auto;
   width: 100%;
+  padding-inline: clamp(18px, 4vw, 56px);
 }
 
 /* Uppercase micro-label used for eyebrows, kickers and stat captions. */

@@ -33,7 +33,16 @@ function ScrollProgress() {
       frame = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-      bar.style.transform = `scaleX(${ratio})`;
+
+      // Width rather than scaleX, so the gradient underneath stays pinned to
+      // the viewport and is *revealed* as you scroll. Under scaleX the whole
+      // gradient would squash into the bar and every position would look the
+      // same. It's a 3px strip — the repaint is free.
+      bar.style.width = `${ratio * 100}%`;
+
+      // The bar also deepens: pale cobalt at the top of the page, full
+      // accent by the bottom. Two signals, one element.
+      bar.style.opacity = String(0.55 + ratio * 0.45);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -52,8 +61,17 @@ function ScrollProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-x-0 top-0 z-[130] h-[3px] bg-accent origin-left scale-x-0"
       ref={ref}
+      className="fixed left-0 top-0 z-[130] h-[3px] w-0"
+      style={{
+        // Anchored to the viewport width, so as the bar grows it uncovers
+        // progressively more saturated cobalt rather than rescaling.
+        backgroundImage:
+          "linear-gradient(90deg, var(--color-accent-300) 0%, var(--color-accent-500) 45%, var(--color-accent) 100%)",
+        backgroundSize: "100vw 100%",
+        backgroundRepeat: "no-repeat",
+        opacity: 0.55,
+      }}
     />
   );
 }
@@ -130,7 +148,9 @@ export function Header() {
     <>
       <ScrollProgress />
       <header className="sticky top-0 z-[120] min-h-[74px] border-b-2 border-b-divider bg-bg">
-        <div className="site-container flex min-h-[74px] items-center gap-6 px-[clamp(18px,4vw,56px)]">
+        {/* No px here — site-container carries the inset now, so the logo
+            lands on the same left edge as every heading on the page. */}
+        <div className="site-container flex min-h-[74px] items-center gap-6">
           <Logo />
 
           <nav

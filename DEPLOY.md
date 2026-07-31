@@ -1,192 +1,155 @@
-# Deploying on a Raspberry Pi with Cloudflare Tunnel + HTTPS
+# Deploying merrilldigitalsystems.com
 
-This project runs as two Docker containers: **nginx** (serves the site) and **cloudflared** (connects the Pi to Cloudflare). No port forwarding or static IP needed.
+> Rewritten 2026-07-31. The previous version described an architecture that
+> did not exist — a Docker-managed tunnel talking to `https://web:443` over the
+> compose network, and Caddy "routing two sites". Every one of those claims was
+> wrong, and following them cost four deploys that built a correct image nobody
+> ever saw. What follows was read off the running machine.
 
----
+## The actual request path
 
-## 1. Prerequisites
+```
+visitor
+  → Cloudflare edge                        TLS terminates here
+  → cloudflared on the Pi HOST             pid ~1808, NOT in Docker
+      tunnel f4a3b1b5-2fed-4501-aa9f-095a16d6754b
+      config ~/.cloudflared/merrill-config.yml
+  → http://127.0.0.1:8080                  plain HTTP over loopback
+  → Caddy, user instance                   pid ~1812
+      config ~/.config/caddy/Caddyfile
+      also fronts baysbakedgoods.com
+  → reverse_proxy 127.0.0.1:8081
+  → the merrill-digital-systems container  nginx + the Next.js static export
+```
 
-On the Raspberry Pi, install Docker:
+### Things that are not what they look like
+
+| Looks like | Actually |
+|---|---|
+| The `tunnel` service in `docker-compose.yml` | A **different tunnel** (`9a12078f…`) that has never carried production traffic. Restarting it does nothing. Safe to `docker compose stop tunnel`. |
+| Caddy on `:80` (pid ~2459) | The **system** Caddy, stock config, serving its own welcome page from `/usr/share/caddy`. Unrelated to this site. It is why port 80 cannot be published. |
+| Caddy on `:8080` (pid ~1812) | The **user** Caddy. This one matters. It fronts both Merrill and Bay's. |
+| `certs/origin.pem` | Mounted and valid, but unused in practice — TLS terminates at Cloudflare and the loopback hop is plain HTTP. nginx still listens on 443 for direct access. |
+
+Three cloudflared processes run on this box. Confirm which is which before
+touching anything:
 
 ```bash
-sudo apt update && sudo apt install -y docker.io docker-compose-v2
-sudo usermod -aG docker $USER
-# Log out and back in so the docker group applies
+pgrep -af cloudflared     # 1807 = bays, 1808 = merrill, other = docker
+pgrep -af caddy           # 1812 = :8080 (ours), 2459 = :80 (system)
+sudo ss -tlnp | grep -E 'caddy|docker'
 ```
 
----
+## Ports on this Pi
 
-## 2. Cloudflare setup
+| Port | Owner | Notes |
+|---|---|---|
+| 80 | system Caddy | **Never publish the container here** — bind fails, container sits in `Created`, site keeps serving stale content with no obvious error |
+| 3001 | Bay's app | |
+| 8080 | user Caddy | the tunnel's target |
+| 8081 | **this container** | bound to `127.0.0.1` only |
+| 2019 / 2020 | Caddy admin APIs | system / user |
 
-### 2a. Add your domain to Cloudflare
-
-1. Create a free account at [dash.cloudflare.com](https://dash.cloudflare.com).
-2. Click **Add a site**, enter your domain (e.g. `merrilldigitalsystems.com`).
-3. Select the **Free** plan.
-4. Cloudflare will give you two nameservers. Go to your domain registrar and replace the existing nameservers with Cloudflare's.
-5. Wait for DNS propagation (can take a few minutes to 24 hours).
-
-### 2b. Create a Cloudflare Tunnel
-
-1. In the Cloudflare dashboard, go to **Zero Trust → Networks → Tunnels**.
-2. Click **Create a tunnel** → choose **Cloudflared**.
-3. Name it (e.g. `merrill-pi`).
-4. Cloudflare will show you a **tunnel token** — copy it.
-5. In the tunnel config, add a **public hostname**:
-   - Subdomain: (leave blank for root, or `www`)
-   - Domain: `merrilldigitalsystems.com`
-   - Service: `https://web:443`
-   - Under **Additional application settings → TLS**, check **No TLS Verify** (since we use a Cloudflare origin cert, not a public CA cert).
-6. Repeat for `www.merrilldigitalsystems.com` if you want both.
-
-### 2c. Generate an Origin Certificate
-
-1. In the Cloudflare dashboard, go to **SSL/TLS → Origin Server**.
-2. Click **Create Certificate**.
-3. Keep the defaults (RSA, 15 years, covers `*.merrilldigitalsystems.com` and `merrilldigitalsystems.com`).
-4. Cloudflare shows the **certificate** and **private key**. Copy both.
-5. On the Pi, create the certs directory and save them:
+## Routine deploy
 
 ```bash
-cd /path/to/MerrillDigitalSystems
-mkdir -p certs
-nano certs/origin.pem      # paste the certificate, save
-nano certs/origin-key.pem  # paste the private key, save
-chmod 600 certs/origin-key.pem
+cd ~/MerrillDigitalSystems
+git pull
+docker compose up -d --build      # ~90s on a Pi 5; npm ci + next build run inside
 ```
 
-### 2d. Set SSL mode
+That's it. Caddy and the tunnel are untouched — they point at `127.0.0.1:8081`,
+which the new container reclaims on restart.
 
-1. In Cloudflare dashboard → **SSL/TLS → Overview**.
-2. Set encryption mode to **Full (strict)**.
-
----
-
-## 3. Configure the tunnel token
-
-Create a `.env` file in the project root:
+Verify:
 
 ```bash
-echo "TUNNEL_TOKEN=your-token-here" > .env
+curl -s http://127.0.0.1:8081/pricing | grep -o '<title>[^<]*'                       # container
+curl -s -H "Host: merrilldigitalsystems.com" http://127.0.0.1:8080/pricing | grep -o '<title>[^<]*'   # through Caddy
+curl -s https://merrilldigitalsystems.com/pricing | grep -o '<title>[^<]*'           # public
+curl -s -o /dev/null -w "bays: %{http_code}\n" https://baysbakedgoods.com/           # collateral check
 ```
 
-Replace `your-token-here` with the token from step 2b.
+**Check page content, not status codes.** Caddy's old `try_files` fell through
+to `404.html` and served it with a **200** — which is exactly how a broken
+deploy looked healthy for hours. Grep for a string only the new build has.
 
----
-
-## 4. Build and run
+Then, from anywhere:
 
 ```bash
-cd /path/to/MerrillDigitalSystems
-
-# Build the nginx image
-docker compose build
-
-# Start both containers
-docker compose up -d
+cd site && npm run crawl
 ```
 
-Check that everything is running:
+That crawls every page, validates title/description/canonical/h1/schema,
+follows every internal link and image, and confirms each legacy `.html` URL
+301s in a single hop.
+
+## Changing the Caddy config
+
+The Caddyfile is version-controlled at `deploy/caddy/Caddyfile`. **Copy it,
+never paste it** — pasting into this terminal has twice rewritten bare
+hostnames into markdown links, once into a live config.
 
 ```bash
-docker compose ps
-docker compose logs -f
+cp deploy/caddy/Caddyfile ~/.config/caddy/Caddyfile
+caddy validate --config ~/.config/caddy/Caddyfile --adapter caddyfile
+caddy reload   --config ~/.config/caddy/Caddyfile --adapter caddyfile
 ```
 
-Your site should now be live at `https://merrilldigitalsystems.com`.
+`validate` first: `reload` is graceful and won't drop Bay's, but a bad config
+still fails the whole file.
 
----
+## Rollback
 
-## Useful commands
-
-| Command | Description |
-|---------|-------------|
-| `docker compose up -d` | Start in background |
-| `docker compose down` | Stop everything |
-| `docker compose logs -f web` | Stream nginx logs |
-| `docker compose logs -f tunnel` | Stream tunnel logs |
-| `docker compose build --no-cache` | Rebuild after file changes |
-| `docker compose restart web` | Restart nginx only |
-
----
-
-## How it works
-
-```
-Browser → Cloudflare (SSL termination + CDN)
-         ↕ encrypted tunnel
-       cloudflared container on Pi
-         ↕ HTTPS (origin cert)
-       nginx container on Pi → static files
-```
-
-- **Cloudflare** handles DNS, caching, DDoS protection, and the public SSL certificate visitors see.
-- **Cloudflare Tunnel** creates an outbound-only connection from your Pi to Cloudflare — no open ports on your router.
-- **nginx** serves the site over HTTPS using a Cloudflare **origin certificate** for end-to-end encryption.
-- SSL mode is **Full (strict)** so the connection is encrypted the whole way.
-
----
-
-## Updating the site
-
-After changing HTML/CSS/JS files:
+The pre-rebuild site is tagged:
 
 ```bash
-docker compose build --no-cache
-docker compose up -d
+git checkout v1-flat-site -- .
+docker compose up -d --build
 ```
 
----
+Then purge the Cloudflare cache. Under a minute.
 
-## Canonical hostname: www → apex
+## Traps, each of which has already cost a deploy
 
-The site canonicalises on the **apex** (`merrilldigitalsystems.com`). Every `<link rel="canonical">`
-and every JSON-LD URL points there, and `nginx.conf` has returned `301` for the `www` hostname
-since March 2026.
+**Never publish ports 80 or 443.** Caddy owns 80. A collision leaves the
+container in `Created` while the site appears to keep working.
 
-Despite that, Search Console has been reporting `www.` and apex as **two separate indexed URLs**
-with separate impressions — which means www traffic is being answered *before* it reaches nginx.
-Splitting one domain across two hostnames splits link equity and crawl budget, so this is worth
-running down.
+**nginx serves content on port 80 — do not add an https redirect.** The tunnel
+hop is plain HTTP; a redirect there bounces every request back through
+Cloudflare forever. TLS is the edge's job.
 
-**Verify first — this tells you which layer is answering:**
+**`absolute_redirect off` is load-bearing.** Without it nginx builds Location
+headers from `$scheme`, which is `http` on this hop, adding a second hop to all
+41 legacy redirects.
 
-```bash
-curl -sSI https://www.merrilldigitalsystems.com/ | head -n 12
-```
+**Don't reinstate Caddy's rewrites** (`/terms` → `/terms.html` and friends).
+nginx now 301s `/terms.html` → `/terms`; both together is an infinite loop.
 
-- `301` + `location: https://merrilldigitalsystems.com/` → already fixed, nothing to do.
-- `200` → something upstream of nginx is serving www directly. Check, in order:
-  1. **Cloudflare Tunnel** (Zero Trust → Networks → Tunnels → public hostnames). If `www` is
-     mapped as its own public hostname, it reaches nginx and should already redirect. If it is
-     mapped to a *different* service, that is the bug.
-  2. **Caddy on the Pi.** If Caddy fronts both sites, a `www` site block (or a wildcard) may be
-     answering before nginx ever sees the request. Add the redirect there:
+**Caddy no longer serves the repo directory.** It used to, which meant the
+old `.html` files at the repo root *were* the live site. They are now inert and
+can be deleted per `CUTOVER.md`. Before the proxy change, deleting them would
+have taken the site down.
 
-     ```
-     www.merrilldigitalsystems.com {
-         redir https://merrilldigitalsystems.com{uri} permanent
-     }
-     ```
-  3. **Cloudflare cache.** Purge everything after changing either of the above, or a cached `200`
-     will keep being served.
+**Cloudflare Email Obfuscation is on.** It rewrites `mailto:` links into
+`/cdn-cgi/l/email-protection#…`, which needs JS to resolve. Harmless for
+browsers; it does hide your email from non-JS crawlers, including some AI
+ones. Turn it off under Scrape Shield if that matters to you.
 
-Belt-and-braces (independent of origin config): Cloudflare → Rules → **Redirect Rules**, matching
-`http.host eq "www.merrilldigitalsystems.com"` → dynamic redirect to
-`concat("https://merrilldigitalsystems.com", http.request.uri.path)`, status **301**. This runs at
-the edge, so it fixes the problem regardless of which origin answers.
+## Cloudflare settings that live outside this repo
 
-Finally, add a **Domain property** in Search Console (not just URL-prefix). Domain properties
-aggregate both hostnames and all protocols, so the split disappears from reporting too.
+- **Redirect Rule** `www → apex`, 301, **with "Preserve query string" ticked.**
+  The expression uses `http.request.uri.path`, which is path-only — without
+  that checkbox every UTM is stripped and outbound leads arrive unattributed.
+- **Always Use HTTPS** is on.
+- The tunnel is **locally configured**, so its ingress is in
+  `~/.cloudflared/merrill-config.yml`, not the dashboard. The Zero Trust UI
+  offers to "migrate" it — that is irreversible and unnecessary.
 
-> **Note:** `netlify.toml` in the repo root is left over from an earlier Netlify deploy and has no
-> effect on this Pi/Docker setup. Don't edit it expecting redirects to change.
+## First-time setup
 
----
-
-## Troubleshooting
-
-- **502 Bad Gateway**: Check `docker compose logs tunnel` — make sure the tunnel token is correct.
-- **525 SSL Handshake Failed**: Make sure `certs/origin.pem` and `certs/origin-key.pem` exist and are correct.
-- **Site not loading**: Verify DNS has propagated (`nslookup merrilldigitalsystems.com`) and the tunnel is connected (`docker compose logs tunnel` should show "connection registered").
-- **Local testing**: You can still hit `http://localhost` on the Pi directly (port 80 redirects to HTTPS, but `curl -k https://localhost` works with the origin cert).
+Only needed on a fresh machine. Install Docker, restore
+`~/.cloudflared/merrill-config.yml` plus its credentials JSON, install the
+Caddyfile as above, place the origin certs in `certs/`, then run the routine
+deploy. The Cloudflare-side pieces (tunnel, DNS, redirect rule) already exist
+and are not recreated per-deploy.

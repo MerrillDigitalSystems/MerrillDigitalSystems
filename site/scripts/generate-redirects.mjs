@@ -59,6 +59,26 @@ const LEGACY_HTML = [
   "/privacy-bookkeeping-os.html",
 ];
 
+/**
+ * Routes that are new in the rebuild and never had a legacy .html URL.
+ *
+ * They still need a rule: the static export writes out/pricing.html, and
+ * nginx's `try_files $uri $uri.html` will happily serve that file when asked
+ * for /pricing.html — so without this, every new page answers on two URLs.
+ * Canonicals would eventually sort it out, but publishing duplicates and
+ * relying on Google to pick is not the same as not publishing them.
+ *
+ * /404.html is deliberately absent: it is wired to `error_page` and an exact
+ * -match redirect on it would break the error page.
+ */
+const NEW_HTML = [
+  "/pricing.html",
+  "/privacy.html",
+  "/web-design-west-jordan.html",
+  "/work/ccl-pro.html",
+  "/work/bays-baked-goods.html",
+];
+
 /** Pretty URLs the old nginx/Netlify config already served. */
 const LEGACY_PRETTY = [
   ["/privacy/primis", "/privacy-primis"],
@@ -66,7 +86,10 @@ const LEGACY_PRETTY = [
 ];
 
 const rules = [
-  ...LEGACY_HTML.map((from) => [from, from === "/index.html" ? "/" : from.replace(/\.html$/, "")]),
+  ...[...LEGACY_HTML, ...NEW_HTML].map((from) => [
+    from,
+    from === "/index.html" ? "/" : from.replace(/\.html$/, ""),
+  ]),
   ...LEGACY_PRETTY,
 ];
 
