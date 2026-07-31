@@ -98,7 +98,7 @@ export function RoiCalc() {
       </div>
 
       <div className="border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)]">
-        <p className="eyebrow text-neutral-600">BURNED ON BUSYWORK — PER MONTH</p>
+        <p className="eyebrow text-neutral-700">BURNED ON BUSYWORK — PER MONTH</p>
         <p
           className="mt-3 font-extrabold leading-none tracking-[-.035em] text-accent"
           style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
@@ -121,13 +121,13 @@ export function RoiCalc() {
 
         <div className="mt-6 grid grid-cols-2 gap-[2px] bg-ink">
           <div className="bg-bg pr-4 pt-5">
-            <p className="eyebrow text-neutral-600">PER YEAR</p>
+            <p className="eyebrow text-neutral-700">PER YEAR</p>
             <p className="mt-2 text-[clamp(20px,2.4vw,30px)] font-extrabold tracking-[-.03em]">
               {money(annual)}
             </p>
           </div>
           <div className="bg-bg pl-4 pt-5">
-            <p className="eyebrow text-neutral-600">PAYBACK ON A BUILD</p>
+            <p className="eyebrow text-neutral-700">PAYBACK ON A BUILD</p>
             <p className="mt-2 text-[clamp(20px,2.4vw,30px)] font-extrabold tracking-[-.03em]">
               {payback}
             </p>
@@ -148,7 +148,7 @@ export function RoiCalc() {
         <Btn href="#contact" block className="mt-6">
           {ROI.cta}
         </Btn>
-        <p className="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+        <p className="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
           {ROI.caption}
         </p>
       </div>

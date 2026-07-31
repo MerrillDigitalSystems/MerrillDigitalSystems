@@ -88,7 +88,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           {problems.map((problem, i) => (
             <Cell key={problem.title}>
               <Reveal index={i} className="flex h-full flex-col">
-                <p className="text-[26px] font-extrabold leading-none tracking-[-.035em] text-neutral-300">
+                {/* Decorative ordinal — see the note in Promises.tsx. */}
+                <p
+                  aria-hidden="true"
+                  className="text-[26px] font-extrabold leading-none tracking-[-.035em] text-neutral-300"
+                >
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-4 text-[17px] font-extrabold leading-[1.12] tracking-[-.02em]">
@@ -142,7 +146,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
             >
               {priceRange}
             </p>
-            <p className="mt-3 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+            <p className="mt-3 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
               {priceTimeline}
             </p>
             <Btn href="/pricing" variant="secondary" block className="mt-6">
@@ -199,7 +203,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
 
             {relatedLinks.length > 0 && (
               <nav className="mt-10 border-t-2 border-t-ink pt-5">
-                <p className="eyebrow text-neutral-600">RELATED</p>
+                <p className="eyebrow text-neutral-700">RELATED</p>
                 <ul className="mt-4 flex flex-col gap-[10px]">
                   {relatedLinks.map((link) => (
                     <li key={link.href}>

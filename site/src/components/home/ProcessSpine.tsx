@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { Section, SectionLabel } from "@/components/ui/Section";
@@ -66,7 +66,7 @@ export function ProcessSpine() {
         {PROCESS.map((step) => (
           <li key={step.step} className="relative">
             <span aria-hidden="true" className="block h-[24px] w-[24px] bg-accent" />
-            <p className="eyebrow mt-4 text-neutral-600">{step.step}</p>
+            <p className="eyebrow mt-4 text-neutral-700">{step.step}</p>
             <h3 className="mt-2 text-[19px] font-extrabold leading-[1.12] tracking-[-.02em]">
               {step.title}
             </h3>

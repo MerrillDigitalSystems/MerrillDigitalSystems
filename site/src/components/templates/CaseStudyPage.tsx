@@ -40,7 +40,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
       <section className="border-b-2 border-b-ink">
         <div className="section-pad site-container">
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+            <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
               {crumbs.map((crumb, i) => (
                 <li key={crumb.path} className="flex items-center gap-2">
                   {i > 0 && <span aria-hidden="true">/</span>}
@@ -49,7 +49,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
                       {crumb.name}
                     </span>
                   ) : (
-                    <Link href={crumb.path} className="text-neutral-600 no-underline hover:text-accent-700">
+                    <Link href={crumb.path} className="text-neutral-700 no-underline hover:text-accent-700">
                       {crumb.name}
                     </Link>
                   )}
@@ -115,7 +115,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
           <dl className="mt-[2px] grid gap-[2px] bg-ink min-[700px]:grid-cols-4">
             {data.facts.map((fact) => (
               <div key={fact.label} className="bg-bg p-[clamp(14px,2vw,22px)]">
-                <dt className="eyebrow text-neutral-600">{fact.label}</dt>
+                <dt className="eyebrow text-neutral-700">{fact.label}</dt>
                 <dd className="mt-2 text-[15px] font-extrabold tracking-[-.02em]">
                   {fact.value}
                 </dd>
@@ -153,7 +153,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
 
         {data.stack.length > 0 && (
           <div className="mt-[clamp(14px,2vw,26px)] flex flex-wrap items-center gap-3 border-2 border-ink bg-bg p-[clamp(18px,2.4vw,28px)]">
-            <span className="eyebrow text-neutral-600">BUILT WITH</span>
+            <span className="eyebrow text-neutral-700">BUILT WITH</span>
             {data.stack.map((tech) => (
               <Tag key={tech}>{tech}</Tag>
             ))}

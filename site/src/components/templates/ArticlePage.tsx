@@ -67,11 +67,11 @@ export function ArticlePage({
         <header className="border-b-2 border-b-ink">
           <div className="section-pad site-container">
             <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+              <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
                 {crumbs.slice(0, 2).map((crumb, i) => (
                   <li key={crumb.path} className="flex items-center gap-2">
                     {i > 0 && <span aria-hidden="true">/</span>}
-                    <Link href={crumb.path} className="text-neutral-600 no-underline hover:text-accent-700">
+                    <Link href={crumb.path} className="text-neutral-700 no-underline hover:text-accent-700">
                       {crumb.name}
                     </Link>
                   </li>
@@ -79,7 +79,7 @@ export function ArticlePage({
               </ol>
             </nav>
 
-            <p className="eyebrow mt-8 flex flex-wrap items-center gap-3 text-neutral-600">
+            <p className="eyebrow mt-8 flex flex-wrap items-center gap-3 text-neutral-700">
               <span className="text-accent-700">{meta.category}</span>
               <span aria-hidden="true" className="h-[2px] w-[34px] bg-neutral-400" />
               <time dateTime={meta.datePublished}>{humanDate(meta.datePublished)}</time>
@@ -124,7 +124,7 @@ export function ArticlePage({
 
               {meta.relatedLinks.length > 0 && (
                 <nav className="mt-6 border-t-2 border-t-ink pt-5">
-                  <p className="eyebrow text-neutral-600">KEEP READING</p>
+                  <p className="eyebrow text-neutral-700">KEEP READING</p>
                   <ul className="mt-4 flex flex-col gap-[10px]">
                     {meta.relatedLinks.map((link) => (
                       <li key={link.href}>

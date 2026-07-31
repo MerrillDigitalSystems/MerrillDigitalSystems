@@ -1,4 +1,4 @@
-import { WordCycler } from "./WordCycler";
+﻿import { WordCycler } from "./WordCycler";
 import { Btn } from "@/components/ui/Btn";
 import { BookCall } from "@/components/BookCall";
 import { GrayImage } from "@/components/ui/GrayImage";
@@ -48,7 +48,7 @@ export function Hero() {
       />
 
       <div className="section-pad site-container relative">
-        <p className="animate-rise eyebrow flex flex-wrap items-center gap-3 text-neutral-600">
+        <p className="animate-rise eyebrow flex flex-wrap items-center gap-3 text-neutral-700">
           <span aria-hidden="true" className="h-[8px] w-[8px] bg-accent animate-blink" />
           <span>{HERO.status[0]}</span>
           <span aria-hidden="true" className="h-[2px] w-[clamp(20px,4vw,70px)] bg-neutral-400" />
@@ -101,7 +101,7 @@ export function Hero() {
                 <p className="text-[15px] font-extrabold leading-none tracking-[-.02em]">
                   {HERO.card.name}
                 </p>
-                <p className="eyebrow mt-[6px] text-neutral-600">{HERO.card.role}</p>
+                <p className="eyebrow mt-[6px] text-neutral-700">{HERO.card.role}</p>
               </div>
             </div>
 
@@ -120,7 +120,7 @@ export function Hero() {
                   >
                     {stat.value}
                   </p>
-                  <p className="eyebrow mt-2 text-neutral-600">{stat.caption}</p>
+                  <p className="eyebrow mt-2 text-neutral-700">{stat.caption}</p>
                 </div>
               ))}
             </div>

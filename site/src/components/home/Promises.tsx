@@ -24,7 +24,16 @@ export function Promises() {
         {PROMISES.map((promise, i) => (
           <Cell key={promise.n} className="group transition-colors hover:bg-accent-100">
             <Reveal index={i} className="flex h-full flex-col">
-              <p className="text-[34px] font-extrabold leading-none tracking-[-.035em] text-neutral-300">
+              {/*
+                Decorative ordinal. The handoff specifies neutral-300 here and
+                it does not meet 3:1 — which is fine, because it carries no
+                information the title doesn't. Marked decorative rather than
+                darkened, so it's exempt rather than merely failing.
+              */}
+              <p
+                aria-hidden="true"
+                className="text-[34px] font-extrabold leading-none tracking-[-.035em] text-neutral-300"
+              >
                 {promise.n}
               </p>
               <h3 className="mt-4 text-[17px] font-extrabold leading-[1.12] tracking-[-.02em]">

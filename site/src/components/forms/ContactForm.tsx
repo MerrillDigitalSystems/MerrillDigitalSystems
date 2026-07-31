@@ -82,7 +82,10 @@ export function ContactForm({ formName = "contact" }: { formName?: string }) {
 
   if (status === "success") {
     return (
-      <div role="status" className="border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)]">
+      <div
+        role="status"
+        className="border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)] text-ink"
+      >
         <p className="eyebrow text-accent-700">MESSAGE SENT</p>
         <h3 className="mt-4 text-[clamp(20px,2.2vw,26px)] font-extrabold leading-[1.12] tracking-[-.02em]">
           Got it. I&rsquo;ll reply within 24 hours.
@@ -101,7 +104,10 @@ export function ContactForm({ formName = "contact" }: { formName?: string }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)]"
+      // text-ink is load-bearing: the form sits on a light card inside a
+      // cobalt section that sets `text-bg`. Without it the heading inherits
+      // near-white and renders invisible on near-white.
+      className="border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)] text-ink"
       noValidate
     >
       <p className="eyebrow text-accent-700">{CONTACT.formEyebrow}</p>
@@ -190,7 +196,7 @@ export function ContactForm({ formName = "contact" }: { formName?: string }) {
         </p>
       )}
 
-      <p className="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+      <p className="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
         {CONTACT.caption}
       </p>
     </form>

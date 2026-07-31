@@ -60,7 +60,7 @@ export function SectionLabel({
   return (
     <p
       className={`eyebrow flex items-center gap-3 ${
-        onDark ? "text-neutral-400" : "text-neutral-600"
+        onDark ? "text-neutral-400" : "text-neutral-700"
       } ${className}`}
     >
       <span className={onDark ? "text-accent-400" : "text-accent-700"}>

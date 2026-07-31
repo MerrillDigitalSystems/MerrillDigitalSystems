@@ -151,9 +151,16 @@ export function Header() {
           <div className="ml-auto flex items-center gap-4 min-[1041px]:ml-0">
             {/* The scarcity claim needs room to read; below 700px it goes. */}
             <CapacityPill className="hidden min-[701px]:inline-flex" />
-            <BookCall className="hidden min-[1041px]:inline-flex">
-              BOOK A FREE CALL →
-            </BookCall>
+            {/*
+              Visibility lives on a wrapper, not on the button. Btn's base
+              class sets `inline-flex`, and Tailwind resolves competing
+              display utilities by stylesheet order rather than by the order
+              they appear in the attribute — so `hidden` passed straight to
+              the button loses, and the desktop CTA shows up on phones.
+            */}
+            <div className="hidden min-[1041px]:block">
+              <BookCall>BOOK A FREE CALL →</BookCall>
+            </div>
 
             <button
               ref={toggleRef}

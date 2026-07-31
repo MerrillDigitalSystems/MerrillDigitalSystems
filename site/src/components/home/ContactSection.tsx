@@ -30,7 +30,9 @@ export function ContactSection() {
             {CONTACT.info.map((row) => (
               <div
                 key={row.label}
-                className="flex flex-wrap items-baseline justify-between gap-3 border-t-2 border-t-bg/40 py-[14px] last:border-b-2 last:border-b-bg/40"
+                // Top rules only — the booking block below opens with its own
+                // top rule, and a closing rule here would stack two.
+                className="flex flex-wrap items-baseline justify-between gap-3 border-t-2 border-t-bg/40 py-[14px]"
               >
                 <dt className="eyebrow opacity-80">{row.label}</dt>
                 <dd className="text-[15px] font-bold">

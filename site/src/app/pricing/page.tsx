@@ -95,7 +95,7 @@ export default function PricingPage() {
               >
                 {tier.range}
               </p>
-              <p className="mt-3 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+              <p className="mt-3 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
                 {tier.timeline}
               </p>
               <p className="mt-5 text-[13.5px] leading-[1.55] text-neutral-800">

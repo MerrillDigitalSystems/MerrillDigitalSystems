@@ -31,7 +31,7 @@ function PostCard({ post, ground }: { post: Post; ground?: "bg" | "surface" }) {
   return (
     <Cell ground={ground}>
       <Link href={post.slug} className="flex h-full flex-col text-ink no-underline">
-        <p className="eyebrow flex flex-wrap items-center gap-3 text-neutral-600">
+        <p className="eyebrow flex flex-wrap items-center gap-3 text-neutral-700">
           <span className="text-accent-700">{post.category}</span>
           <span aria-hidden="true" className="h-[2px] w-[22px] bg-neutral-400" />
           <span>{post.readingTime}</span>
@@ -49,7 +49,7 @@ function PostCard({ post, ground }: { post: Post; ground?: "bg" | "surface" }) {
           <span>READ ARTICLE →</span>
           <time
             dateTime={post.datePublished}
-            className="text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600"
+            className="text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700"
           >
             {shortDate(post.datePublished)}
           </time>

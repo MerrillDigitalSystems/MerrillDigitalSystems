@@ -212,7 +212,7 @@ export default function FreeChecklistPage() {
             </h2>
 
             <nav className="mt-10 border-t-2 border-t-ink pt-5">
-              <p className="eyebrow text-neutral-600">RELATED</p>
+              <p className="eyebrow text-neutral-700">RELATED</p>
               <ul className="mt-4 flex flex-col gap-[10px]">
                 {[
                   { href: "/roi-calculator", label: "What manual work is costing you" },

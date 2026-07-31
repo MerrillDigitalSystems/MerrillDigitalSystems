@@ -1,4 +1,4 @@
-import { JsonLd } from "@/components/JsonLd";
+﻿import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { Prose } from "@/components/page/Prose";
 import type { ReactNode } from "react";
@@ -40,7 +40,7 @@ export function LegalPage({
 
       <section className="border-b-2 border-b-ink">
         <div className="section-pad site-container">
-          <p className="eyebrow text-neutral-600">LEGAL</p>
+          <p className="eyebrow text-neutral-700">LEGAL</p>
           <h1
             className="mt-5 max-w-[18ch] font-extrabold"
             style={{
@@ -51,7 +51,7 @@ export function LegalPage({
           >
             {h1}
           </h1>
-          <p className="mt-6 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+          <p className="mt-6 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
             LAST UPDATED {humanDate(updated).toUpperCase()}
           </p>
         </div>

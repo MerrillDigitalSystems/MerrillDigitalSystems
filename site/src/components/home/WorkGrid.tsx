@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Section, SectionLabel } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { GrayImage } from "@/components/ui/GrayImage";
@@ -37,7 +37,7 @@ export function WorkGrid() {
                 imgClassName="aspect-[16/10] w-full object-cover"
               />
               <div className="flex flex-1 flex-col p-[clamp(18px,2vw,26px)]">
-                <p className="eyebrow text-neutral-600">{item.eyebrow}</p>
+                <p className="eyebrow text-neutral-700">{item.eyebrow}</p>
                 <h3 className="mt-3 text-[20px] font-extrabold leading-[1.12] tracking-[-.02em]">
                   {item.title}
                 </h3>
@@ -60,7 +60,7 @@ export function WorkGrid() {
         {SOFTWARE_PROJECTS.map((project) => {
           const inner = (
             <>
-              <p className="flex items-center gap-[9px] text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+              <p className="flex items-center gap-[9px] text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
                 <span
                   aria-hidden="true"
                   className={`h-[8px] w-[8px] ${
@@ -77,7 +77,7 @@ export function WorkGrid() {
               </p>
               <p
                 className={`mt-auto pt-5 text-[13px] font-bold ${
-                  project.live ? "text-accent-700" : "text-neutral-600"
+                  project.live ? "text-accent-700" : "text-neutral-700"
                 }`}
               >
                 {project.result}

@@ -86,7 +86,7 @@ export function Checklist({ items }: { items: ChecklistItem[] }) {
                 />
                 <Checkbox checked={isChecked} />
                 <span className="flex-1">
-                  <span className="eyebrow block text-neutral-600">
+                  <span className="eyebrow block text-neutral-700">
                     SIGN {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="mt-2 block text-[15.5px] font-extrabold leading-[1.25] tracking-[-.02em]">
@@ -154,7 +154,7 @@ export function Checklist({ items }: { items: ChecklistItem[] }) {
           )}
         </div>
 
-        <p className="mt-5 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+        <p className="mt-5 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
           NOTHING IS SENT ANYWHERE · NO EMAIL REQUIRED
         </p>
       </aside>

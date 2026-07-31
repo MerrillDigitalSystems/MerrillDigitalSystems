@@ -185,7 +185,7 @@ export default function PunchlessPage() {
         </GridCells>
 
         <div className="mt-[clamp(14px,2vw,26px)] flex flex-wrap items-center gap-3 border-2 border-ink bg-bg p-[clamp(18px,2.4vw,28px)]">
-          <span className="eyebrow text-neutral-600">BUILT FOR</span>
+          <span className="eyebrow text-neutral-700">BUILT FOR</span>
           {data.industries.map((industry) => (
             <Tag key={industry}>{industry}</Tag>
           ))}
@@ -221,7 +221,7 @@ export default function PunchlessPage() {
                 style={{ fontSize: "clamp(26px, 3vw, 40px)" }}
               >
                 ${plan.price}
-                <span className="text-[15px] font-bold tracking-normal text-neutral-600">
+                <span className="text-[15px] font-bold tracking-normal text-neutral-700">
                   {plan.unit}
                 </span>
               </p>
@@ -244,7 +244,7 @@ export default function PunchlessPage() {
 
         <div className="mt-[clamp(22px,3vw,34px)] flex flex-wrap items-center gap-4">
           <Btn href={data.url}>START A FREE TRIAL →</Btn>
-          <p className="text-[13px] font-bold uppercase tracking-[.11em] text-neutral-600">
+          <p className="text-[13px] font-bold uppercase tracking-[.11em] text-neutral-700">
             30-DAY TRIAL · NO CREDIT CARD · GETPUNCHLESS.COM
           </p>
         </div>
@@ -266,7 +266,7 @@ export default function PunchlessPage() {
             </h2>
 
             <nav className="mt-10 border-t-2 border-t-ink pt-5">
-              <p className="eyebrow text-neutral-600">RELATED</p>
+              <p className="eyebrow text-neutral-700">RELATED</p>
               <ul className="mt-4 flex flex-col gap-[10px]">
                 {data.relatedLinks.map((link) => (
                   <li key={link.href}>

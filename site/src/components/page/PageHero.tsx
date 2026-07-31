@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Btn } from "@/components/ui/Btn";
 
 export type Crumb = { name: string; path: string };
@@ -12,7 +12,7 @@ export function PageHero({
   title,
   lede,
   crumbs,
-  primaryCta = "BOOK A FREE DISCOVERY CALL →",
+  primaryCta = "BOOK A FREE DISCOVERY CALL â†’",
   /** Defaults to the on-page contact band; product pages point elsewhere. */
   primaryHref = "#contact",
   secondaryCta,
@@ -41,7 +41,7 @@ export function PageHero({
 
       <div className="section-pad site-container relative">
         <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+          <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
             {crumbs.map((crumb, i) => (
               <li key={crumb.path} className="flex items-center gap-2">
                 {i > 0 && <span aria-hidden="true">/</span>}
@@ -50,7 +50,7 @@ export function PageHero({
                     {crumb.name}
                   </span>
                 ) : (
-                  <Link href={crumb.path} className="text-neutral-600 no-underline hover:text-accent-700">
+                  <Link href={crumb.path} className="text-neutral-700 no-underline hover:text-accent-700">
                     {crumb.name}
                   </Link>
                 )}
@@ -59,7 +59,7 @@ export function PageHero({
           </ol>
         </nav>
 
-        <p className="eyebrow mt-8 flex items-center gap-3 text-neutral-600">
+        <p className="eyebrow mt-8 flex items-center gap-3 text-neutral-700">
           <span aria-hidden="true" className="h-[8px] w-[8px] bg-accent" />
           {eyebrow}
         </p>

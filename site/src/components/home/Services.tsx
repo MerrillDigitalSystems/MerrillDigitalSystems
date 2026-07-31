@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Section, SectionLabel } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { Btn } from "@/components/ui/Btn";
@@ -51,7 +51,7 @@ export function Services() {
                 <p className="text-[clamp(18px,2vw,24px)] font-extrabold tracking-[-.03em]">
                   {service.price}
                 </p>
-                <p className="mt-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-600">
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
                   {service.meta}
                 </p>
               </div>

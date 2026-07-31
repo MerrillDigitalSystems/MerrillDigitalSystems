@@ -28,8 +28,8 @@ export function PunchlessBand() {
             <Btn
               href={PUNCHLESS.externalUrl}
               variant="secondary"
+              inverted
               rel="noopener"
-              className="border-bg text-bg hover:bg-bg hover:text-ink"
             >
               {PUNCHLESS.ctaSecondary}
             </Btn>

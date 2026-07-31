@@ -20,9 +20,20 @@ const variants: Record<Variant, string> = {
     "bg-transparent text-ink border-transparent px-0 py-2 hover:text-accent-700",
 };
 
-/** Variant tuned for ink and cobalt grounds, where ink borders disappear. */
-const onDark =
-  "bg-bg text-ink border-bg hover:bg-accent-100 hover:text-accent-700";
+/**
+ * Variants for ink and cobalt grounds, where an ink border and ink label both
+ * disappear. Pass `inverted` rather than overriding colours through
+ * `className` — a competing `text-*` utility is resolved by stylesheet order,
+ * not attribute order, which is how the Punchless "TRY IT FREE" button ended
+ * up rendering ink-on-ink and completely invisible.
+ */
+const invertedVariants: Record<Variant, string> = {
+  primary: "bg-bg text-ink border-bg hover:bg-accent-100 hover:text-accent-700",
+  secondary:
+    "bg-transparent text-bg border-bg hover:bg-bg hover:text-ink active:bg-accent-100",
+  ghost:
+    "bg-transparent text-bg border-transparent px-0 py-2 hover:text-accent-400",
+};
 
 /**
  * Shared so anything that has to be a real <button> for other reasons — the
@@ -40,7 +51,12 @@ export function btnClasses({
   block?: boolean;
   className?: string;
 } = {}) {
-  return [base, inverted ? onDark : variants[variant], block ? "w-full" : "", className]
+  return [
+    base,
+    inverted ? invertedVariants[variant] : variants[variant],
+    block ? "w-full" : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 }

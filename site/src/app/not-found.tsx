@@ -22,7 +22,7 @@ export default function NotFound() {
     <>
       <section className="section-pad border-b-2 border-b-ink">
         <div className="site-container">
-          <p className="eyebrow flex items-center gap-3 text-neutral-600">
+          <p className="eyebrow flex items-center gap-3 text-neutral-700">
             <span aria-hidden="true" className="h-[8px] w-[8px] bg-accent" />
             ERROR 404
           </p>
@@ -52,7 +52,7 @@ export default function NotFound() {
 
       <section className="section-pad bg-surface">
         <div className="site-container">
-          <p className="eyebrow text-neutral-600">TRY ONE OF THESE</p>
+          <p className="eyebrow text-neutral-700">TRY ONE OF THESE</p>
           <ul className="mt-6 border-t-2 border-t-ink">
             {ELSEWHERE.map((item) => (
               <li key={item.href} className="border-b-2 border-b-neutral-300">
