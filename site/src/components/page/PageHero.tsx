@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Btn } from "@/components/ui/Btn";
 
 export type Crumb = { name: string; path: string };
@@ -12,7 +12,7 @@ export function PageHero({
   title,
   lede,
   crumbs,
-  primaryCta = "BOOK A FREE DISCOVERY CALL â†’",
+  primaryCta = "BOOK A FREE DISCOVERY CALL →",
   /** Defaults to the on-page contact band; product pages point elsewhere. */
   primaryHref = "#contact",
   secondaryCta,

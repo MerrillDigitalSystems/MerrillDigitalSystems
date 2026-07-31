@@ -12,7 +12,10 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 const field =
   "mt-2 w-full border-2 border-ink bg-bg px-[14px] py-[12px] text-[14px] text-ink " +
-  "placeholder:text-neutral-500 focus-visible:border-accent";
+  // neutral-500 placeholders sit at 2.59:1 and read as washed out; neutral-700
+  // is 5.84:1 and still clearly lighter than the ink of a filled field, so a
+  // placeholder is never mistaken for real input.
+  "placeholder:text-neutral-700 focus-visible:border-accent";
 
 const labelCls = "eyebrow text-neutral-700";
 

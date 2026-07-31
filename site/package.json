@@ -6,7 +6,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/check-pricing.mjs",
     "build": "next build",
-    "postbuild": "node scripts/generate-redirects.mjs && node scripts/check-titles.mjs",
+    "postbuild": "node scripts/generate-redirects.mjs && node scripts/check-titles.mjs && node scripts/check-encoding.mjs",
     "start": "next start",
     "lint": "eslint",
     "check:pricing": "node scripts/check-pricing.mjs",
