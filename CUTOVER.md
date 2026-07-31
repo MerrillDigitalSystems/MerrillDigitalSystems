@@ -30,7 +30,27 @@ live doubles the churn and makes the Search Console data unreadable.
 
 Let that settle for a few days before touching URLs.
 
-### 2. Freeze content
+### 2. Capture the Search Console baseline
+
+Every URL on the site is about to change. Once it has, a dip is impossible to
+attribute without a before — you cannot tell a broken redirect from ordinary
+volatility. Do this while the old site is still live.
+
+- [ ] Search Console → Performance → **3 months**, then export **Pages** and **Queries** to CSV. Keep them somewhere you'll find them.
+- [ ] Record total impressions, total clicks and average position for that window.
+
+The **Pages** export is the one that earns its keep: it's the list of URLs that
+actually get impressions, and therefore the list worth spot-checking in URL
+Inspection after cutover. Anything on it that stops appearing has a redirect
+problem.
+
+> Baseline noted 2026-07-31 (24h sample, noisy): 324 impressions, 0 clicks,
+> average position 55.7. Position ~56 means page five or six — there is
+> visibility but nothing close to click range, which is the gap the rebuild's
+> published pricing and answer-shaped FAQ content are aimed at. Pull the
+> 3-month numbers for a real baseline; a single day tells you very little.
+
+### 3. Freeze content
 
 Stop editing the old flat HTML. Anything changed after this point has to be
 ported by hand a second time.
