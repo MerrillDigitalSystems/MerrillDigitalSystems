@@ -10,7 +10,17 @@ No paid ads. Three channels, sequenced so each one feeds the next.
 
 The single highest-return unpaid channel for a local service business, and it costs nothing but an afternoon.
 
-### One-time setup
+> **The profile already exists (confirmed 2026-07-31).** So this is an
+> optimisation pass, not a setup. Work down the list and fix what's missing —
+> an existing-but-thin profile ranks about as well as no profile.
+>
+> Check these three first, in order, because nothing else matters until they're right:
+>
+> 1. **Is it verified?** An unverified profile doesn't appear in the map pack at all.
+> 2. **Is the primary category `Website Designer`?** The single biggest ranking factor on a GBP, and the default is usually wrong.
+> 3. **Is the service area set** to West Jordan plus Salt Lake / Utah / Davis / Weber counties, with the street address hidden? Service-area businesses are meant to hide the address; showing it can suppress you outside your immediate pin.
+
+### Setup checklist
 
 - [ ] **Primary category:** `Website Designer`. **Secondary:** `Software Company`, `Internet Marketing Service`.
 - [ ] **Service area:** West Jordan as the base, plus Salt Lake, Utah, Davis and Weber counties. Do *not* list a fake address in each city — service-area businesses are supposed to hide the street address.
