@@ -26,15 +26,22 @@ export default async function Icon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          alignItems: "center",
+          // Same solved offset as MdBlock in components/layout/Logo.tsx:
+          // paddingTop = height/2 - 0.42 * fontSize. Archivo's caps have no
+          // descender, so centring the line box leaves the glyphs high;
+          // align-items:center plus a margin cannot fix it because flexbox
+          // centres the margin box. 512/2 - 0.42*232 = 159.
+          alignItems: "flex-start",
           justifyContent: "center",
+          paddingTop: 159,
           background: "#1442cf",
           color: "#f3f2f2",
           fontFamily: "Archivo",
           fontSize: 232,
           letterSpacing: "-0.06em",
-          // Optical centring: the cap-height box sits high in the em box.
-          paddingBottom: 18,
+          // Tracking is applied after the final glyph too; cancelling it stops
+          // "MD" sitting fractionally left of centre.
+          marginRight: -14,
         }}
       >
         MD

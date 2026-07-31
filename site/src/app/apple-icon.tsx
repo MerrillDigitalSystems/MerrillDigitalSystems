@@ -22,14 +22,16 @@ export default async function AppleIcon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          alignItems: "center",
+          // Same solved offset as app/icon.tsx: 180/2 - 0.42*70 = 61.
+          alignItems: "flex-start",
           justifyContent: "center",
+          paddingTop: 61,
           background: "#1442cf",
           color: "#f3f2f2",
           fontFamily: "Archivo",
           fontSize: 70,
           letterSpacing: "-0.06em",
-          paddingBottom: 6,
+          marginRight: -4,
         }}
       >
         MD

@@ -19,19 +19,43 @@ export function MdBlock({
 }) {
   // Slab proportions: noticeably taller than wide, so it reads as a rule
   // standing on end rather than as a square badge.
-  const width = Math.round(height * 0.66);
+  const width = Math.round(height * 0.72);
+  const fontSize = Math.round(height * 0.34);
+
+  // Optical centring, solved rather than nudged. Archivo 800 caps measure
+  // (canvas measureText): cap height 0.692em, font ascent 0.846em, font
+  // descent 0.231em, zero descender on M and D. With line-height:1 the line
+  // box is shorter than ascent+descent, so the baseline lands at 0.808em from
+  // the line-box top. Setting the ink's top edge to (height - capHeight)/2:
+  //
+  //   paddingTop = round(height/2 - 0.42 * fontSize)
+  //
+  // The 0.42 is solved from measured ink positions rather than derived from
+  // metrics alone — the browser rounds line-box placement, so the pure
+  // metric answer (0.461) still left it a pixel high. Rounding the result to
+  // a whole pixel lands both scales within 0.01px of centre.
+  //
+  // Doing this with align-items:center and a margin does NOT work: flexbox
+  // centres the margin box, so a top margin moves the glyphs down by only
+  // half its value. That is why two earlier rounds of nudging never closed.
+  const paddingTop = Math.round(height / 2 - 0.42 * fontSize);
 
   return (
     <span
       aria-hidden="true"
-      className={`inline-flex shrink-0 items-end justify-center bg-accent ${className}`}
-      style={{ height, width, paddingBottom: Math.round(height * 0.13) }}
+      className={`inline-flex shrink-0 items-start justify-center bg-accent ${className}`}
+      style={{ height, width, paddingTop }}
     >
       <span
         className="font-extrabold leading-none text-bg"
         style={{
-          fontSize: Math.round(height * 0.36),
+          fontSize,
           letterSpacing: "-.06em",
+          // Tracking is applied after the final glyph too, so "MD" carries a
+          // sliver of empty space on its right that centring counts as part
+          // of the text. Cancelling it puts the letterforms in the middle
+          // rather than fractionally left of it.
+          marginRight: "-.06em",
         }}
       >
         MD
