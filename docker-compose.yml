@@ -6,16 +6,21 @@ services:
     build: .
     container_name: merrill-digital-systems
     restart: unless-stopped
-    # 8080 is not arbitrary — it is what the tunnel asks for. Production
-    # traffic arrives via a cloudflared running on the HOST (not the `tunnel`
-    # service below), whose config at
-    # /home/kruzer04/.cloudflared/merrill-config.yml routes
-    # merrilldigitalsystems.com to http://127.0.0.1:8080.
+    # The real request path on this Pi:
     #
-    # Do NOT map 80 or 443: Caddy owns :80 on this Pi, and a collision leaves
-    # the container stuck in "Created" while the site 502s.
+    #   visitor -> Cloudflare edge
+    #           -> cloudflared on the HOST (pid ~1808, tunnel f4a3b1b5...,
+    #              config ~/.cloudflared/merrill-config.yml)
+    #           -> http://127.0.0.1:8080  = Caddy (pid ~1812,
+    #              ~/.config/caddy/Caddyfile), which also fronts
+    #              baysbakedgoods.com
+    #           -> reverse_proxy 127.0.0.1:8081  = this container
+    #
+    # 8081 because Caddy holds 8080, a second Caddy holds 80, and Bay's app
+    # holds 3001. Mapping 80 or 443 here collides and leaves the container
+    # stuck in "Created" while the site keeps serving stale content.
     ports:
-      - "8080:80"
+      - "127.0.0.1:8081:80"
     volumes:
       # Mount Cloudflare origin certificates (keep these outside the repo)
       - ./certs:/etc/nginx/certs:ro
