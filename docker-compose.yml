@@ -6,9 +6,15 @@ services:
     build: .
     container_name: merrill-digital-systems
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
+    # No host ports on purpose. The Cloudflare Tunnel reaches this container
+    # over the compose network at https://web:443, so publishing 80/443 on the
+    # host adds nothing and actively breaks the deploy: Caddy holds :80 on this
+    # Pi, so the bind fails and the container never leaves "Created".
+    #
+    # For local debugging on the Pi, uncomment and hit http://<pi-ip>:8080
+    # (8080 rather than 80, so it can't collide again):
+    # ports:
+    #   - "8080:80"
     volumes:
       # Mount Cloudflare origin certificates (keep these outside the repo)
       - ./certs:/etc/nginx/certs:ro

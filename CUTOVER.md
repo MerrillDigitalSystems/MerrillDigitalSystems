@@ -83,6 +83,15 @@ npm run audit      # parity matrix against the legacy sitemap
 
 ## Cutover day
 
+> **Port 80 on the Pi belongs to Caddy.** A stock Caddy install (serving its
+> own welcome page from `/usr/share/caddy`, routing nothing of ours) listens on
+> `:80`. `docker-compose.yml` therefore publishes **no host ports** — the
+> Cloudflare Tunnel reaches the container over the compose network at
+> `https://web:443`. If you ever re-add a `ports:` mapping, the container will
+> fail with `address already in use` and sit in `Created` while the site 502s.
+> Caddy can be removed entirely (`sudo systemctl disable --now caddy`) if you
+> want the ports back; nothing here depends on it.
+
 1. **Build and deploy on the Pi:**
    ```bash
    git pull
