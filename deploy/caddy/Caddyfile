@@ -1,0 +1,53 @@
+// Host-level Caddy for the Pi — the user instance, run as:
+//   caddy run --config ~/.config/caddy/Caddyfile --adapter caddyfile
+//
+// Deploy it with:
+//   cp deploy/caddy/Caddyfile ~/.config/caddy/Caddyfile
+//   caddy validate --config ~/.config/caddy/Caddyfile --adapter caddyfile
+//   caddy reload   --config ~/.config/caddy/Caddyfile --adapter caddyfile
+//
+// Copy the file; do not paste its contents into a terminal. Pasting has twice
+// mangled bare hostnames into markdown links here.
+//
+// Where this sits in the request path:
+//   visitor -> Cloudflare edge
+//           -> cloudflared on the host (~/.cloudflared/merrill-config.yml)
+//           -> http://127.0.0.1:8080   <- this file
+//           -> 127.0.0.1:8081 (merrill container) or :3001 (bays app)
+
+{
+	auto_https off
+	# System Caddy (caddy.service) already uses :2019; user instance needs its own admin.
+	admin 127.0.0.1:2020
+}
+
+:8080 {
+	log
+
+	@merrillWww host www.merrilldigitalsystems.com
+	redir @merrillWww https://merrilldigitalsystems.com{uri} 308
+
+	@merrill host merrilldigitalsystems.com
+	handle @merrill {
+		# The Docker container: nginx serving the Next.js static export.
+		#
+		# root/file_server, try_files, the /terms and /privacy/* rewrites and
+		# the security/cache headers all live in nginx.conf inside the
+		# container now. Do NOT reinstate them here: nginx 301s
+		# /terms.html -> /terms, so a Caddy rewrite of /terms -> /terms.html
+		# would bounce between the two forever.
+		reverse_proxy 127.0.0.1:8081
+	}
+
+	@baysWww host www.baysbakedgoods.com
+	redir @baysWww https://baysbakedgoods.com{uri} 308
+
+	@bays host baysbakedgoods.com
+	handle @bays {
+		reverse_proxy 127.0.0.1:3001
+	}
+
+	handle {
+		respond "Not found" 404
+	}
+}
