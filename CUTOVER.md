@@ -18,8 +18,14 @@ export instead of the repo root.
 a 200, so Google has both hosts indexed. Migrating URLs while two hosts are
 live doubles the churn and makes the Search Console data unreadable.
 
-- [ ] Cloudflare → Rules → Redirect Rules: `www.merrilldigitalsystems.com/*` → `https://merrilldigitalsystems.com/$1`, 301, preserve path and query.
-- [ ] Confirm: `curl -sI https://www.merrilldigitalsystems.com/` returns a single 301 to the apex.
+- [x] **Done 2026-07-31.** Cloudflare → Rules → Redirect Rules, "www to non-www": `http.host eq "www.merrilldigitalsystems.com"` → dynamic `concat("https://merrilldigitalsystems.com", http.request.uri.path)`, 301, **with "Preserve query string" ticked**.
+
+      That checkbox is load-bearing: `http.request.uri.path` is path-only, so without it every UTM is stripped on the way through and outbound leads arrive looking like direct traffic. Use the checkbox *or* `http.request.uri` — never both, or the query string doubles.
+
+- [x] **Verified 2026-07-31.** Single hop to 200 on `https://www/`, `http://www/`, a deep path, and a full UTM string. Re-check with:
+      ```bash
+      curl -sI "https://www.merrilldigitalsystems.com/web-design-utah.html?utm_source=test" | grep -i location
+      ```
 - [ ] Add a **Domain property** in Search Console (not just the URL prefix property) so both hosts report together.
 
 Let that settle for a few days before touching URLs.
