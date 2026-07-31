@@ -120,6 +120,30 @@ Post 5 is the one to write first if you only write one. Nobody else publishes it
 
 ---
 
+## Triaging inbound — what a real lead looks like
+
+Audited every submission on 2026-07-31: **41 spam, zero real leads.** Formspree
+had no false positives. The failure was never the filter — nothing pulled
+anyone into the dashboard to look. Formshield is now off and notifications are
+on, so submissions land in the inbox and get triaged by eye.
+
+**Spam signatures, all seen on this form:**
+
+- *"I would like to request your web development services for my startup"* — company named after the sender ("Timothy Charlton / TC Art Gallery"), free-mail address. Opening move in an overpayment scam.
+- *"seeking reliable partners… share your portfolio/rate card"* — harvesting pricing.
+- *"$1M in upcoming projects that exceed our internal capacity… revenue-share"* — bait.
+- Jackpot/casino junk.
+
+**A real one carries specifics** — a city, a trade, an actual problem ("dispatch
+runs out of a group text"). And on the rebuilt form it usually carries
+`scope_type`, `scope_range` and `scope_weeks`, because the visitor spent two
+minutes in the builder. Spam never does.
+
+**Verify by emailing, not by googling.** A convincing submission borrowed a real
+Layton clinic's name and a matching email string; it survived a search and
+bounced on send. The company existing proves nothing about the sender. One
+email settles it in two minutes.
+
 ## Measurement
 
 Mark `generate_lead` and `book_call` as key events in GA4 after cutover. Everything else is diagnostic.
