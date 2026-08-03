@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated marketing assets — regenerate with 
+pm run gbp / 
+pm run cards.
+# Screenshots go stale as client sites change; don't treat them as source.
+/public/gbp/shots
+
