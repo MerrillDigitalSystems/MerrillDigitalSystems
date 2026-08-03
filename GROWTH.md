@@ -36,6 +36,25 @@ The single highest-return unpaid channel for a local service business, and it co
 - [ ] **Review ask after every project close.** Target 1–2/month. Draft the ask in Gmail for review before sending; never automate the send.
 - [ ] **Respond to every review inside 48 hours**, including the good ones.
 
+#### Ask in a way that survives Google's filter
+
+A review was lost this way — BK Toolbox left one and it vanished months later.
+Google re-runs its spam filter continuously, so a review can disappear long
+after it posts. What triggers it:
+
+- **Reviewing on your wifi or your device.** The most common cause. Google sees the business owner's IP behind the review and reads it as self-generated. Never ask on-site, never hand over a phone or tablet.
+- **A reviewer with no history.** Accounts with zero or one prior review are treated as low-trust. Nothing to do about it, but expect a higher loss rate from clients who never review anything.
+- **Links, phone numbers or promo language** in the review text.
+- **Several reviews arriving in the same few days** — space them out.
+
+So: **send the link afterwards, by email or text, and let them write it on
+their own phone, on their own connection, in their own time.** Slower, but it
+sticks.
+
+If one does vanish, ask the client to check *Maps → Contribute → Reviews*. If
+they can still see it and you can't, it's filtered — use Google's review
+reinstatement tool, or ask them to repost from cellular data.
+
 ### NAP consistency audit
 
 Exactly this string, everywhere:
