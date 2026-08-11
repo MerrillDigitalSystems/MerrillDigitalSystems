@@ -13,7 +13,8 @@
     "audit": "node scripts/parity-audit.mjs",
     "crawl": "node scripts/crawl-site.mjs",
     "gbp": "node scripts/generate-gbp-assets.mjs",
-    "cards": "node scripts/generate-project-cards.mjs"
+    "cards": "node scripts/generate-project-cards.mjs",
+    "favicon": "node scripts/generate-favicon.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

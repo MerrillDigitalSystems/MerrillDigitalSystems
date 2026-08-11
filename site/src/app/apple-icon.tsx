@@ -9,6 +9,10 @@ export const contentType = "image/png";
 /**
  * iOS rounds the corners itself and never shows transparency, so the mark is
  * inset a little to survive the crop.
+ *
+ * Single M, matching app/icon.tsx and app/favicon.ico — Google treats
+ * rel=apple-touch-icon as a favicon candidate, so this can't disagree with the
+ * others without making its favicon pick a coin toss.
  */
 export default async function AppleIcon() {
   const archivo = await readFile(
@@ -22,19 +26,19 @@ export default async function AppleIcon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          // Same solved offset as app/icon.tsx: 180/2 - 0.42*70 = 61.
+          // Same solved offset as app/icon.tsx, fitted to Satori's raster
+          // output: 180/2 - 0.5345*160 = 4.48. Rounded up rather than to
+          // nearest — at 4 the ink measured 34/36, at 5 it measures 35/35.
           alignItems: "flex-start",
           justifyContent: "center",
-          paddingTop: 61,
+          paddingTop: 5,
           background: "#1442cf",
           color: "#f3f2f2",
           fontFamily: "Archivo",
-          fontSize: 70,
-          letterSpacing: "-0.06em",
-          marginRight: -4,
+          fontSize: 160,
         }}
       >
-        MD
+        M
       </div>
     ),
     { ...size, fonts: [{ name: "Archivo", data: archivo, weight: 800, style: "normal" }] }
