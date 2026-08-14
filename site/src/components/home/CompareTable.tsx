@@ -17,18 +17,15 @@ export function CompareTable() {
       </h2>
 
       {/*
-        The table needs 860px and a phone has 375, so two of the four options
-        sit off-screen with nothing to say so — the honest comparison, which is
-        the whole argument of this section, was invisible on mobile. A label
-        rather than a gradient: this system has no soft edges to fade with.
+        Two layouts, same data. The table needs 860px and a phone has 375, so
+        below 1000px two of the four options sat off-screen with nothing to say
+        so — the honest comparison, which is the entire argument of this
+        section, was effectively invisible on mobile. Sideways scrolling is not
+        a fix for that; one card per option is, because the concession only
+        works if you can actually read the columns it concedes to.
       */}
-      <p className="eyebrow mt-8 text-accent-700 min-[940px]:hidden">
-        Swipe the table to compare all four{" "}
-        <span aria-hidden="true">&rarr;</span>
-      </p>
-
-      <div className="mt-[clamp(20px,4vw,56px)] border-2 border-ink">
-        <div className="overflow-x-auto">
+      <div className="mt-[clamp(28px,4vw,56px)] border-2 border-ink">
+        <div className="hidden overflow-x-auto min-[1000px]:block">
           <table className="w-full min-w-[860px] border-collapse text-left">
             <thead>
               <tr className="border-b-2 border-b-ink">
@@ -73,6 +70,40 @@ export function CompareTable() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* One card per option below 1000px. Same rows, read down instead of across. */}
+        <div className="flex flex-col min-[1000px]:hidden">
+          {COMPARE.columns.map((col, i) => (
+            <div key={col} className="border-b-2 border-b-ink last:border-b-0">
+              <p
+                className={`px-[18px] py-[12px] text-[11px] font-bold uppercase tracking-[.15em] ${
+                  i === 0 ? "bg-accent text-bg" : "bg-surface text-neutral-700"
+                }`}
+              >
+                {col}
+              </p>
+              <dl className={i === 0 ? "bg-accent-100 px-[18px]" : "px-[18px]"}>
+                {COMPARE.rows.map((row) => (
+                  <div
+                    key={row.k}
+                    className="border-b-2 border-b-neutral-300 py-[14px] last:border-b-0"
+                  >
+                    <dt className="text-[11px] font-bold uppercase tracking-[.12em] text-neutral-700">
+                      {row.k}
+                    </dt>
+                    <dd
+                      className={`mt-[6px] text-[14px] leading-[1.5] ${
+                        i === 0 ? "font-bold text-accent-700" : "text-neutral-800"
+                      }`}
+                    >
+                      {row.cells[i]}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))}
         </div>
 
         {/*

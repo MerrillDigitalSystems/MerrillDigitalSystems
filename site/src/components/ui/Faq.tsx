@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { withLinks } from "@/lib/prose";
 import type { FaqItem } from "@/content/faq";
 
 /**
@@ -54,7 +55,7 @@ export function Faq({ items }: { items: FaqItem[] }) {
             >
               <div className="overflow-hidden">
                 <p className="max-w-[76ch] pb-[22px] text-[14.5px] leading-[1.62] text-neutral-800">
-                  {item.a}
+                  {withLinks(item.a)}
                 </p>
               </div>
             </div>

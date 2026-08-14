@@ -91,7 +91,34 @@ export const PLUMBER_WEBSITE_DESIGN_UTAH: ServicePageData = {
   priceRange: "$3,000 – $9,000",
   priceTimeline: "SHIPS IN 1–4 WEEKS",
   schemaPriceRange: "$3000-$9000",
-  serviceType: "Website design and local SEO",
+  serviceType: "Website design and local SEO",  showcase: {
+    label: "THE WORK",
+    heading: "Recent website builds.",
+    items: [
+      {
+        src: "/img/preview-bktoolbox-opt-640.webp",
+        alt: "BK Toolbox Custom Home Designs website — a custom-coded Utah website design built to replace a Wix site, scoring 100 for SEO and 99 for performance",
+        title: "BK Toolbox — off Wix, onto a site they own",
+        note: "Interior design and remodeling. A full platform migration with the domain kept intact, scoring 100 SEO and 99 performance.",
+        href: "/work/bktoolbox",
+      },
+      {
+        src: "/img/preview-cclpro-opt-640.webp",
+        alt: "CCL Pro website — custom website design for a Utah landscaping company, rebuilt around lead capture",
+        title: "CCL Pro — 40% more lead capture",
+        note: "Landscaping. The website plus the digital stack around it turned a brochure into something that actually produces calls.",
+        href: "/work/ccl-pro",
+      },
+      {
+        src: "/img/preview-bays-opt-640.webp",
+        alt: "Bay's Baked Goods website — a custom-coded website design for a Utah bakery, built mobile-first",
+        title: "Bay's Baked Goods — built to be found",
+        note: "A bakery with no web presence at all. Custom-built, fast on a phone, and handed over with every account in her name.",
+        href: "/work/bays-baked-goods",
+      },
+    ],
+  },
+
   faq: [
     {
       q: "How much does a plumber website cost in Utah?",

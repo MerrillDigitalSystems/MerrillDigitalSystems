@@ -13,6 +13,8 @@ import { GridCells, Cell } from "@/components/ui/GridCells";
 import { Reveal } from "@/components/ui/Reveal";
 import { Faq } from "@/components/ui/Faq";
 import { Btn } from "@/components/ui/Btn";
+import { GrayImage } from "@/components/ui/GrayImage";
+import { withLinks } from "@/lib/prose";
 import type { ServicePageData } from "@/content/types";
 
 /**
@@ -37,11 +39,27 @@ export function ServicePage({ data }: { data: ServicePageData }) {
     priceTimeline,
     schemaPriceRange,
     serviceType,
+    sections,
+    showcase,
     faq,
     relatedLinks,
     cluster,
     contactHeading,
   } = data;
+
+  // Section ordinals are computed rather than hard-coded: proof, sections and
+  // the cluster are all optional, and a page that skips one used to leave a
+  // gap in the 01/02/03 sequence.
+  const order = [
+    "intro",
+    "deliverables",
+    ...(sections ?? []).map((_, i) => `section-${i}`),
+    ...(showcase && showcase.items.length > 0 ? ["showcase"] : []),
+    ...(proof.length > 0 ? ["proof"] : []),
+    "faq",
+    ...(cluster && cluster.links.length > 0 ? ["cluster"] : []),
+  ];
+  const num = (key: string) => String(order.indexOf(key) + 1).padStart(2, "0");
 
   return (
     <>
@@ -72,7 +90,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
 
       {/* The problem, in the prospect's words. */}
       <Section borderTop>
-        <SectionLabel number="01">{intro.label}</SectionLabel>
+        <SectionLabel number={num("intro")}>{intro.label}</SectionLabel>
         <h2
           className="mt-5 max-w-[20ch] font-extrabold"
           style={{
@@ -84,7 +102,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           {intro.heading}
         </h2>
         <p className="mt-6 max-w-[68ch] text-[15.5px] leading-[1.62] text-neutral-800">
-          {intro.body}
+          {withLinks(intro.body)}
         </p>
 
         <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-4">
@@ -102,7 +120,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
                   {problem.title}
                 </h3>
                 <p className="mt-3 text-[13.5px] leading-[1.55] text-neutral-800">
-                  {problem.body}
+                  {withLinks(problem.body)}
                 </p>
               </Reveal>
             </Cell>
@@ -112,7 +130,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
 
       {/* What you actually get, and the number. */}
       <Section ground="surface" borderTop>
-        <SectionLabel number="02">WHAT YOU GET</SectionLabel>
+        <SectionLabel number={num("deliverables")}>WHAT YOU GET</SectionLabel>
         <h2
           className="mt-5 max-w-[20ch] font-extrabold"
           style={{
@@ -135,7 +153,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
                   {item.title}
                 </h3>
                 <p className="text-[13.5px] leading-[1.55] text-neutral-800">
-                  {item.body}
+                  {withLinks(item.body)}
                 </p>
               </li>
             ))}
@@ -162,11 +180,116 @@ export function ServicePage({ data }: { data: ServicePageData }) {
         </div>
       </Section>
 
+      {/* Long-form depth, for the pages that carry a whole query cluster. */}
+      {(sections ?? []).map((section, i) => {
+        // Alternates against the surface-ground deliverables block above.
+        const ground = i % 2 === 0 ? "bg" : "surface";
+        const count = section.items?.length ?? 0;
+        const cols =
+          count % 4 === 0
+            ? "grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-4"
+            : count % 3 === 0
+              ? "grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-3"
+              : "grid-cols-1 min-[600px]:grid-cols-2";
+
+        return (
+          <Section key={section.heading} ground={ground} borderTop>
+            <SectionLabel number={num(`section-${i}`)}>{section.label}</SectionLabel>
+            <h2
+              className="mt-5 max-w-[22ch] font-extrabold"
+              style={{
+                fontSize: "clamp(30px, 4.2vw, 60px)",
+                letterSpacing: "-.035em",
+                lineHeight: 1,
+              }}
+            >
+              {section.heading}
+            </h2>
+
+            <div className="mt-6 flex max-w-[68ch] flex-col gap-5">
+              {section.body.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 40)}
+                  className="text-[15.5px] leading-[1.62] text-neutral-800"
+                >
+                  {withLinks(paragraph)}
+                </p>
+              ))}
+            </div>
+
+            {section.items && section.items.length > 0 && (
+              <GridCells cols={`mt-[clamp(28px,4vw,56px)] ${cols}`}>
+                {section.items.map((item, j) => (
+                  <Cell key={item.title} ground={ground}>
+                    <Reveal index={j} className="flex h-full flex-col">
+                      <h3 className="text-[16px] font-extrabold leading-[1.15] tracking-[-.02em]">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-[13.5px] leading-[1.55] text-neutral-800">
+                        {withLinks(item.body)}
+                      </p>
+                    </Reveal>
+                  </Cell>
+                ))}
+              </GridCells>
+            )}
+          </Section>
+        );
+      })}
+
+      {/* The work itself. Grayscale per the system; colour lives in the accent. */}
+      {showcase && showcase.items.length > 0 && (
+        <Section borderTop>
+          <SectionLabel number={num("showcase")}>{showcase.label}</SectionLabel>
+          <h2
+            className="mt-5 max-w-[22ch] font-extrabold"
+            style={{
+              fontSize: "clamp(30px, 4.2vw, 60px)",
+              letterSpacing: "-.035em",
+              lineHeight: 1,
+            }}
+          >
+            {showcase.heading}
+          </h2>
+
+          <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[700px]:grid-cols-3">
+            {showcase.items.map((item, i) => (
+              <Cell key={item.href}>
+                <Link href={item.href} className="group flex h-full flex-col no-underline">
+                  <GrayImage
+                    src={item.src}
+                    alt={item.alt}
+                    width={640}
+                    height={400}
+                    // Below the fold on every page that uses this.
+                    className="border-2 border-ink"
+                    imgClassName="h-auto w-full"
+                    sizes="(min-width: 700px) 33vw, 100vw"
+                  />
+                  <h3 className="mt-5 text-[16px] font-extrabold leading-[1.15] tracking-[-.02em] transition-colors group-hover:text-accent-700">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-[13.5px] leading-[1.55] text-neutral-800">
+                    {item.note}
+                  </p>
+                  <span
+                    aria-hidden="true"
+                    className="mt-auto pt-5 text-[13px] font-extrabold text-accent-700"
+                  >
+                    {i === 0 ? "READ THE CASE STUDY →" : "→"}
+                  </span>
+                </Link>
+              </Cell>
+            ))}
+          </GridCells>
+        </Section>
+      )}
+
       {/* Proof, in real numbers only. */}
       {proof.length > 0 && (
         <section className="section-pad border-t-2 border-t-ink bg-ink text-bg">
           <div className="site-container">
-            <SectionLabel number="03" onDark>
+            <SectionLabel number={num("proof")} onDark>
               PROOF
             </SectionLabel>
             <div className="mt-[clamp(28px,4vw,56px)] grid gap-[2px] bg-neutral-800 min-[700px]:grid-cols-3">
@@ -192,7 +315,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
       <Section borderTop>
         <div className="grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[.7fr_1.3fr]">
           <div>
-            <SectionLabel number="04">STRAIGHT ANSWERS</SectionLabel>
+            <SectionLabel number={num("faq")}>STRAIGHT ANSWERS</SectionLabel>
             <h2
               className="mt-5 font-extrabold"
               style={{
@@ -228,7 +351,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
 
       {cluster && cluster.links.length > 0 && (
         <Section ground="surface" borderTop>
-          <SectionLabel number="05">{cluster.label}</SectionLabel>
+          <SectionLabel number={num("cluster")}>{cluster.label}</SectionLabel>
           <h2
             className="mt-5 max-w-[22ch] font-extrabold"
             style={{

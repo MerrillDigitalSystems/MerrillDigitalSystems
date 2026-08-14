@@ -32,6 +32,38 @@ export type ServicePageData = {
   /** Machine-readable form for schema, e.g. "$3000-$9000". */
   schemaPriceRange: string;
   serviceType: string;
+  /**
+   * Long-form sections, rendered between the deliverables and the proof band.
+   *
+   * The fixed intro/problems/deliverables/FAQ shape is why 15 pages could be
+   * written in parallel without design drift, and it is also why the hub page
+   * came out of the rebuild at 880 words — thinner than every spoke feeding
+   * it. This is the surface for pages that have to carry real depth. Bodies
+   * support `[text](/path)`; see lib/prose.
+   */
+  sections?: {
+    label: string;
+    heading: string;
+    body: string[];
+    items?: { title: string; body: string }[];
+  }[];
+  /**
+   * Real project screenshots. Only on the pages selling visual work — a
+   * website screenshot on the bookkeeping-software page would be a claim
+   * about the wrong thing. Every service page shipped with zero images, on a
+   * site whose product is how websites look.
+   */
+  showcase?: {
+    label: string;
+    heading: string;
+    items: {
+      src: string;
+      alt: string;
+      title: string;
+      note: string;
+      href: string;
+    }[];
+  };
   faq: FaqItem[];
   relatedLinks: { href: string; label: string }[];
   /**

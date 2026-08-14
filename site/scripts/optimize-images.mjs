@@ -35,6 +35,24 @@ const TARGETS = [
     widths: [92, 372],
     quality: 82,
   },
+  // Project screenshots. 1200 is the case-study hero, 640 the showcase grid on
+  // the service pages — those render at ~400px wide in a 3-up, so 640 covers
+  // retina without shipping the hero to a phone.
+  {
+    file: "preview-bktoolbox-opt.jpg",
+    widths: [640, 1200],
+    quality: 78,
+  },
+  {
+    file: "preview-cclpro-opt.jpg",
+    widths: [640, 1200],
+    quality: 78,
+  },
+  {
+    file: "preview-bays-opt.jpg",
+    widths: [640, 1200],
+    quality: 78,
+  },
 ];
 
 const kb = (bytes) => `${(bytes / 1024).toFixed(1)} KB`;

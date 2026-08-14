@@ -1,4 +1,5 @@
 import { SITE, PRICING } from "./site";
+import { stripLinks } from "./prose";
 import type { FaqItem } from "@/content/faq";
 
 const ORG_ID = `${SITE.url}/#organization`;
@@ -211,7 +212,9 @@ export function faqSchema(items: FaqItem[]) {
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
+      // stripLinks, not the raw string: answers may carry `[text](/path)` for
+      // the rendered page, and this is the text answer engines quote.
+      acceptedAnswer: { "@type": "Answer", text: stripLinks(item.a) },
     })),
   };
 }
