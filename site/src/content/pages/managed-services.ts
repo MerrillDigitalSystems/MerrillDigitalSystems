@@ -96,6 +96,31 @@ export const MANAGED_SERVICES: ServicePageData = {
   priceTimeline: "MONTHLY · NEVER A LOCK-IN",
   schemaPriceRange: "$375-$1500",
   serviceType: "Managed hosting and software support",
+  sections: [
+    {
+      label: "HOSTING, PLAINLY",
+      heading: "What website hosting in Utah actually costs.",
+      body: [
+        "Hosting is the most oversold line item in this industry, so here are the real numbers. A custom-coded static site — which is what I build — needs somewhere between five and fifteen dollars a month. A domain is twelve to twenty dollars a year. SSL is free through Let's Encrypt and has been for a decade; if someone is billing you a hundred a year for a certificate, that is margin, not a cost.",
+        "You do not need a managed plan to keep a site I built online. That is the part most agencies leave vague. The code is yours, it runs on standard infrastructure, and you can host it yourself on your own account for the price of a sandwich. A retainer buys you someone watching it and making changes — not permission to stay live.",
+        "Where hosting genuinely gets more expensive is when there's a database and a login behind it. An application with real users needs backups that are tested, monitoring that pages someone, and patching on a schedule, and that is a different job from serving a marketing site. That is what the retainer is priced for.",
+      ],
+      items: [
+        {
+          title: "A static marketing site",
+          body: "$5–$15 a month on your own account, plus $12–$20 a year for the domain. No plugin licences, no PHP version to keep current, effectively no maintenance. Self-host it and never speak to me again if you like.",
+        },
+        {
+          title: "WordPress, for comparison",
+          body: "$25–$50 a month on managed hosting, plus $300–$800 a year in plugin renewals, plus the update work. That gap is a real reason [custom code beats WordPress](/blog-wordpress-vs-custom-code) over a few years.",
+        },
+        {
+          title: "An app with users and data",
+          body: "Dedicated infrastructure, tested backups, monitoring and scheduled patching. This is where a managed plan earns its money rather than repackaging something you could buy for $10.",
+        },
+      ],
+    },
+  ],
   faq: [
     {
       q: "What does a managed retainer cost?",
@@ -116,6 +141,18 @@ export const MANAGED_SERVICES: ServicePageData = {
     {
       q: "Can you support something you didn't build?",
       a: "Sometimes. I'll review the codebase first and give you a straight answer, because taking over a system I can't safely maintain helps nobody. If it's a reasonable stack and reasonably written, onboarding it is fine. If it's a mess, I'd rather tell you that than bill you monthly for crossed fingers.",
+    },
+    {
+      q: "Do you offer website hosting in Utah on its own?",
+      a: "Not as a standalone product, and I'd rather explain why than sell you one. Hosting a static site costs $5–$15 a month at any host, on your own account, and reselling that with a markup isn't a service — it's a middleman. What I sell is someone watching the thing and fixing it, which is the part that actually has labour in it. If you want a recommendation for where to point your domain and no ongoing relationship with me at all, ask on the call and I'll give you one.",
+    },
+    {
+      q: "Who owns the domain and the hosting account?",
+      a: "You do, on both, and I set them up that way deliberately at handover. The single most common mess I clean up is a domain registered under a previous developer's personal email with nobody able to reach him — so your registrar account, your host, your Search Console, your analytics, all in your name. If we ever part ways you change one password and nothing about your site notices.",
+    },
+    {
+      q: "Can you take over hosting and maintenance for a site someone else built?",
+      a: "Often, yes. I'll read the codebase first and quote after, because taking responsibility for code I haven't seen is how people end up over-promising. If it's a standard stack in reasonable shape it's straightforward. If it's a page builder held together with fourteen plugins I'll tell you what it would cost to keep alive versus rebuild, and those two numbers are sometimes closer than you'd expect.",
     },
     {
       q: "What if I want to leave?",

@@ -120,6 +120,29 @@ export const WEB_DESIGN_UTAH: ServicePageData = {
       ],
     },
     {
+      label: "THE HONEST ALTERNATIVE",
+      heading: "Should you just use a website builder instead?",
+      body: [
+        "Sometimes, yes. Wix, Squarespace and GoDaddy will get you online for roughly $16 to $45 a month, and for a brand-new business whose work arrives entirely by referral that is the correct purchase. The site exists so people can confirm you're real. Buy the builder, put the difference into a truck, and come back when the website has to start earning its cost back.",
+        "What you accept in exchange is a ceiling. Templates cap the layout, the page loads the platform's entire framework whether you use it or not, control over structure and schema markup is shallow, and the code isn't yours — leaving means starting over. None of that matters if the site is a business card. All of it matters the moment you're trying to outrank six competitors for the same search.",
+        "So the dividing line is simple: is search supposed to bring you work? If it isn't, a website builder is fine and I'll say so on the call. If it is, what you're buying from me isn't nicer design — it's page architecture, speed and ownership, and those are the three things a builder is structurally worst at.",
+      ],
+      items: [
+        {
+          title: "Use a website builder when",
+          body: "You're new, the work comes from referrals, the budget is genuinely tight, and the site's job is to prove you exist. I'll set up your Google Business Profile for free while we're on the call anyway.",
+        },
+        {
+          title: "Hire anyone when",
+          body: "You need pages targeting what people actually search, a site that loads fast on a phone at a job site, and lead capture that reaches you in seconds. That's a build, not a template.",
+        },
+        {
+          title: "Hire me specifically when",
+          body: "You want to own the code outright, want the person who wrote it to be the person who answers, and would rather have the number agreed in writing before the work starts. [See what that costs](/pricing).",
+        },
+      ],
+    },
+    {
       label: "COVERAGE",
       heading: "Website design across the Wasatch Front.",
       body: [
