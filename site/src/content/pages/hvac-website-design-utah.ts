@@ -7,6 +7,8 @@ export const HVAC_WEBSITE_DESIGN_UTAH: ServicePageData = {
     "Custom-coded HVAC websites for Utah contractors — built for the first heatwave and the first freeze. $3,000–$9,000, live in 1–4 weeks, owned by you.",
   eyebrow: "HVAC WEBSITE DESIGN · UTAH",
   h1: "The first heatwave decides your July.",
+
+  schemaName: "HVAC Website Design in Utah",
   lede: "HVAC demand doesn't ramp — it detonates. A furnace page published in December is a season late, and a site that treats a panicked repair call and a planned system replacement the same way converts badly at both. I build the pages ahead of the spike, and split them by what the person is actually doing.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const HVAC_WEBSITE_DESIGN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What an HVAC site needs, specifically.",
+    heading: "What HVAC website design has to get right.",
     items: [
       {
         title: "A page per money-making job",
@@ -126,6 +128,18 @@ export const HVAC_WEBSITE_DESIGN_UTAH: ServicePageData = {
     { href: "/plumber-website-design-utah", label: "Plumber website design" },
     { href: "/field-service-software", label: "Field service software" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "MORE TRADES, AND THE MAP",
+    heading: "The rest of the cluster.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/plumber-website-design-utah", label: "Plumber website design" },
+      { href: "/electrician-website-design-utah", label: "Electrician website design" },
+      { href: "/roofing-website-design-utah", label: "Roofing website design" },
+      { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me which season you're losing.",
 };

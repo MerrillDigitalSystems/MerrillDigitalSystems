@@ -10,6 +10,8 @@ export const BAYS_BAKED_GOODS: CaseStudyData = {
   description:
     "A custom mobile-first site for a West Jordan home bakery — menu structure, local SEO, Google Business Profile and Search Console, all done at launch.",
   client: "Bay's Baked Goods",
+
+  datePublished: "2026-07-31",
   eyebrow: "CASE STUDY · HOME BAKERY · WEST JORDAN",
   h1: "A home bakery, findable from a phone.",
   lede:

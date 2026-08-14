@@ -7,12 +7,6 @@ const TITLE = "WordPress vs Custom Code: Best for Your Utah Business?";
 const DESCRIPTION =
   "An honest comparison of WordPress vs custom-coded websites for Utah service businesses — cost, speed, security, and ownership.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-wordpress-vs-custom-code",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-wordpress-vs-custom-code",
   title: TITLE,
@@ -48,6 +42,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/web-design-utah", label: "SEE UTAH WEB DESIGN" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

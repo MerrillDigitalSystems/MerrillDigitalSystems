@@ -7,6 +7,8 @@ export const LANDSCAPING_WEBSITE_DESIGN_UTAH: ServicePageData = {
     "Custom-coded landscaping websites in Utah — built to rotate with the season, from spring cleanup to the October blowout. $3,000–$9,000, 1–4 weeks.",
   eyebrow: "LANDSCAPING WEBSITE DESIGN · UTAH",
   h1: "Your demand rotates. Most landscaping sites don't.",
+
+  schemaName: "Landscaping Website Design in Utah",
   lede: "March is spring cleanup, June is sod and sprinkler repair, October is three weeks of blowout searches, December is snow. Completely different keywords, same company, and a site that says \"full-service landscaping\" all twelve months captures a slice of it at best. I build one permanent page per service and make the emphasis something you flip yourself.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const LANDSCAPING_WEBSITE_DESIGN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a landscaping site needs, specifically.",
+    heading: "What landscaping website design has to get right.",
     items: [
       {
         title: "Permanent pages, seasonal emphasis",
@@ -126,6 +128,18 @@ export const LANDSCAPING_WEBSITE_DESIGN_UTAH: ServicePageData = {
     { href: "/web-design-utah", label: "Website design in Utah" },
     { href: "/contractor-website-design-utah", label: "Contractor website design" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "MORE TRADES, AND THE MAP",
+    heading: "The rest of the cluster.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/roofing-website-design-utah", label: "Roofing website design" },
+      { href: "/contractor-website-design-utah", label: "Contractor website design" },
+      { href: "/electrician-website-design-utah", label: "Electrician website design" },
+      { href: "/web-design-ogden", label: "Website design in Ogden" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me what your season looks like.",
 };

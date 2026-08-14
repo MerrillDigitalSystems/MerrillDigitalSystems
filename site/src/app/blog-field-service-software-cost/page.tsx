@@ -7,12 +7,6 @@ const TITLE = "How Much Does Field Service Software Cost? (2026)";
 const DESCRIPTION =
   "A plain breakdown of field service software pricing in 2026 — subscriptions, setup fees, hidden costs, and when a custom build pays off.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-field-service-software-cost",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-field-service-software-cost",
   title: TITLE,
@@ -49,6 +43,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/field-service-software", label: "SEE FIELD SERVICE SOFTWARE" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

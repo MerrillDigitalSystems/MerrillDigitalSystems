@@ -7,12 +7,6 @@ const TITLE = "Utah Small Business Website Checklist: What Google Wants";
 const DESCRIPTION =
   "A practical checklist for Utah small business websites covering SEO, speed, mobile, local signals, and conversion elements Google uses to rank sites.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-utah-website-checklist",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-utah-website-checklist",
   title: TITLE,
@@ -52,6 +46,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/web-design-utah", label: "SEE UTAH WEB DESIGN" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

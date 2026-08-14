@@ -10,6 +10,8 @@ export const BKTOOLBOX: CaseStudyData = {
   description:
     "How BK Toolbox moved off Wix onto a custom site they own outright — domain, email and hosting included. 100 SEO, 99 performance on PageSpeed.",
   client: "BK Toolbox",
+
+  datePublished: "2026-07-14",
   eyebrow: "CASE STUDY · INTERIOR DESIGN & REMODELING",
   h1: "Off Wix, onto code they own.",
   lede:

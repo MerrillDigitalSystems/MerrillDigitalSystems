@@ -14,6 +14,12 @@ export type Post = {
   title: string;
   excerpt: string;
   datePublished: string;
+  /**
+   * Set only on posts that were genuinely rewritten. Must match the
+   * `dateModified` in the post's own page.tsx — this copy is what drives the
+   * sitemap's lastmod, that one drives the visible date and the schema.
+   */
+  dateModified?: string;
   category: string;
   readingTime: string;
 };
@@ -34,6 +40,7 @@ export const POSTS: Post[] = [
     excerpt:
       "The sticker price is the easy part. Here is the five-year math on subscriptions, setup fees and the drag nobody quotes you — and when owning is cheaper.",
     datePublished: "2026-07-07",
+    dateModified: "2026-07-31",
     category: "Field Operations",
     readingTime: "6 min read",
   },
@@ -88,6 +95,7 @@ export const POSTS: Post[] = [
     excerpt:
       "Every tier from DIY builders to agency retainers, what actually moves the number, the costs nobody quotes, and how to think about return instead of expense.",
     datePublished: "2026-03-25",
+    dateModified: "2026-07-31",
     category: "Web Design",
     readingTime: "7 min read",
   },
@@ -115,6 +123,7 @@ export const POSTS: Post[] = [
     excerpt:
       "Eight concrete steps in the order I would do them — audit, profile, intent pages, CTAs, proof, speed, supporting content, tracking.",
     datePublished: "2026-04-08",
+    dateModified: "2026-07-31",
     category: "Web Design",
     readingTime: "6 min read",
   },

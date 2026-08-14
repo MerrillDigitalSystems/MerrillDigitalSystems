@@ -7,12 +7,6 @@ const TITLE = "HVAC Website Design: What Actually Gets Leads in Utah | MDS";
 const DESCRIPTION =
   "What HVAC companies in Utah need on their website to rank on Google and convert visitors into service calls, from a Utah web designer.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-hvac-website-design-utah",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-hvac-website-design-utah",
   title: TITLE,
@@ -48,6 +42,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/hvac-website-design-utah", label: "SEE HVAC WEB DESIGN" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

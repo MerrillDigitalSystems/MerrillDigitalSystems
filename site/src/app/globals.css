@@ -172,12 +172,20 @@
   padding-inline: clamp(18px, 4vw, 56px);
 }
 
-/* Uppercase micro-label used for eyebrows, kickers and stat captions. */
+/* Uppercase micro-label used for eyebrows, kickers and stat captions.
+   10.5px uppercase at 0.2em tracking is a fine desktop micro-label and an
+   unreadable phone one — it reads as texture rather than words at arm's
+   length, and there are ~100 of them on the homepage alone. Phones get 11.5px;
+   the tighter size returns once there's a real viewport to earn it. */
 @utility eyebrow {
-  font-size: 10.5px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+
+  @media (min-width: 600px) {
+    font-size: 10.5px;
+  }
 }
 
 /* ── Long-form prose ───────────────────────────────────────────────────── */
@@ -301,6 +309,28 @@
   border: 2px solid var(--color-ink);
   border-radius: 0;
   background: var(--color-accent);
+}
+
+/* A 20px thumb is the hardest control on the site to hit with a thumb, and the
+   calculator is the one thing visitors are meant to play with. Touch pointers
+   get a bigger grip and a taller hit area; the track stays 2px either way.
+   The webkit margin-top must stay -(thumb/2 - track/2) or the thumb rides off
+   the track. */
+@media (pointer: coarse) {
+  .roi-slider {
+    height: 44px;
+  }
+
+  .roi-slider::-webkit-slider-thumb {
+    height: 28px;
+    width: 28px;
+    margin-top: -13px;
+  }
+
+  .roi-slider::-moz-range-thumb {
+    height: 28px;
+    width: 28px;
+  }
 }
 
 /* ── Animation ─────────────────────────────────────────────────────────── */

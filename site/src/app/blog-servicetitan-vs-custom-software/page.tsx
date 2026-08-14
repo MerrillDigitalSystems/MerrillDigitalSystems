@@ -7,12 +7,6 @@ const TITLE = "ServiceTitan vs. Custom Software - What Nobody Tells You";
 const DESCRIPTION =
   "ServiceTitan fits average field service workflows until your team works around it. When custom software is the smarter long-term move for field ops.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-servicetitan-vs-custom-software",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-servicetitan-vs-custom-software",
   title: TITLE,
@@ -48,6 +42,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/field-service-software", label: "SEE FIELD SERVICE SOFTWARE" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

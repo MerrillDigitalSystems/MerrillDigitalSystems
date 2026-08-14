@@ -7,12 +7,6 @@ const TITLE = "Jobber vs. Custom Software for Field Service Teams";
 const DESCRIPTION =
   "Jobber is great software for the right stage. Here's where growing field service teams outgrow it — and when a custom, owned build wins.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-jobber-vs-custom-software",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-jobber-vs-custom-software",
   title: TITLE,
@@ -48,6 +42,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/field-service-software", label: "SEE FIELD SERVICE SOFTWARE" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

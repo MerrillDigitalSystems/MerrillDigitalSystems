@@ -7,6 +7,8 @@ export const OPERATIONS_SOFTWARE: ServicePageData = {
     "One system for jobs, crews, reporting and the handoffs your tools keep dropping. Built around your operation, owned by you. From $25,000, V1 in 6–12 weeks.",
   eyebrow: "OPERATIONS SOFTWARE · UTAH",
   h1: "One system, instead of five that don't talk.",
+
+  schemaName: "Custom Operations Software Development in Utah",
   lede: "Jobs, crews, approvals, reporting and the integrations that keep your money straight — in one place, built around how your business already works. Scoped and priced before any code exists, and yours outright when it ships.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -36,7 +38,7 @@ export const OPERATIONS_SOFTWARE: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a V1 hub actually includes.",
+    heading: "What operations software includes in a V1 hub.",
     items: [
       {
         title: "Job and task tracking",
@@ -125,6 +127,18 @@ export const OPERATIONS_SOFTWARE: ServicePageData = {
     { href: "/field-service-software", label: "Field service software" },
     { href: "/work/brightpath-dental", label: "Case study: BrightPath Dental" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE SYSTEM",
+    heading: "Related builds, and the reading behind them.",
+    links: [
+      { href: "/field-service-software", label: "Field service software" },
+      { href: "/job-management-software-utah", label: "Job management software" },
+      { href: "/bookkeeping-software", label: "Bookkeeping firm software" },
+      { href: "/custom-software-vs-servicetitan-utah", label: "ServiceTitan vs. a custom build" },
+      { href: "/blog-how-to-know-youve-outgrown-spreadsheets", label: "How to know you've outgrown spreadsheets" },
+      { href: "/blog", label: "Field notes on software and websites" },
+    ],
+  },
+
   contactHeading: "Tell me where the retyping happens.",
 };

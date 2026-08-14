@@ -7,6 +7,8 @@ export const FIELD_SERVICE_SOFTWARE: ServicePageData = {
     "Dispatch, mobile check-ins and pay rules built around your real operation — including the edge cases Jobber and ServiceTitan can't model. From $25,000.",
   eyebrow: "FIELD SERVICE SOFTWARE · UTAH",
   h1: "Built for the jobs that don't fit the dropdown.",
+
+  schemaName: "Field Service Software Development in Utah",
   lede: "Dispatch, routing, mobile check-ins and time capture for crews whose work keeps breaking off-the-shelf software — job sites with no address, multi-rate pay, approvals nobody else models. One build, no per-seat fees, and you own the code.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -36,7 +38,7 @@ export const FIELD_SERVICE_SOFTWARE: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What ships in a field service V1.",
+    heading: "What ships in a field service software V1.",
     items: [
       {
         title: "Dispatch and route planning",
@@ -125,6 +127,18 @@ export const FIELD_SERVICE_SOFTWARE: ServicePageData = {
     { href: "/operations-software", label: "Custom operations software" },
     { href: "/punchless", label: "Punchless — GPS timecards" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE SYSTEM",
+    heading: "Related builds, and the reading behind them.",
+    links: [
+      { href: "/operations-software", label: "Custom operations software" },
+      { href: "/job-management-software-utah", label: "Job management software" },
+      { href: "/custom-software-vs-servicetitan-utah", label: "ServiceTitan vs. a custom build" },
+      { href: "/blog-field-service-software-cost", label: "What field service software costs" },
+      { href: "/blog-jobber-vs-custom-software", label: "Jobber vs. custom software" },
+      { href: "/blog", label: "Field notes on software and websites" },
+    ],
+  },
+
   contactHeading: "Tell me what your software can't handle.",
 };

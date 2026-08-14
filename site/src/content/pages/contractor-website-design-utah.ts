@@ -7,6 +7,8 @@ export const CONTRACTOR_WEBSITE_DESIGN_UTAH: ServicePageData = {
     "Custom-coded websites for Utah general contractors — project pages, honest cost ranges, built for a six-week decision. $3,000–$9,000, 1–4 weeks.",
   eyebrow: "GENERAL CONTRACTOR WEBSITES · UTAH",
   h1: "Nobody hires you on visit one.",
+
+  schemaName: "Contractor Website Design in Utah",
   lede: "A remodel is a six-week decision made across five visits by two people on two different devices. First a phone at nine at night, then the cost page, then a spouse on a laptop asking harder questions, then you side by side with two other firms in adjacent tabs. Your site's job isn't to close on click one — it's to still be the obvious choice when the list gets cut from four firms to two.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const CONTRACTOR_WEBSITE_DESIGN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a contractor site needs, specifically.",
+    heading: "What contractor website design has to get right.",
     items: [
       {
         title: "One page per project, not one gallery",
@@ -126,6 +128,18 @@ export const CONTRACTOR_WEBSITE_DESIGN_UTAH: ServicePageData = {
     { href: "/roofing-website-design-utah", label: "Roofing website design" },
     { href: "/work/bktoolbox", label: "BK Toolbox case study" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "MORE TRADES, AND THE MAP",
+    heading: "The rest of the cluster.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/roofing-website-design-utah", label: "Roofing website design" },
+      { href: "/plumber-website-design-utah", label: "Plumber website design" },
+      { href: "/landscaping-website-design-utah", label: "Landscaping website design" },
+      { href: "/web-design-provo", label: "Website design in Provo" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Send me the three projects you're proudest of.",
 };

@@ -30,8 +30,9 @@ export const metadata: Metadata = {
     "Custom software and websites built around how your business actually works — ops hubs, field service platforms, apps, and more. You own the code outright.",
   authors: [{ name: SITE.legalName }],
   robots: { index: true, follow: true },
-  // The share image comes from app/opengraph-image.tsx — naming it here would
-  // override the file convention and every route would need to repeat it.
+  // siteName and locale only — the image itself is resolved in buildMeta(),
+  // because app/opengraph-image.tsx covers this segment alone and does not
+  // cascade to the routes below it. See the note in lib/meta.ts.
   openGraph: { type: "website", siteName: SITE.name, locale: "en_US" },
   twitter: { card: "summary_large_image" },
 };

@@ -7,6 +7,8 @@ export const JOB_MANAGEMENT_SOFTWARE_UTAH: ServicePageData = {
     "One record per job — created, scheduled, updated from the field and invoiced with nobody retyping it. Built for Utah service businesses. From $25,000.",
   eyebrow: "JOB MANAGEMENT SOFTWARE · UTAH",
   h1: "One record per job, from booked to billed.",
+
+  schemaName: "Job Management Software Development in Utah",
   lede: "A job gets created once, assigned, scheduled, updated by whoever is doing the work, closed out and invoiced — with nobody retyping it into a second tool. Built for Utah service businesses whose real process stopped fitting the software years ago.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -36,7 +38,7 @@ export const JOB_MANAGEMENT_SOFTWARE_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a job management V1 covers.",
+    heading: "What job management software covers in V1.",
     items: [
       {
         title: "Job records that hold everything",
@@ -125,6 +127,18 @@ export const JOB_MANAGEMENT_SOFTWARE_UTAH: ServicePageData = {
     { href: "/field-service-software", label: "Field service software" },
     { href: "/punchless", label: "Punchless — GPS timecards" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE SYSTEM",
+    heading: "Related builds, and the reading behind them.",
+    links: [
+      { href: "/operations-software", label: "Custom operations software" },
+      { href: "/field-service-software", label: "Field service software" },
+      { href: "/custom-software-vs-servicetitan-utah", label: "ServiceTitan vs. a custom build" },
+      { href: "/blog-jobber-vs-custom-software", label: "Jobber vs. custom software" },
+      { href: "/blog-field-service-software-cost", label: "What field service software costs" },
+      { href: "/blog", label: "Field notes on software and websites" },
+    ],
+  },
+
   contactHeading: "Walk me through one real job.",
 };

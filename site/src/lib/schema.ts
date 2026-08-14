@@ -56,7 +56,7 @@ export function orgGraph() {
           "@id": FOUNDER_ID,
           name: SITE.founder,
           jobTitle: SITE.founderRole,
-          image: abs("/kruz-merrill.png"),
+          image: abs("/img/kruz-merrill-372.webp"),
         },
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
@@ -64,12 +64,19 @@ export function orgGraph() {
           opens: "09:00",
           closes: "18:00",
         },
+        // The counties are the areas the city pages actually target — Ogden is
+        // Weber, Provo is Utah County — so the entity claims the same ground
+        // the content does.
         areaServed: [
           { "@type": "State", name: "Utah" },
           { "@type": "City", name: "West Jordan" },
           { "@type": "City", name: "Salt Lake City" },
           { "@type": "City", name: "Provo" },
           { "@type": "City", name: "Ogden" },
+          { "@type": "AdministrativeArea", name: "Salt Lake County" },
+          { "@type": "AdministrativeArea", name: "Utah County" },
+          { "@type": "AdministrativeArea", name: "Davis County" },
+          { "@type": "AdministrativeArea", name: "Weber County" },
         ],
         sameAs: [...SITE.sameAs],
       },
@@ -88,34 +95,69 @@ export function orgGraph() {
 /** The compact reference inner pages embed instead of restating the business. */
 export const providerRef = () => ({ "@id": ORG_ID });
 
+/**
+ * Pulls the two numbers out of a machine range like "$3000-$9000".
+ * Returns null for anything that isn't a clean low/high pair, so an unusual
+ * price string degrades to no offer rather than to a wrong one.
+ */
+function parsePriceRange(range: string): { min: number; max: number } | null {
+  const nums = range.match(/\d[\d,]*/g)?.map((n) => Number(n.replace(/,/g, "")));
+  if (!nums || nums.length < 2) return null;
+  const [min, max] = [nums[0], nums[1]];
+  if (!Number.isFinite(min) || !Number.isFinite(max) || max < min) return null;
+  return { min, max };
+}
+
 export function serviceSchema({
   name,
   serviceType,
   description,
   priceRange,
   path,
+  slogan,
 }: {
   name: string;
   serviceType: string;
   description: string;
   priceRange: string;
   path: string;
+  /** The marketing H1, kept as a slogan so the entity name stays a service. */
+  slogan?: string;
 }) {
+  const parsed = parsePriceRange(priceRange);
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    // Anchored and tied back to the site so the service is part of the entity
+    // graph rather than a floating island.
+    "@id": `${abs(path)}#service`,
     name,
+    ...(slogan ? { slogan } : {}),
     serviceType,
     description,
     provider: providerRef(),
+    isPartOf: { "@id": SITE_ID },
     areaServed: { "@type": "State", name: "Utah" },
     url: abs(path),
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "USD",
-      priceRange,
-      availability: "https://schema.org/InStock",
-    },
+    // `priceRange` is a LocalBusiness property, not an Offer one — Google drops
+    // the offer silently when it appears here, which is what the old markup
+    // did on every service page. priceSpecification is the valid form.
+    ...(parsed
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            priceSpecification: {
+              "@type": "PriceSpecification",
+              priceCurrency: "USD",
+              minPrice: parsed.min,
+              maxPrice: parsed.max,
+            },
+          },
+        }
+      : {}),
   };
 }
 

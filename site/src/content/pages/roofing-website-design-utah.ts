@@ -7,6 +7,8 @@ export const ROOFING_WEBSITE_DESIGN_UTAH: ServicePageData = {
     "Custom-coded roofing websites in Utah — storm and hail pages indexed before the wind hits, claims content that earns trust. $3,000–$9,000, 1–4 weeks.",
   eyebrow: "ROOFING WEBSITE DESIGN · UTAH",
   h1: "You can't earn a ranking during the storm.",
+
+  schemaName: "Roofing Website Design in Utah",
   lede: "Wind crosses a bench neighborhood and within about ninety minutes a few hundred homeowners search the same six phrases. Whatever your site is that morning is what it will be for the entire surge — Google isn't going to promote a page you published at noon. So the storm pages get built months early, and the rest of the site answers the thing they're actually anxious about: the claim.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const ROOFING_WEBSITE_DESIGN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a roofing site needs, specifically.",
+    heading: "What roofing website design has to get right.",
     items: [
       {
         title: "Storm pages published months early",
@@ -121,6 +123,18 @@ export const ROOFING_WEBSITE_DESIGN_UTAH: ServicePageData = {
     { href: "/contractor-website-design-utah", label: "Contractor website design" },
     { href: "/web-design-ogden", label: "Website design in Ogden" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "MORE TRADES, AND THE MAP",
+    heading: "The rest of the cluster.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/contractor-website-design-utah", label: "Contractor website design" },
+      { href: "/hvac-website-design-utah", label: "HVAC website design" },
+      { href: "/landscaping-website-design-utah", label: "Landscaping website design" },
+      { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me what your site does when hail hits.",
 };

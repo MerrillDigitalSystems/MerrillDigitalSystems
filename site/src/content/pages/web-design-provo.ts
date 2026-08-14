@@ -7,6 +7,8 @@ export const WEB_DESIGN_PROVO: ServicePageData = {
     "Custom-coded websites for Provo, Orem and Utah County service businesses — fast, built for local search, yours outright. $3,000–$9,000 in 1–4 weeks.",
   eyebrow: "WEBSITE DESIGN · PROVO",
   h1: "New rooftops, new customers, no loyalty yet.",
+
+  schemaName: "Website Design in Provo, Utah",
   lede: "Custom-coded sites for Provo, Orem and the Utah County growth corridor — built so the people moving into Vineyard, Lehi, Saratoga Springs and Eagle Mountain find you before they find anyone else. Fast, structured for local search, and yours on final payment.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const WEB_DESIGN_PROVO: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What ships, and what you own after.",
+    heading: "What Provo web design ships, and what you own after.",
     items: [
       {
         title: "Pages for the corridor, not just the county seat",
@@ -121,6 +123,18 @@ export const WEB_DESIGN_PROVO: ServicePageData = {
     { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
     { href: "/contractor-website-design-utah", label: "Contractor website design" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE MAP",
+    heading: "Website design in the rest of Utah.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
+      { href: "/web-design-west-jordan", label: "Website design in West Jordan" },
+      { href: "/web-design-ogden", label: "Website design in Ogden" },
+      { href: "/landscaping-website-design-utah", label: "Landscaping website design" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me which cities you actually drive to.",
 };

@@ -11,7 +11,13 @@ import { CONTACT } from "@/content/home";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const field =
-  "mt-2 w-full border-2 border-ink bg-bg px-[14px] py-[12px] text-[14px] text-ink " +
+  "mt-2 w-full border-2 border-ink bg-bg px-[14px] py-[12px] text-ink " +
+  // 16px on phones is not a style choice: Safari on iOS zooms the whole page
+  // in when a focused field is under 16px, and the visitor lands mid-form at
+  // 1.3x with the layout shoved sideways. It happened on every field on every
+  // form on the site. Above 600px no browser does this, so the tighter 14px
+  // the design wants comes back.
+  "text-[16px] min-[600px]:text-[14px] " +
   // neutral-500 placeholders sit at 2.59:1 and read as washed out; neutral-700
   // is 5.84:1 and still clearly lighter than the ink of a filled field, so a
   // placeholder is never mistaken for real input.
@@ -199,7 +205,7 @@ export function ContactForm({ formName = "contact" }: { formName?: string }) {
         </p>
       )}
 
-      <p className="mt-4 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-[.15em] text-neutral-700">
         {CONTACT.caption}
       </p>
     </form>

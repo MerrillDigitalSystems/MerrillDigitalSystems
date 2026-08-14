@@ -7,12 +7,6 @@ const TITLE = "How to Get More Leads from Your Utah Business Website";
 const DESCRIPTION =
   "Practical steps to turn your Utah business website into a lead generation system — from SEO fixes to conversion optimization.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-get-more-leads-utah-website",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-get-more-leads-utah-website",
   title: TITLE,
@@ -49,6 +43,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/web-design-utah", label: "SEE UTAH WEB DESIGN" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

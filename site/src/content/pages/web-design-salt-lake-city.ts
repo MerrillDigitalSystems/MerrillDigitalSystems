@@ -7,6 +7,8 @@ export const WEB_DESIGN_SALT_LAKE_CITY: ServicePageData = {
     "Custom-coded sites for Salt Lake City service businesses in Utah's toughest local search market. $3,000–$9,000, live in 1–4 weeks, and you own it.",
   eyebrow: "WEBSITE DESIGN · SALT LAKE CITY",
   h1: "You can't outspend Salt Lake. You can outbuild it.",
+
+  schemaName: "Website Design in Salt Lake City, Utah",
   lede: "Custom-coded sites for SLC service businesses stuck behind franchises, directory listings and competitors with fifteen years of reviews. Built faster and structured tighter than the incumbents bothered with — then handed over in your name.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const WEB_DESIGN_SALT_LAKE_CITY: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What ships instead of a monthly retainer.",
+    heading: "Salt Lake City web design that ships, instead of a retainer.",
     items: [
       {
         title: "A structure that matches the valley",
@@ -126,6 +128,18 @@ export const WEB_DESIGN_SALT_LAKE_CITY: ServicePageData = {
     { href: "/web-design-west-jordan", label: "Website design in West Jordan" },
     { href: "/work/bktoolbox", label: "BK Toolbox — case study" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE MAP",
+    heading: "Website design in the rest of Utah.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/web-design-west-jordan", label: "Website design in West Jordan" },
+      { href: "/web-design-provo", label: "Website design in Provo" },
+      { href: "/web-design-ogden", label: "Website design in Ogden" },
+      { href: "/hvac-website-design-utah", label: "HVAC website design" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me who's outranking you.",
 };

@@ -7,6 +7,8 @@ export const MANAGED_SERVICES: ServicePageData = {
     "Dedicated hosting I monitor, security patching, and feature work from the person who wrote your code. From $375/month, month-to-month, never a lock-in.",
   eyebrow: "MANAGED SERVICES · AFTER LAUNCH",
   h1: "Support from the person who wrote the code.",
+
+  schemaName: "Managed Website and Software Support",
   lede: "Dedicated hosting I watch directly, backups and patching on a schedule, and feature work at the retainer rate — with a message going to the engineer who built the thing rather than a ticket queue that's never seen it. Month to month, cancel whenever.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -36,7 +38,7 @@ export const MANAGED_SERVICES: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What the retainer covers.",
+    heading: "What the managed services retainer covers.",
     items: [
       {
         title: "Dedicated hosting",
@@ -125,6 +127,18 @@ export const MANAGED_SERVICES: ServicePageData = {
     { href: "/operations-software", label: "Custom operations software" },
     { href: "/web-design-utah", label: "Website design in Utah" },
     { href: "/work/bktoolbox", label: "Case study: BK Toolbox" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE SYSTEM",
+    heading: "Related builds, and the reading behind them.",
+    links: [
+      { href: "/operations-software", label: "Custom operations software" },
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/field-service-software", label: "Field service software" },
+      { href: "/bookkeeping-software", label: "Bookkeeping firm software" },
+      { href: "/punchless", label: "Punchless — our own SaaS product" },
+      { href: "/blog", label: "Field notes on software and websites" },
+    ],
+  },
+
   contactHeading: "Tell me what needs looking after.",
 };

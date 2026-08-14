@@ -16,7 +16,18 @@ export function CompareTable() {
         Four ways to solve this. I&rsquo;m not always the right one.
       </h2>
 
-      <div className="mt-[clamp(28px,4vw,56px)] border-2 border-ink">
+      {/*
+        The table needs 860px and a phone has 375, so two of the four options
+        sit off-screen with nothing to say so — the honest comparison, which is
+        the whole argument of this section, was invisible on mobile. A label
+        rather than a gradient: this system has no soft edges to fade with.
+      */}
+      <p className="eyebrow mt-8 text-accent-700 min-[940px]:hidden">
+        Swipe the table to compare all four{" "}
+        <span aria-hidden="true">&rarr;</span>
+      </p>
+
+      <div className="mt-[clamp(20px,4vw,56px)] border-2 border-ink">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[860px] border-collapse text-left">
             <thead>

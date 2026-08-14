@@ -7,12 +7,6 @@ const TITLE = "Bookkeeping Firm Software: Hidden QuickBooks Costs | MDS";
 const DESCRIPTION =
   "Bookkeeping firm software is often needed when QuickBooks, spreadsheets, and email create hidden coordination costs. See where the time and money go.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-bookkeeping-firm-hidden-costs",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-bookkeeping-firm-hidden-costs",
   title: TITLE,
@@ -47,6 +41,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/bookkeeping-software", label: "SEE BOOKKEEPING SOFTWARE" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

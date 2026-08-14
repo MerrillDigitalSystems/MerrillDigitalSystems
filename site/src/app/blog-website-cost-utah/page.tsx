@@ -7,12 +7,6 @@ const TITLE = "How Much Does a Website Cost in Utah in 2026? | MDS Blog";
 const DESCRIPTION =
   "A breakdown of website costs in Utah for 2026 — from DIY builders to custom-coded sites. Real numbers, hidden costs, and what drives ROI.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-website-cost-utah",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-website-cost-utah",
   title: TITLE,
@@ -53,6 +47,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/pricing", label: "SEE PUBLISHED PRICING" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

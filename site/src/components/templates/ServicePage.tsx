@@ -25,6 +25,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
     slug,
     eyebrow,
     h1,
+    schemaName,
     lede,
     crumbs,
     intro,
@@ -38,6 +39,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
     serviceType,
     faq,
     relatedLinks,
+    cluster,
     contactHeading,
   } = data;
 
@@ -45,10 +47,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
     <>
       <JsonLd
         data={[
-          webPageSchema({ name: h1, description: lede, path: slug }),
+          webPageSchema({ name: schemaName, description: lede, path: slug }),
           breadcrumbSchema(crumbs),
           serviceSchema({
-            name: h1,
+            name: schemaName,
+            slogan: h1,
             serviceType,
             description: lede,
             priceRange: schemaPriceRange,
@@ -146,7 +149,7 @@ export function ServicePage({ data }: { data: ServicePageData }) {
             >
               {priceRange}
             </p>
-            <p className="mt-3 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
+            <p className="mt-3 text-[11px] font-bold uppercase tracking-[.15em] text-neutral-700">
               {priceTimeline}
             </p>
             <Btn href="/pricing" variant="secondary" block className="mt-6">
@@ -222,6 +225,50 @@ export function ServicePage({ data }: { data: ServicePageData }) {
           <Faq items={faq} />
         </div>
       </Section>
+
+      {cluster && cluster.links.length > 0 && (
+        <Section ground="surface" borderTop>
+          <SectionLabel number="05">{cluster.label}</SectionLabel>
+          <h2
+            className="mt-5 max-w-[22ch] font-extrabold"
+            style={{
+              fontSize: "clamp(28px, 3.6vw, 50px)",
+              letterSpacing: "-.035em",
+              lineHeight: 1,
+            }}
+          >
+            {cluster.heading}
+          </h2>
+
+          <GridCells
+            ground="surface"
+            cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-3"
+          >
+            {cluster.links.map((link) => (
+              <Cell key={link.href} ground="surface">
+                {/* The whole cell is the target — a 13px text link is a poor
+                    one on a phone, a padded cell is a good one. */}
+                <Link href={link.href} className="group flex h-full flex-col no-underline">
+                  <span className="text-[15px] font-extrabold leading-[1.2] tracking-[-.02em] text-ink transition-colors group-hover:text-accent-700">
+                    {link.label}
+                  </span>
+                  {link.note && (
+                    <span className="mt-3 text-[13.5px] leading-[1.55] text-neutral-800">
+                      {link.note}
+                    </span>
+                  )}
+                  <span
+                    aria-hidden="true"
+                    className="mt-auto pt-5 text-[13px] font-extrabold text-accent-700"
+                  >
+                    →
+                  </span>
+                </Link>
+              </Cell>
+            ))}
+          </GridCells>
+        </Section>
+      )}
 
       <PageContact heading={contactHeading} formName={slug.replace(/^\//, "")} />
     </>

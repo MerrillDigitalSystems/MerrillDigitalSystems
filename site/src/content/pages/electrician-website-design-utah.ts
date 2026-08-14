@@ -7,6 +7,8 @@ export const ELECTRICIAN_WEBSITE_DESIGN_UTAH: ServicePageData = {
     "Custom-coded electrician websites in Utah — built for panel upgrades, EV chargers and 9pm service calls. $3,000–$9,000, live in 1–4 weeks.",
   eyebrow: "ELECTRICIAN WEBSITE DESIGN · UTAH",
   h1: "Two customers, one phone number, two different pages.",
+
+  schemaName: "Electrician Website Design in Utah",
   lede: "Someone standing in a dark hallway at 9pm and someone quietly pricing a panel upgrade for next month both find you the same way and want completely different things. Most electrician sites are built for one of them and lose the other. I build two conversion paths and point the right pages at the right one.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const ELECTRICIAN_WEBSITE_DESIGN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What an electrician site needs, specifically.",
+    heading: "What electrician website design has to get right.",
     items: [
       {
         title: "Two conversion paths, split by page",
@@ -121,6 +123,18 @@ export const ELECTRICIAN_WEBSITE_DESIGN_UTAH: ServicePageData = {
     { href: "/hvac-website-design-utah", label: "HVAC website design" },
     { href: "/operations-software", label: "Operations software" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "MORE TRADES, AND THE MAP",
+    heading: "The rest of the cluster.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/hvac-website-design-utah", label: "HVAC website design" },
+      { href: "/plumber-website-design-utah", label: "Plumber website design" },
+      { href: "/landscaping-website-design-utah", label: "Landscaping website design" },
+      { href: "/web-design-provo", label: "Website design in Provo" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me which jobs you want more of.",
 };

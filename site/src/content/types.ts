@@ -13,6 +13,13 @@ export type ServicePageData = {
   description: string;
   eyebrow: string;
   h1: string;
+  /**
+   * What the page IS, for the Service and WebPage entities — "Website Design
+   * in Utah", not the H1's benefit line. Google reads this as the entity name,
+   * and a name like "A website that brings in work, not compliments" contains
+   * no service noun at all. The H1 is carried through as `slogan`.
+   */
+  schemaName: string;
   lede: string;
   crumbs: Crumb[];
   intro: { label: string; heading: string; body: string };
@@ -27,6 +34,17 @@ export type ServicePageData = {
   serviceType: string;
   faq: FaqItem[];
   relatedLinks: { href: string; label: string }[];
+  /**
+   * The hub-and-spoke band. The sidebar `relatedLinks` list tops out at about
+   * four before it reads as a dump, which left the Utah hub linking 3 of its
+   * 10 spokes and none of the blog — so the cluster gets its own section with
+   * room to link the whole family in both directions.
+   */
+  cluster?: {
+    label: string;
+    heading: string;
+    links: { href: string; label: string; note?: string }[];
+  };
   contactHeading: string;
 };
 

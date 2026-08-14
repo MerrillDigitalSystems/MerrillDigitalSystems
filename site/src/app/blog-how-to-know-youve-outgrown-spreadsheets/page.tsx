@@ -7,12 +7,6 @@ const TITLE = "How to Know When Your Business Has Outgrown Spreadsheets";
 const DESCRIPTION =
   "If reporting takes hours, data lives in multiple tools, and nobody trusts the numbers without cleanup, your business has probably outgrown spreadsheets.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-how-to-know-youve-outgrown-spreadsheets",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-how-to-know-youve-outgrown-spreadsheets",
   title: TITLE,
@@ -48,6 +42,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/operations-software", label: "SEE OPERATIONS SOFTWARE" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

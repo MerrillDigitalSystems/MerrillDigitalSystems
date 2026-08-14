@@ -7,6 +7,8 @@ export const WEB_DESIGN_OGDEN: ServicePageData = {
     "Custom-coded websites for Ogden, Weber and Davis County service businesses. Less competition up north — $3,000–$9,000, live in 1–4 weeks, owned by you.",
   eyebrow: "WEBSITE DESIGN · OGDEN",
   h1: "Page one is still winnable up north.",
+
+  schemaName: "Website Design in Ogden, Utah",
   lede: "Custom-coded sites for Ogden, Layton and the Weber and Davis corridor. Fewer agencies work this end of the Wasatch Front and most of the competition is still on a decade-old template — so the work that grinds for years in Salt Lake tends to pay off here in months.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const WEB_DESIGN_OGDEN: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What ships, and why it ranks up here.",
+    heading: "What Ogden web design ships, and why it ranks up here.",
     items: [
       {
         title: "Pages for the Weber and Davis corridor",
@@ -121,6 +123,18 @@ export const WEB_DESIGN_OGDEN: ServicePageData = {
     { href: "/web-design-west-jordan", label: "Website design in West Jordan" },
     { href: "/roofing-website-design-utah", label: "Roofing website design" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE MAP",
+    heading: "Website design in the rest of Utah.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
+      { href: "/web-design-provo", label: "Website design in Provo" },
+      { href: "/web-design-west-jordan", label: "Website design in West Jordan" },
+      { href: "/roofing-website-design-utah", label: "Roofing website design" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me what's ranking above you in Ogden.",
 };

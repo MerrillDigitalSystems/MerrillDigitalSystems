@@ -15,6 +15,8 @@ export const CUSTOM_SOFTWARE_VS_SERVICETITAN_UTAH: ServicePageData = {
     "ServiceTitan is a real product and sometimes the right buy. An honest Utah comparison — where it wins, where it stops fitting, and what custom costs.",
   eyebrow: "HEAD TO HEAD · UTAH FIELD SERVICE",
   h1: "ServiceTitan, or something built around you?",
+
+  schemaName: "Custom Field Service Software in Utah",
   lede: "You're about to sign a multi-year contract for software your whole operation will run on. Here's the comparison from both sides, including the parts that don't favour me — so you can make the call before the demo, not during it.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -45,7 +47,7 @@ export const CUSTOM_SOFTWARE_VS_SERVICETITAN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a custom build gives you instead.",
+    heading: "What custom field service software gives you instead.",
     items: [
       {
         title: "The workflow you already have",
@@ -134,6 +136,18 @@ export const CUSTOM_SOFTWARE_VS_SERVICETITAN_UTAH: ServicePageData = {
     { href: "/job-management-software-utah", label: "Job management software in Utah" },
     { href: "/free-checklist", label: "10 signs you've outgrown your software" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE SYSTEM",
+    heading: "Related builds, and the reading behind them.",
+    links: [
+      { href: "/operations-software", label: "Custom operations software" },
+      { href: "/field-service-software", label: "Field service software" },
+      { href: "/job-management-software-utah", label: "Job management software" },
+      { href: "/blog-servicetitan-vs-custom-software", label: "ServiceTitan vs. custom software" },
+      { href: "/blog-field-service-software-vs-off-the-shelf", label: "When off-the-shelf starts breaking down" },
+      { href: "/blog", label: "Field notes on software and websites" },
+    ],
+  },
+
   contactHeading: "Tell me what you're evaluating.",
 };

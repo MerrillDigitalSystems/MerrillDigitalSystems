@@ -7,6 +7,8 @@ export const BOOKKEEPING_SOFTWARE: ServicePageData = {
     "Client portals, stage tracking and two-way QuickBooks sync for bookkeeping firms. One live build gave a firm back 15 hours a week. From $25,000.",
   eyebrow: "BOOKKEEPING SOFTWARE · UTAH",
   h1: "Your clients shouldn't be emailing you documents.",
+
+  schemaName: "Bookkeeping Software Development in Utah",
   lede: "A client portal, job stages your team actually uses, and a real two-way QuickBooks sync — built for how a bookkeeping or accounting firm runs, not adapted from a generic project tool. One system instead of three, and you own it.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -36,7 +38,7 @@ export const BOOKKEEPING_SOFTWARE: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a firm hub actually includes.",
+    heading: "What custom bookkeeping software actually includes.",
     items: [
       {
         title: "A branded client portal",
@@ -125,6 +127,18 @@ export const BOOKKEEPING_SOFTWARE: ServicePageData = {
     { href: "/managed-services", label: "Managed hosting and support" },
     { href: "/pricing", label: "Full published pricing" },
     { href: "/web-design-utah", label: "Website design in Utah" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE SYSTEM",
+    heading: "Related builds, and the reading behind them.",
+    links: [
+      { href: "/operations-software", label: "Custom operations software" },
+      { href: "/job-management-software-utah", label: "Job management software" },
+      { href: "/managed-services", label: "Managed support after launch" },
+      { href: "/blog-bookkeeping-firm-hidden-costs", label: "The hidden cost of running a bookkeeping firm" },
+      { href: "/blog-how-to-know-youve-outgrown-spreadsheets", label: "How to know you've outgrown spreadsheets" },
+      { href: "/blog", label: "Field notes on software and websites" },
+    ],
+  },
+
   contactHeading: "Tell me where your firm loses its week.",
 };

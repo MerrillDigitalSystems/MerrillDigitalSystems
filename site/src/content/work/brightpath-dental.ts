@@ -14,6 +14,8 @@ export const BRIGHTPATH_DENTAL: CaseStudyData = {
   description:
     "A dental group's announcements, permissions, HR, training and compliance in one internal system — delivered on schedule with a 5.0 Clutch rating.",
   client: "BrightPath Dental",
+
+  datePublished: "2026-06-09",
   eyebrow: "CASE STUDY · DENTAL GROUP · INTERNAL SOFTWARE",
   h1: "One place the practice runs on.",
   lede:

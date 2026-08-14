@@ -7,6 +7,8 @@ export const PLUMBER_WEBSITE_DESIGN_UTAH: ServicePageData = {
     "Custom-coded plumbing websites for Utah — built for the 11pm burst-pipe search on a phone. $3,000–$9,000, live in 1–4 weeks, every account in your name.",
   eyebrow: "PLUMBER WEBSITE DESIGN · UTAH",
   h1: "The 11pm search doesn't read your About page.",
+
+  schemaName: "Plumber Website Design in Utah",
   lede: "A water heater lets go in a Sandy basement and somebody is standing in an inch of water holding a phone with one bar. That call goes to whoever loads first, shows a tappable number without scrolling, and names their city. Everything else on the site is for the customer who is planning, not panicking — and those two need different pages.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const PLUMBER_WEBSITE_DESIGN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What a plumbing site needs, specifically.",
+    heading: "What plumber website design has to get right.",
     items: [
       {
         title: "Click-to-call that never scrolls away",
@@ -121,6 +123,18 @@ export const PLUMBER_WEBSITE_DESIGN_UTAH: ServicePageData = {
     { href: "/hvac-website-design-utah", label: "HVAC website design" },
     { href: "/job-management-software-utah", label: "Job management software" },
     { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
-  ],
+  ],  cluster: {
+    label: "MORE TRADES, AND THE MAP",
+    heading: "The rest of the cluster.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/hvac-website-design-utah", label: "HVAC website design" },
+      { href: "/electrician-website-design-utah", label: "Electrician website design" },
+      { href: "/contractor-website-design-utah", label: "Contractor website design" },
+      { href: "/web-design-west-jordan", label: "Website design in West Jordan" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me where the after-hours calls are going.",
 };

@@ -7,6 +7,8 @@ export const WEB_DESIGN_UTAH: ServicePageData = {
     "Custom-coded websites for Utah service businesses — built for local search, handed over with every account in your name. $3,000–$9,000, live in 1–4 weeks.",
   eyebrow: "WEBSITE DESIGN · UTAH",
   h1: "A website that brings in work, not compliments.",
+
+  schemaName: "Website Design in Utah",
   lede: "Custom-coded, fast, and built for local search from day one — then handed over with the domain, the analytics and every account in your name. No template every competitor in your city already bought.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -36,7 +38,7 @@ export const WEB_DESIGN_UTAH: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What ships, every time.",
+    heading: "What ships in every Utah website design build.",
     items: [
       {
         title: "A custom-coded site",
@@ -126,5 +128,71 @@ export const WEB_DESIGN_UTAH: ServicePageData = {
     { href: "/hvac-website-design-utah", label: "HVAC website design" },
     { href: "/pricing", label: "Full published pricing" },
   ],
+  cluster: {
+    label: "WHERE I WORK, AND WHO FOR",
+    heading: "Website design across Utah, by city and by trade.",
+    links: [
+      {
+        href: "/web-design-west-jordan",
+        label: "Website design in West Jordan",
+        note: "Home base. The one city where I'll come sit at your kitchen table before quoting.",
+      },
+      {
+        href: "/web-design-salt-lake-city",
+        label: "Website design in Salt Lake City",
+        note: "The most competitive market in the state, and how to win it without outspending anyone.",
+      },
+      {
+        href: "/web-design-provo",
+        label: "Website design in Provo",
+        note: "Utah County grows faster than its search results do. New rooftops, no loyalty yet.",
+      },
+      {
+        href: "/web-design-ogden",
+        label: "Website design in Ogden",
+        note: "Weber County is still winnable on page one. Fewer competitors, same buying intent.",
+      },
+      {
+        href: "/hvac-website-design-utah",
+        label: "HVAC website design",
+        note: "Two spikes a year decide the whole season. Built for the week the phone matters.",
+      },
+      {
+        href: "/plumber-website-design-utah",
+        label: "Plumber website design",
+        note: "The 11pm emergency search doesn't read your About page. Built for the tap-to-call.",
+      },
+      {
+        href: "/electrician-website-design-utah",
+        label: "Electrician website design",
+        note: "Residential and commercial are two customers. They shouldn't land on the same page.",
+      },
+      {
+        href: "/landscaping-website-design-utah",
+        label: "Landscaping website design",
+        note: "Demand rotates through the year. The site should rotate with it, not sit still.",
+      },
+      {
+        href: "/roofing-website-design-utah",
+        label: "Roofing website design",
+        note: "You can't earn a ranking during the storm. That work happens months before.",
+      },
+      {
+        href: "/contractor-website-design-utah",
+        label: "Contractor website design",
+        note: "Nobody hires a GC on visit one. Built for the long consideration cycle.",
+      },
+      {
+        href: "/blog-website-cost-utah",
+        label: "What a website costs in Utah",
+        note: "The four tiers, what moves the price inside each, and the costs nobody quotes you.",
+      },
+      {
+        href: "/blog-utah-website-checklist",
+        label: "The Utah website checklist",
+        note: "Score your current site before you spend anything on replacing it.",
+      },
+    ],
+  },
   contactHeading: "Tell me what your site isn't doing.",
 };

@@ -41,7 +41,7 @@ export function PageHero({
 
       <div className="section-pad site-container relative">
         <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
+          <ol className="flex flex-wrap items-center gap-x-2 text-[11px] font-bold uppercase tracking-[.15em] text-neutral-700">
             {crumbs.map((crumb, i) => (
               <li key={crumb.path} className="flex items-center gap-2">
                 {i > 0 && <span aria-hidden="true">/</span>}
@@ -50,7 +50,10 @@ export function PageHero({
                     {crumb.name}
                   </span>
                 ) : (
-                  <Link href={crumb.path} className="text-neutral-700 no-underline hover:text-accent-700">
+                  <Link
+                    href={crumb.path}
+                    className="inline-block py-[7px] text-neutral-700 no-underline hover:text-accent-700"
+                  >
                     {crumb.name}
                   </Link>
                 )}

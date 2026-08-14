@@ -89,7 +89,7 @@ export function Hero() {
           <aside className="border-2 border-ink bg-surface p-[clamp(18px,2.4vw,28px)]">
             <div className="flex items-center gap-3">
               <GrayImage
-                src="/kruz-merrill.png"
+                src="/img/kruz-merrill-92.webp"
                 alt={HERO.card.photoAlt}
                 width={46}
                 height={46}

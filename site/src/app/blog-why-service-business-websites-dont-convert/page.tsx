@@ -7,12 +7,6 @@ const TITLE = "Why Most Service Business Websites Don't Generate Leads";
 const DESCRIPTION =
   "Most service business websites fail because they're built like brochures instead of sales systems. Here is what actually changes lead flow.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-why-service-business-websites-dont-convert",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-why-service-business-websites-dont-convert",
   title: TITLE,
@@ -47,6 +41,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/web-design-utah", label: "SEE UTAH WEB DESIGN" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

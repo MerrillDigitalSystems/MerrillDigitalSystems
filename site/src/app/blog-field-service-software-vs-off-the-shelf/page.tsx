@@ -7,12 +7,6 @@ const TITLE = "Field Service Software: When Off-the-Shelf Breaks Down";
 const DESCRIPTION =
   "The signs your field operation has outgrown generic software — and why custom field service platforms become the better financial and operational decision.";
 
-export const metadata: Metadata = buildMeta({
-  title: TITLE,
-  description: DESCRIPTION,
-  path: "/blog-field-service-software-vs-off-the-shelf",
-});
-
 const META: ArticleMeta = {
   slug: "/blog-field-service-software-vs-off-the-shelf",
   title: TITLE,
@@ -47,6 +41,16 @@ const META: ArticleMeta = {
   ],
   moneyPage: { href: "/field-service-software", label: "SEE FIELD SERVICE SOFTWARE" },
 };
+
+export const metadata: Metadata = buildMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: META.slug,
+  article: {
+    publishedTime: META.datePublished,
+    modifiedTime: META.dateModified,
+  },
+});
 
 export default function Page() {
   return (

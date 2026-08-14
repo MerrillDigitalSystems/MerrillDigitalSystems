@@ -10,6 +10,8 @@ export const CCL_PRO: CaseStudyData = {
   description:
     "A Utah landscaping company's website plus the digital stack around it — search-friendly structure, Google Business, analytics. 40% more lead capture.",
   client: "CCL Pro",
+
+  datePublished: "2026-07-31",
   eyebrow: "CASE STUDY · LANDSCAPING · WEB + DIGITAL",
   h1: "A brochure turned into a lead engine.",
   lede:

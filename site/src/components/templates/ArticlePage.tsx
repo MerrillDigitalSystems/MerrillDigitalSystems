@@ -6,6 +6,7 @@ import { Prose } from "@/components/page/Prose";
 import { Faq } from "@/components/ui/Faq";
 import { Section, SectionLabel } from "@/components/ui/Section";
 import { Btn } from "@/components/ui/Btn";
+import { SITE } from "@/lib/site";
 import type { FaqItem } from "@/content/faq";
 import type { ReactNode } from "react";
 
@@ -67,11 +68,14 @@ export function ArticlePage({
         <header className="border-b-2 border-b-ink">
           <div className="section-pad site-container">
             <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[.15em] text-neutral-700">
+              <ol className="flex flex-wrap items-center gap-x-2 text-[11px] font-bold uppercase tracking-[.15em] text-neutral-700">
                 {crumbs.slice(0, 2).map((crumb, i) => (
                   <li key={crumb.path} className="flex items-center gap-2">
                     {i > 0 && <span aria-hidden="true">/</span>}
-                    <Link href={crumb.path} className="text-neutral-700 no-underline hover:text-accent-700">
+                    <Link
+                      href={crumb.path}
+                      className="inline-block py-[7px] text-neutral-700 no-underline hover:text-accent-700"
+                    >
                       {crumb.name}
                     </Link>
                   </li>
@@ -79,10 +83,26 @@ export function ArticlePage({
               </ol>
             </nav>
 
+            {/*
+              The byline is an E-E-A-T signal, not decoration: the whole brand
+              is founder-led and the BlogPosting schema already names him, so
+              the visible page should say it too.
+            */}
             <p className="eyebrow mt-8 flex flex-wrap items-center gap-3 text-neutral-700">
               <span className="text-accent-700">{meta.category}</span>
               <span aria-hidden="true" className="h-[2px] w-[34px] bg-neutral-400" />
+              <span>By {SITE.founder}</span>
+              <span aria-hidden="true" className="h-[2px] w-[34px] bg-neutral-400" />
               <time dateTime={meta.datePublished}>{humanDate(meta.datePublished)}</time>
+              {meta.dateModified && meta.dateModified !== meta.datePublished && (
+                <>
+                  <span aria-hidden="true" className="h-[2px] w-[34px] bg-neutral-400" />
+                  <span>
+                    Updated{" "}
+                    <time dateTime={meta.dateModified}>{humanDate(meta.dateModified)}</time>
+                  </span>
+                </>
+              )}
               <span aria-hidden="true" className="h-[2px] w-[34px] bg-neutral-400" />
               <span>{meta.readingTime}</span>
             </p>

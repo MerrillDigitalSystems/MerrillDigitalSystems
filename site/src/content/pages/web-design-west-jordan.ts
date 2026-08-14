@@ -7,6 +7,8 @@ export const WEB_DESIGN_WEST_JORDAN: ServicePageData = {
     "Custom websites for West Jordan service businesses, built by someone who lives here. $3,000–$9,000, live in 1–4 weeks, every account in your name.",
   eyebrow: "WEBSITE DESIGN · WEST JORDAN",
   h1: "Your web guy lives in West Jordan too.",
+
+  schemaName: "Website Design in West Jordan, Utah",
   lede: "Custom-coded sites for West Jordan trades and home-service companies — built for local search, handed over with the domain and every account in your name. And if you'd rather do this across a table than over Zoom, I'm about ten minutes away.",
   crumbs: [
     { name: "Home", path: "/" },
@@ -37,7 +39,7 @@ export const WEB_DESIGN_WEST_JORDAN: ServicePageData = {
     },
   ],
   deliverables: {
-    heading: "What ships — plus the part I do in person.",
+    heading: "West Jordan web design — plus the part I do in person.",
     items: [
       {
         title: "A kickoff at your shop, not a Zoom link",
@@ -126,6 +128,18 @@ export const WEB_DESIGN_WEST_JORDAN: ServicePageData = {
     { href: "/web-design-utah", label: "Website design across Utah" },
     { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
     { href: "/pricing", label: "Full published pricing" },
-  ],
+  ],  cluster: {
+    label: "THE REST OF THE MAP",
+    heading: "Website design in the rest of Utah.",
+    links: [
+      { href: "/web-design-utah", label: "Website design across Utah" },
+      { href: "/web-design-salt-lake-city", label: "Website design in Salt Lake City" },
+      { href: "/web-design-provo", label: "Website design in Provo" },
+      { href: "/web-design-ogden", label: "Website design in Ogden" },
+      { href: "/plumber-website-design-utah", label: "Plumber website design" },
+      { href: "/blog", label: "Field notes on websites and software" },
+    ],
+  },
+
   contactHeading: "Tell me what your site isn't doing. I'm ten minutes away.",
 };
