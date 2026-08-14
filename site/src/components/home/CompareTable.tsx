@@ -72,28 +72,37 @@ export function CompareTable() {
           </table>
         </div>
 
-        {/* One card per option below 1000px. Same rows, read down instead of across. */}
-        <div className="flex flex-col min-[1000px]:hidden">
-          {COMPARE.columns.map((col, i) => (
-            <div key={col} className="border-b-2 border-b-ink last:border-b-0">
-              <p
-                className={`px-[18px] py-[12px] text-[11px] font-bold uppercase tracking-[.15em] ${
-                  i === 0 ? "bg-accent text-bg" : "bg-surface text-neutral-700"
-                }`}
-              >
-                {col}
+        {/*
+          Grouped by criterion, not by option. Option-major cards make you
+          scroll back and forth to compare a single row across four choices,
+          which is the one thing a comparison is for — and they repeat all
+          seven criteria labels four times. This way each criterion is stated
+          once with the four answers under it, and the cobalt band marks the
+          same column the desktop table highlights.
+        */}
+        <div className="min-[1000px]:hidden">
+          {COMPARE.rows.map((row) => (
+            <div key={row.k} className="border-b-2 border-b-ink last:border-b-0">
+              <p className="bg-surface px-[18px] py-[11px] text-[11px] font-bold uppercase tracking-[.14em] text-ink">
+                {row.k}
               </p>
-              <dl className={i === 0 ? "bg-accent-100 px-[18px]" : "px-[18px]"}>
-                {COMPARE.rows.map((row) => (
+              <dl>
+                {COMPARE.columns.map((col, i) => (
                   <div
-                    key={row.k}
-                    className="border-b-2 border-b-neutral-300 py-[14px] last:border-b-0"
+                    key={col}
+                    className={`border-b-2 border-b-neutral-300 px-[18px] py-[11px] last:border-b-0 ${
+                      i === 0 ? "bg-accent-100" : ""
+                    }`}
                   >
-                    <dt className="text-[11px] font-bold uppercase tracking-[.12em] text-neutral-700">
-                      {row.k}
+                    <dt
+                      className={`text-[11px] font-bold uppercase tracking-[.12em] ${
+                        i === 0 ? "text-accent-700" : "text-neutral-700"
+                      }`}
+                    >
+                      {col}
                     </dt>
                     <dd
-                      className={`mt-[6px] text-[14px] leading-[1.5] ${
+                      className={`mt-[4px] text-[14px] leading-[1.45] ${
                         i === 0 ? "font-bold text-accent-700" : "text-neutral-800"
                       }`}
                     >

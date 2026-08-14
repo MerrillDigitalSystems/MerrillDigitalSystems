@@ -134,6 +134,47 @@ for (const old of legacy) {
   else redirOk++;
 }
 
+/**
+ * The host redirect. This is the single most valuable piece of configuration
+ * on the property and the only one that lives nowhere in this repo: nginx.conf
+ * serves the apex, www and `_` from one server block with no host rule, so the
+ * consolidation is a Cloudflare Redirect Rule and nothing here would notice if
+ * the zone were rebuilt.
+ *
+ * It matters because the split was real: over the 90 days to 2026-08-14 the
+ * www homepage held position 7.8 and 4 of the site's 7 total clicks while the
+ * apex sat at 31. Two hosts answering 200 splits every signal between them.
+ *
+ * Skipped against localhost, which has no host routing to test.
+ */
+if (BASE.startsWith("https://")) {
+  const apex = new URL(BASE).host.replace(/^www\./, "");
+  for (const path of ["/", "/web-design-utah"]) {
+    try {
+      const r = await fetch(`https://www.${apex}${path}`, {
+        method: "HEAD",
+        redirect: "manual",
+      });
+      if (r.status !== 301) {
+        problems.push(`WWW www.${apex}${path} — expected 301, got ${r.status}`);
+        continue;
+      }
+      const dest = r.headers.get("location") || "";
+      if (!dest.startsWith(`https://${apex}`)) {
+        problems.push(`WWW www.${apex}${path} -> ${dest} (not the apex)`);
+        continue;
+      }
+      // One hop, not two: a 301 into another redirect bleeds authority.
+      const hop2 = await fetch(dest, { method: "HEAD", redirect: "manual" });
+      if (hop2.status !== 200) {
+        problems.push(`WWW www.${apex}${path} -> ${dest} -> ${hop2.status} (chain)`);
+      }
+    } catch (err) {
+      problems.push(`WWW www.${apex}${path} — ${err.message}`);
+    }
+  }
+}
+
 const pages = [...seen.entries()].filter(([p]) => !/\.(png|jpg|jpeg|svg|webp|ico)$/.test(p));
 console.log(`Pages crawled : ${pages.length}`);
 console.log(`Assets checked: ${seen.size - pages.length}`);
