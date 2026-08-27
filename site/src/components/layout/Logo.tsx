@@ -6,7 +6,7 @@ import Link from "next/link";
  * vertical slab — into one shape rather than setting them side by side, so
  * the lockup stays a single cobalt gesture instead of two competing ones.
  *
- * Letterforms are live text, not paths, so the mark inherits Archivo with the
+ * Letterforms are live text, not paths, so the mark inherits Bricolage with the
  * rest of the page. The raster icons are generated from the same geometry by
  * scripts/generate-icons.mjs.
  */
