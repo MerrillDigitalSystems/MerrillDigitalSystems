@@ -93,7 +93,7 @@ export function ContactForm({ formName = "contact" }: { formName?: string }) {
     return (
       <div
         role="status"
-        className="border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)] text-ink"
+        className="border-2 border-ink bg-panel p-[clamp(18px,2.4vw,34px)] text-ink"
       >
         <p className="eyebrow text-accent-700">MESSAGE SENT</p>
         <h3 className="mt-4 text-[clamp(20px,2.2vw,26px)] font-extrabold leading-[1.12] tracking-[-.02em]">
@@ -113,10 +113,10 @@ export function ContactForm({ formName = "contact" }: { formName?: string }) {
   return (
     <form
       onSubmit={onSubmit}
-      // text-ink is load-bearing: the form sits on a light card inside a
-      // cobalt section that sets `text-bg`. Without it the heading inherits
-      // near-white and renders invisible on near-white.
-      className="border-2 border-ink bg-bg p-[clamp(18px,2.4vw,34px)] text-ink"
+      // text-ink is load-bearing: this form is also rendered inside sections
+      // that set `text-bg` on an ink or cobalt ground. Without it the heading
+      // inherits near-white and renders invisible on the panel's near-white.
+      className="border-2 border-ink bg-panel p-[clamp(18px,2.4vw,34px)] text-ink"
       noValidate
     >
       <p className="eyebrow text-accent-700">{CONTACT.formEyebrow}</p>

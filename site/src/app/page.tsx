@@ -5,13 +5,12 @@ import { faqSchema, webPageSchema } from "@/lib/schema";
 import { HOME_FAQ } from "@/content/faq";
 import { ScopeProvider } from "@/components/scope/ScopeContext";
 import { Hero } from "@/components/home/Hero";
+import { ServiceIndex } from "@/components/home/ServiceIndex";
 import { ProofTicker } from "@/components/home/ProofTicker";
 import { Promises } from "@/components/home/Promises";
-import { Doors } from "@/components/home/Doors";
 import { RoiSection } from "@/components/home/RoiSection";
 import { CompareTable } from "@/components/home/CompareTable";
 import { WorkGrid } from "@/components/home/WorkGrid";
-import { TestimonialBand } from "@/components/home/TestimonialBand";
 import { Services } from "@/components/home/Services";
 import { WhenNotTo } from "@/components/home/WhenNotTo";
 import { ProcessSpine } from "@/components/home/ProcessSpine";
@@ -30,6 +29,17 @@ export const metadata: Metadata = buildMeta({
   path: "/",
 });
 
+/**
+ * Sections 01-11, in the order the 2026-08 redesign sets them.
+ *
+ * Two changes worth knowing about if you are comparing against the old page:
+ * the two-door "which one are you?" block is gone, replaced by the three-card
+ * ServiceIndex directly under the hero — three real internal links beat two
+ * on-page anchors, and putting them above the fold spends the page's first
+ * crawl budget on the three routes that carry the money queries. And the
+ * Clutch testimonial now lives inside the work section rather than as its own
+ * band, because proof belongs next to the thing it is proving.
+ */
 export default function Home() {
   return (
     <ScopeProvider>
@@ -40,13 +50,12 @@ export default function Home() {
         ]}
       />
       <Hero />
+      <ServiceIndex />
       <ProofTicker />
       <Promises />
-      <Doors />
       <RoiSection />
       <CompareTable />
       <WorkGrid />
-      <TestimonialBand />
       <Services />
       <WhenNotTo />
       <ProcessSpine />

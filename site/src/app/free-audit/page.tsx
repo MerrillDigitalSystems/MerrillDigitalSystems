@@ -6,7 +6,7 @@ import { abs, breadcrumbSchema, faqSchema, providerRef, webPageSchema } from "@/
 import { ScopeProvider } from "@/components/scope/ScopeContext";
 import { PageHero } from "@/components/page/PageHero";
 import { PageContact } from "@/components/page/PageContact";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { Faq } from "@/components/ui/Faq";
 import { Btn } from "@/components/ui/Btn";
@@ -143,18 +143,11 @@ export default function FreeAuditPage() {
         secondaryHref="#covered"
       />
 
-      <Section id="covered" borderTop>
+      <Section id="covered">
         <SectionLabel number="01">WHAT YOU GET</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           A document, not a sales call.
-        </h2>
+        </SectionH2>
         <p className="mt-6 max-w-[68ch] text-[15.5px] leading-[1.62] text-neutral-800">
           Six things get looked at, by hand, against your actual business. You
           end up with something you could hand to any developer — including one
@@ -164,7 +157,10 @@ export default function FreeAuditPage() {
         <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-3">
           {COVERED.map((item, i) => (
             <Cell key={item.title}>
-              <p className="text-[26px] font-extrabold leading-none tracking-[-.035em] text-neutral-300">
+              <p
+                aria-hidden="true"
+                className="text-[26px] font-extrabold leading-none tracking-[-.035em] text-neutral-300"
+              >
                 {String(i + 1).padStart(2, "0")}
               </p>
               <h3 className="mt-4 text-[17px] font-extrabold leading-[1.12] tracking-[-.02em]">
@@ -178,18 +174,11 @@ export default function FreeAuditPage() {
         </GridCells>
       </Section>
 
-      <Section ground="surface" borderTop>
+      <Section ground="surface">
         <SectionLabel number="02">HOW LONG IT TAKES</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           Two minutes from you. Two days from me.
-        </h2>
+        </SectionH2>
 
         <ul className="mt-[clamp(28px,4vw,56px)] border-t-2 border-t-ink">
           {STEPS.map((step) => (
@@ -215,16 +204,9 @@ export default function FreeAuditPage() {
             <SectionLabel number="03" onDark>
               THE HONEST PART
             </SectionLabel>
-            <h2
-              className="mt-5 max-w-[22ch] font-extrabold"
-              style={{
-                fontSize: "clamp(30px, 4.2vw, 60px)",
-                letterSpacing: "-.035em",
-                lineHeight: 1,
-              }}
-            >
+            <SectionH2 className="mt-8 max-w-[22ch]">
               It might say: don&rsquo;t spend the money.
-            </h2>
+            </SectionH2>
             <p className="mt-6 max-w-[62ch] text-[15.5px] leading-[1.62] text-neutral-400">
               A fair number of the sites I look at don&rsquo;t need rebuilding.
               They need a Google Business Profile filled in properly, a phone
@@ -270,20 +252,13 @@ export default function FreeAuditPage() {
         </div>
       </section>
 
-      <Section borderTop>
+      <Section>
         <div className="grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[.7fr_1.3fr]">
           <div>
             <SectionLabel number="04">STRAIGHT ANSWERS</SectionLabel>
-            <h2
-              className="mt-5 font-extrabold"
-              style={{
-                fontSize: "clamp(28px, 3.6vw, 50px)",
-                letterSpacing: "-.035em",
-                lineHeight: 1,
-              }}
-            >
+            <SectionH2 size="md" className="mt-8">
               Before you send it.
-            </h2>
+            </SectionH2>
 
             <nav className="mt-10 border-t-2 border-t-ink pt-5">
               <p className="eyebrow text-neutral-700">RELATED</p>

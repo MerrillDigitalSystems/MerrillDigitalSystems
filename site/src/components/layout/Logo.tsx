@@ -20,25 +20,32 @@ export function MdBlock({
   // Slab proportions: noticeably taller than wide, so it reads as a rule
   // standing on end rather than as a square badge.
   const width = Math.round(height * 0.72);
-  const fontSize = Math.round(height * 0.34);
+  // 0.355, not 0.34: Bricolage's caps are shorter than Archivo's (0.66em
+  // against 0.692em), so matching the old ratio would have shrunk the mark.
+  // This keeps the cap height the same fraction of the block it always was.
+  const fontSize = Math.round(height * 0.355);
 
-  // Optical centring, solved rather than nudged. Archivo 800 caps measure
-  // (canvas measureText): cap height 0.692em, font ascent 0.846em, font
-  // descent 0.231em, zero descender on M and D. With line-height:1 the line
-  // box is shorter than ascent+descent, so the baseline lands at 0.808em from
-  // the line-box top. Setting the ink's top edge to (height - capHeight)/2:
+  // Optical centring, solved rather than nudged. Bricolage Grotesque 800
+  // measures (canvas measureText): cap height 0.66em, font ascent 0.93em,
+  // font descent 0.27em, and no descender on M or D. With line-height:1 the
+  // 1.20em content box is taller than the 1.00em line box, so half-leading is
+  // negative and the baseline lands at 0.83em from the line-box top — putting
+  // the ink's top edge 0.17em below it. Centring that ink in the block:
   //
-  //   paddingTop = round(height/2 - 0.42 * fontSize)
+  //   paddingTop = height/2 - (0.17 + 0.66/2) * fontSize
+  //              = height/2 - 0.50 * fontSize
   //
-  // The 0.42 is solved from measured ink positions rather than derived from
-  // metrics alone — the browser rounds line-box placement, so the pure
-  // metric answer (0.461) still left it a pixel high. Rounding the result to
-  // a whole pixel lands both scales within 0.01px of centre.
+  // Re-derive this constant if the display face ever changes again; it is a
+  // property of the font's metrics, not a magic number.
+  //
+  // floor rather than round: both scales land on a .5, and of the two whole
+  // pixels available the one that sits the ink a half-pixel high is the right
+  // one. Type centred to true geometric centre reads low.
   //
   // Doing this with align-items:center and a margin does NOT work: flexbox
   // centres the margin box, so a top margin moves the glyphs down by only
   // half its value. That is why two earlier rounds of nudging never closed.
-  const paddingTop = Math.round(height / 2 - 0.42 * fontSize);
+  const paddingTop = Math.floor(height / 2 - 0.5 * fontSize);
 
   return (
     <span
@@ -47,7 +54,7 @@ export function MdBlock({
       style={{ height, width, paddingTop }}
     >
       <span
-        className="font-extrabold leading-none text-bg"
+        className="font-display font-extrabold leading-none text-bg"
         style={{
           fontSize,
           letterSpacing: "-.06em",
@@ -89,7 +96,7 @@ export function Logo({
       {withMark && <MdBlock height={nav ? 38 : 48} />}
       <span className="inline-flex flex-col">
         <span
-          className={`font-extrabold leading-none tracking-[-.045em] ${
+          className={`font-display font-extrabold leading-none tracking-[-.045em] ${
             nav ? "text-[16px]" : "text-[22px]"
           } ${onDark ? "text-bg" : "text-ink"}`}
         >

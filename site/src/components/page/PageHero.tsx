@@ -28,17 +28,7 @@ export function PageHero({
   secondaryHref?: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b-2 border-b-divider">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 mx-auto max-w-[1360px] opacity-50"
-        style={{
-          backgroundImage:
-            "linear-gradient(90deg, var(--color-neutral-300) 1px, transparent 1px)",
-          backgroundSize: "calc(100% / 6) 100%",
-        }}
-      />
-
+    <section className="relative overflow-hidden">
       <div className="section-pad site-container relative">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-x-2 text-[11px] font-bold uppercase tracking-[.15em] text-neutral-700">
@@ -62,23 +52,29 @@ export function PageHero({
           </ol>
         </nav>
 
-        <p className="eyebrow mt-8 flex items-center gap-3 text-neutral-700">
-          <span aria-hidden="true" className="h-[8px] w-[8px] bg-accent" />
-          {eyebrow}
-        </p>
+        {/* The same ruled row the homepage opens with, so an inner page reads
+            as the next spread of the same publication rather than a different
+            template. The standing claim on the right is the one fact every
+            page on the site can make. */}
+        <div className="mt-7 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b-2 border-b-ink pb-[10px]">
+          <p className="eyebrow text-neutral-700">{eyebrow}</p>
+          <p className="ml-auto font-display text-[13.5px] font-medium text-accent-700">
+            Founder-led · You own the code
+          </p>
+        </div>
 
         <h1
-          className="mt-5 max-w-[20ch] font-extrabold"
+          className="mt-[clamp(20px,3vw,36px)] max-w-[20ch] font-display font-extrabold"
           style={{
-            fontSize: "clamp(34px, 5.6vw, 82px)",
-            letterSpacing: "-.042em",
-            lineHeight: 0.98,
+            fontSize: "clamp(36px, 5.8vw, 84px)",
+            letterSpacing: "-.04em",
+            lineHeight: 1,
           }}
         >
           {title}
         </h1>
 
-        <p className="mt-8 max-w-[62ch] text-[15.5px] leading-[1.62] text-neutral-800">
+        <p className="mt-7 max-w-[62ch] text-[16px] leading-[1.58] text-neutral-800">
           {lede}
         </p>
 

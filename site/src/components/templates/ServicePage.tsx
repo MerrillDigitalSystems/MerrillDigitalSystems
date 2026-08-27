@@ -8,7 +8,7 @@ import {
 } from "@/lib/schema";
 import { PageHero } from "@/components/page/PageHero";
 import { PageContact } from "@/components/page/PageContact";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { Reveal } from "@/components/ui/Reveal";
 import { Faq } from "@/components/ui/Faq";
@@ -89,18 +89,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
       />
 
       {/* The problem, in the prospect's words. */}
-      <Section borderTop>
+      <Section>
         <SectionLabel number={num("intro")}>{intro.label}</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           {intro.heading}
-        </h2>
+        </SectionH2>
         <p className="mt-6 max-w-[68ch] text-[15.5px] leading-[1.62] text-neutral-800">
           {withLinks(intro.body)}
         </p>
@@ -129,18 +122,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
       </Section>
 
       {/* What you actually get, and the number. */}
-      <Section ground="surface" borderTop>
+      <Section ground="surface">
         <SectionLabel number={num("deliverables")}>WHAT YOU GET</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           {deliverables.heading}
-        </h2>
+        </SectionH2>
 
         <div className="mt-[clamp(28px,4vw,56px)] grid gap-[clamp(14px,2vw,26px)] min-[900px]:grid-cols-[1.4fr_.6fr]">
           <ul className="border-t-2 border-t-ink">
@@ -193,18 +179,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
               : "grid-cols-1 min-[600px]:grid-cols-2";
 
         return (
-          <Section key={section.heading} ground={ground} borderTop>
+          <Section key={section.heading} ground={ground}>
             <SectionLabel number={num(`section-${i}`)}>{section.label}</SectionLabel>
-            <h2
-              className="mt-5 max-w-[22ch] font-extrabold"
-              style={{
-                fontSize: "clamp(30px, 4.2vw, 60px)",
-                letterSpacing: "-.035em",
-                lineHeight: 1,
-              }}
-            >
+            <SectionH2 className="mt-8 max-w-[22ch]">
               {section.heading}
-            </h2>
+            </SectionH2>
 
             <div className="mt-6 flex max-w-[68ch] flex-col gap-5">
               {section.body.map((paragraph) => (
@@ -239,18 +218,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
 
       {/* The work itself. Grayscale per the system; colour lives in the accent. */}
       {showcase && showcase.items.length > 0 && (
-        <Section borderTop>
+        <Section>
           <SectionLabel number={num("showcase")}>{showcase.label}</SectionLabel>
-          <h2
-            className="mt-5 max-w-[22ch] font-extrabold"
-            style={{
-              fontSize: "clamp(30px, 4.2vw, 60px)",
-              letterSpacing: "-.035em",
-              lineHeight: 1,
-            }}
-          >
+          <SectionH2 className="mt-8 max-w-[22ch]">
             {showcase.heading}
-          </h2>
+          </SectionH2>
 
           <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[700px]:grid-cols-3">
             {showcase.items.map((item, i) => (
@@ -312,20 +284,13 @@ export function ServicePage({ data }: { data: ServicePageData }) {
         </section>
       )}
 
-      <Section borderTop>
+      <Section>
         <div className="grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[.7fr_1.3fr]">
           <div>
             <SectionLabel number={num("faq")}>STRAIGHT ANSWERS</SectionLabel>
-            <h2
-              className="mt-5 font-extrabold"
-              style={{
-                fontSize: "clamp(28px, 3.6vw, 50px)",
-                letterSpacing: "-.035em",
-                lineHeight: 1,
-              }}
-            >
+            <SectionH2 size="md" className="mt-8">
               Questions people actually ask.
-            </h2>
+            </SectionH2>
 
             {relatedLinks.length > 0 && (
               <nav className="mt-10 border-t-2 border-t-ink pt-5">
@@ -350,18 +315,11 @@ export function ServicePage({ data }: { data: ServicePageData }) {
       </Section>
 
       {cluster && cluster.links.length > 0 && (
-        <Section ground="surface" borderTop>
+        <Section ground="surface">
           <SectionLabel number={num("cluster")}>{cluster.label}</SectionLabel>
-          <h2
-            className="mt-5 max-w-[22ch] font-extrabold"
-            style={{
-              fontSize: "clamp(28px, 3.6vw, 50px)",
-              letterSpacing: "-.035em",
-              lineHeight: 1,
-            }}
-          >
+          <SectionH2 size="md" className="mt-8 max-w-[22ch]">
             {cluster.heading}
-          </h2>
+          </SectionH2>
 
           <GridCells
             ground="surface"

@@ -11,7 +11,7 @@ import { ScopeProvider } from "@/components/scope/ScopeContext";
 import { ScopeBuilder } from "@/components/scope/ScopeBuilder";
 import { PageHero } from "@/components/page/PageHero";
 import { PageContact } from "@/components/page/PageContact";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { Faq } from "@/components/ui/Faq";
 import { SCOPE_COPY } from "@/content/scope";
@@ -69,18 +69,11 @@ export default function PricingPage() {
         secondaryHref="#scope"
       />
 
-      <Section borderTop>
+      <Section>
         <SectionLabel number="01">THE THREE NUMBERS</SectionLabel>
-        <h2
-          className="mt-5 font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 64px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8">
           Three ranges cover almost everything.
-        </h2>
+        </SectionH2>
 
         <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[900px]:grid-cols-3">
           {PRICING_TIERS.map((tier) => (
@@ -116,40 +109,27 @@ export default function PricingPage() {
         </GridCells>
       </Section>
 
-      <section id="scope" className="section-pad border-t-2 border-t-ink bg-ink text-bg">
+      {/* Paper, not ink. ScopeBuilder is styled for a light ground — on ink it
+          inherits `text-bg` into the summary panel, which puts near-white
+          numbers on the panel's near-white. */}
+      <section id="scope" className="section-pad">
         <div className="site-container">
-          <SectionLabel number="02" onDark>
-            BUILD YOUR OWN SCOPE
-          </SectionLabel>
-          <h2
-            className="mt-5 font-extrabold"
-            style={{
-              fontSize: "clamp(30px, 4.2vw, 64px)",
-              letterSpacing: "-.035em",
-              lineHeight: 1,
-            }}
-          >
+          <SectionLabel number="02">BUILD YOUR OWN SCOPE</SectionLabel>
+          <SectionH2 size="display" className="mt-8">
             {SCOPE_COPY.heading}
-          </h2>
-          <p className="mt-6 max-w-[68ch] text-[15px] leading-[1.62] text-neutral-400">
+          </SectionH2>
+          <p className="mt-6 max-w-[64ch] text-[15px] leading-[1.6] text-neutral-800">
             {SCOPE_COPY.lede}
           </p>
           <ScopeBuilder />
         </div>
       </section>
 
-      <Section ground="surface" borderTop>
+      <Section ground="surface">
         <SectionLabel number="03">HOW PAYING WORKS</SectionLabel>
-        <h2
-          className="mt-5 font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 64px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8">
           Terms, in plain language.
-        </h2>
+        </SectionH2>
 
         <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-4" ground="surface">
           {PRICING_TERMS.map((term) => (
@@ -166,20 +146,13 @@ export default function PricingPage() {
         </GridCells>
       </Section>
 
-      <Section borderTop>
+      <Section>
         <div className="grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[.7fr_1.3fr]">
           <div>
             <SectionLabel number="04">COST QUESTIONS</SectionLabel>
-            <h2
-              className="mt-5 font-extrabold"
-              style={{
-                fontSize: "clamp(30px, 4.2vw, 56px)",
-                letterSpacing: "-.035em",
-                lineHeight: 1,
-              }}
-            >
+            <SectionH2 className="mt-8">
               The money questions, answered.
-            </h2>
+            </SectionH2>
           </div>
           <Faq items={PRICING_FAQ} />
         </div>

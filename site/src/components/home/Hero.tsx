@@ -1,130 +1,104 @@
-﻿import { WordCycler } from "./WordCycler";
+import { StrikeCycler } from "./StrikeCycler";
+import { HeroCanvas } from "./HeroCanvas";
 import { Btn } from "@/components/ui/Btn";
 import { BookCall } from "@/components/BookCall";
 import { GrayImage } from "@/components/ui/GrayImage";
 import { HERO } from "@/content/home";
 
-/**
- * Masked H1 lines. The -.045em tracking makes the final glyph's edge clip
- * against the mask, so each line pads and then negatively margins itself back.
- */
-function ClipLine({
-  children,
-  delayMs,
-}: {
-  children: React.ReactNode;
-  delayMs: number;
-}) {
-  return (
-    <span className="block overflow-hidden">
-      <span
-        className="animate-clip-up block"
-        style={{
-          animationDelay: `${delayMs}ms`,
-          paddingRight: ".12em",
-          marginRight: "-.12em",
-          paddingBottom: ".06em",
-          marginBottom: "-.06em",
-        }}
-      >
-        {children}
-      </span>
-    </span>
-  );
-}
-
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b-2 border-b-divider">
-      {/* Decorative six-column grid, the structure showing through. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 mx-auto max-w-[1360px] opacity-50"
-        style={{
-          backgroundImage:
-            "linear-gradient(90deg, var(--color-neutral-300) 1px, transparent 1px)",
-          backgroundSize: "calc(100% / 6) 100%",
-        }}
-      />
+    <section className="relative overflow-hidden">
+      <HeroCanvas />
 
       <div className="section-pad site-container relative">
-        <p className="animate-rise eyebrow flex flex-wrap items-center gap-3 text-neutral-700">
-          <span aria-hidden="true" className="h-[8px] w-[8px] bg-accent animate-blink" />
-          <span>{HERO.status[0]}</span>
-          <span aria-hidden="true" className="h-[2px] w-[clamp(20px,4vw,70px)] bg-neutral-400" />
-          <span>{HERO.status[1]}</span>
-          <span aria-hidden="true" className="h-[2px] w-[clamp(20px,4vw,70px)] bg-neutral-400" />
-          <span className="text-ink">{HERO.status[2]}</span>
-        </p>
+        {/*
+          The ruled row the whole page repeats, used here as the masthead. It
+          is also the only place above the H1 that names the service in plain
+          words, so it stays real crawlable text rather than an image or a
+          decorative flourish.
+        */}
+        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b-2 border-b-ink pb-[10px]">
+          <p className="font-display text-[14px] font-medium text-neutral-700">
+            Custom software &amp; websites · Utah
+          </p>
+          <p className="ml-auto flex items-center gap-[9px] font-display text-[14px] font-medium text-accent-700">
+            <span aria-hidden="true" className="h-[7px] w-[7px] bg-accent animate-blink" />
+            Founder-led · You own the code
+          </p>
+        </div>
 
         <h1
-          className="mt-[clamp(20px,3vw,38px)] font-extrabold"
+          className="mt-[clamp(22px,4vw,44px)] font-display font-extrabold"
           style={{
             fontSize: "clamp(40px, 7.4vw, 116px)",
-            letterSpacing: "-.045em",
-            lineHeight: 0.98,
+            letterSpacing: "-.04em",
+            lineHeight: 1.02,
           }}
         >
-          <ClipLine delayMs={0}>{HERO.lines.first}</ClipLine>
-          <ClipLine delayMs={100}>
-            {HERO.lines.second}{" "}
-            <WordCycler words={HERO.words} />
-          </ClipLine>
-          <ClipLine delayMs={200}>{HERO.lines.third}</ClipLine>
+          <span className="block">{HERO.lines.first}</span>
+          <span className="block">
+            {HERO.lines.second} <StrikeCycler words={HERO.words} />
+            {/*
+              The line break does the punctuating on screen; a crawler and a
+              screen reader get one run-on sentence without this. Reads as
+              "…better than spreadsheets. One system. Yours."
+            */}
+            <span className="sr-only">.</span>
+          </span>
+          <span className="block">
+            {HERO.lines.third}{" "}
+            {/*
+              Outlined, not filled — the one word on the page that is drawn
+              rather than set. -webkit-text-stroke has no standard equivalent
+              with this rendering, and every engine the site ships to supports
+              it; the fallback if one ever does not is transparent text, so a
+              paint-order fill keeps the word readable regardless.
+            */}
+            <span
+              className="[paint-order:stroke_fill]"
+              style={{
+                WebkitTextStroke: "2px var(--color-ink)",
+                color: "transparent",
+              }}
+            >
+              {HERO.lines.outlined}
+            </span>
+          </span>
         </h1>
 
-        <div className="mt-[clamp(28px,4vw,56px)] grid items-end gap-[clamp(24px,4vw,64px)] min-[900px]:grid-cols-[1.15fr_.85fr]">
+        <div className="mt-[clamp(26px,4vw,48px)] grid items-end gap-[clamp(24px,4vw,64px)] min-[900px]:grid-cols-[1.25fr_.75fr]">
           <div>
-            <p className="max-w-[52ch] text-[15.5px] leading-[1.62] text-neutral-800">
+            <p className="max-w-[52ch] text-[16px] leading-[1.58] text-neutral-800">
               {HERO.lede}
             </p>
-            <div className="mt-[clamp(22px,3vw,34px)] flex flex-wrap gap-4">
-              <BookCall fallbackHref="#contact">{HERO.primaryCta}</BookCall>
-              <Btn href="#work" variant="secondary">
-                {HERO.secondaryCta}
-              </Btn>
-            </div>
-          </div>
 
-          <aside className="border-2 border-ink bg-surface p-[clamp(18px,2.4vw,28px)]">
-            <div className="flex items-center gap-3">
+            <figure className="mt-7 flex items-center gap-[14px]">
               <GrayImage
                 src="/img/kruz-merrill-92.webp"
                 alt={HERO.card.photoAlt}
-                width={46}
-                height={46}
+                width={50}
+                height={50}
                 priority
-                className="h-[46px] w-[46px] shrink-0"
+                className="h-[50px] w-[50px] shrink-0 border-2 border-ink"
                 imgClassName="h-full w-full object-cover"
               />
-              <div>
-                <p className="text-[15px] font-extrabold leading-none tracking-[-.02em]">
-                  {HERO.card.name}
+              <figcaption className="max-w-[46ch]">
+                <p className="text-[13.5px] italic leading-[1.45] text-neutral-800">
+                  &ldquo;{HERO.card.quote}&rdquo;
                 </p>
-                <p className="eyebrow mt-[6px] text-neutral-700">{HERO.card.role}</p>
-              </div>
-            </div>
+                <p className="eyebrow mt-[5px] text-accent-700">
+                  {HERO.card.name} · {HERO.card.role}
+                </p>
+              </figcaption>
+            </figure>
+          </div>
 
-            <p className="mt-5 border-t-2 border-t-ink pt-5 text-[14px] leading-[1.55]">
-              &ldquo;{HERO.card.quote}&rdquo;
-            </p>
-
-            <div className="mt-5 grid grid-cols-2 gap-[2px] bg-ink">
-              {HERO.card.stats.map((stat) => (
-                <div key={stat.caption} className="bg-surface pt-4">
-                  <p
-                    className={`font-extrabold leading-none tracking-[-.035em] ${
-                      stat.accent ? "text-accent" : "text-ink"
-                    }`}
-                    style={{ fontSize: "clamp(24px, 3.4vw, 46px)" }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p className="eyebrow mt-2 text-neutral-700">{stat.caption}</p>
-                </div>
-              ))}
-            </div>
-          </aside>
+          <div className="flex flex-wrap gap-3 min-[900px]:justify-end">
+            <BookCall fallbackHref="#contact">{HERO.primaryCta}</BookCall>
+            <Btn href="#work" variant="secondary">
+              {HERO.secondaryCta}
+            </Btn>
+          </div>
         </div>
       </div>
     </section>

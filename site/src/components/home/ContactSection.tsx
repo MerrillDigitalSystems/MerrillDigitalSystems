@@ -1,67 +1,79 @@
 import { ContactForm } from "@/components/forms/ContactForm";
 import { BookCall } from "@/components/BookCall";
+import { SectionLabel } from "@/components/ui/Section";
 import { CONTACT } from "@/content/home";
 import { SITE } from "@/lib/site";
 
+/**
+ * The close, on the same paper as everything above it. It used to sit on a
+ * full-bleed cobalt ground, which worked when the page alternated grounds
+ * every section; in an unbroken editorial run it read as a different site
+ * bolted to the end. The weight now comes from the type and from the form
+ * panel standing off the page on its cobalt offset.
+ */
 export function ContactSection() {
   return (
-    <section
-      id="contact"
-      className="section-pad border-t-2 border-t-ink bg-accent text-bg"
-    >
-      <div className="site-container grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[1fr_1fr]">
-        <div>
-          <p className="eyebrow opacity-80">{CONTACT.eyebrow}</p>
-          <h2
-            className="mt-5 font-extrabold"
-            style={{
-              fontSize: "clamp(34px, 5.4vw, 86px)",
-              letterSpacing: "-.042em",
-              lineHeight: 0.94,
-            }}
-          >
-            {CONTACT.heading}
-          </h2>
-          <p className="mt-6 max-w-[52ch] text-[15px] leading-[1.62]">
-            {CONTACT.lede}
-          </p>
+    <section id="contact" className="section-pad">
+      <div className="site-container">
+        <SectionLabel number="10">{CONTACT.eyebrow}</SectionLabel>
 
-          <dl className="mt-10">
-            {CONTACT.info.map((row) => (
-              <div
-                key={row.label}
-                // Top rules only — the booking block below opens with its own
-                // top rule, and a closing rule here would stack two.
-                className="flex flex-wrap items-baseline justify-between gap-3 border-t-2 border-t-bg/40 py-[14px]"
-              >
-                <dt className="eyebrow opacity-80">{row.label}</dt>
-                <dd className="text-[15px] font-bold">
-                  {row.label === "PHONE" ? (
-                    <a href={SITE.phoneHref} className="text-bg no-underline">
-                      {row.value}
-                    </a>
-                  ) : (
-                    row.value
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
+        <div className="mt-8 grid items-start gap-[clamp(28px,5vw,72px)] min-[900px]:grid-cols-[1fr_1fr]">
+          <div>
+            <h2
+              className="font-display font-extrabold"
+              style={{
+                fontSize: "clamp(34px, 5vw, 72px)",
+                letterSpacing: "-.04em",
+                lineHeight: 1,
+              }}
+            >
+              Have a project in mind?{" "}
+              <span className="text-accent-700">Let&rsquo;s scope it out.</span>
+            </h2>
+            <p className="mt-5 max-w-[52ch] text-[15px] leading-[1.6] text-neutral-800">
+              {CONTACT.lede}
+            </p>
 
-          {/* Some people would rather pick a slot than write a paragraph. */}
-          <div className="mt-10 border-t-2 border-t-bg/40 pt-8">
-            <p className="eyebrow opacity-80">OR SKIP THE WRITING</p>
-            <p className="mt-4 max-w-[46ch] text-[15px] leading-[1.62]">
-              Grab a time directly. Thirty minutes, no pitch deck — you describe
+            <dl className="mt-8 border-t border-t-neutral-300">
+              {CONTACT.info.map((row) => (
+                <div
+                  key={row.label}
+                  className="flex flex-wrap items-baseline justify-between gap-3 border-b border-b-neutral-300 py-[13px]"
+                >
+                  <dt className="eyebrow text-neutral-700">{row.label}</dt>
+                  <dd className="text-[15px] font-bold">
+                    {row.label === "PHONE" ? (
+                      <a
+                        href={SITE.phoneHref}
+                        className="text-accent-700 no-underline hover:underline hover:underline-offset-4"
+                      >
+                        {row.value}
+                      </a>
+                    ) : (
+                      row.value
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* Some people would rather pick a slot than write a paragraph. */}
+            <p className="mt-6 max-w-[48ch] text-[14px] leading-[1.5] text-neutral-800">
+              <strong className="font-extrabold text-ink">
+                Or skip the writing:
+              </strong>{" "}
+              grab a time directly. Thirty minutes, no pitch deck — you describe
               the mess, I tell you whether it&rsquo;s worth building.
             </p>
-            <BookCall inverted className="mt-6" fallbackHref="#contact">
+            <BookCall variant="secondary" className="mt-5" fallbackHref="#contact">
               BOOK A 30-MINUTE CALL →
             </BookCall>
           </div>
-        </div>
 
-        <ContactForm formName="homepage" />
+          <div className="shadow-offset-accent">
+            <ContactForm formName="homepage" />
+          </div>
+        </div>
       </div>
     </section>
   );

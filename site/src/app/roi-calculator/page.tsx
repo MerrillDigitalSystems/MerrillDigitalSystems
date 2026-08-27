@@ -6,7 +6,7 @@ import { abs, breadcrumbSchema, faqSchema, providerRef, webPageSchema } from "@/
 import { ScopeProvider } from "@/components/scope/ScopeContext";
 import { PageHero } from "@/components/page/PageHero";
 import { PageContact } from "@/components/page/PageContact";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { Faq } from "@/components/ui/Faq";
 import { RoiCalc } from "@/components/home/RoiCalc";
@@ -131,18 +131,11 @@ export default function RoiCalculatorPage() {
         secondaryHref="/pricing"
       />
 
-      <Section id="math" ground="surface" borderTop>
+      <Section id="math" ground="surface">
         <SectionLabel number="01">MOVE THE SLIDERS</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           Three inputs. One uncomfortable number.
-        </h2>
+        </SectionH2>
         <p className="mt-6 max-w-[68ch] text-[15.5px] leading-[1.62] text-neutral-800">
           Employees, the admin hours each of them burns in a week, and what you
           pay per hour. That&rsquo;s all it takes. Nothing is sent anywhere and
@@ -152,18 +145,11 @@ export default function RoiCalculatorPage() {
         <RoiCalc />
       </Section>
 
-      <Section borderTop>
+      <Section>
         <SectionLabel number="02">NO BLACK BOX</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           What it takes as given.
-        </h2>
+        </SectionH2>
         <p className="mt-6 max-w-[68ch] text-[15.5px] leading-[1.62] text-neutral-800">
           Every calculator on the internet is tuned to make the vendor look
           good. Here are the four assumptions behind this one, so you can decide
@@ -190,16 +176,9 @@ export default function RoiCalculatorPage() {
           <SectionLabel number="03" onDark>
             WHERE THIS OVERSTATES
           </SectionLabel>
-          <h2
-            className="mt-5 max-w-[22ch] font-extrabold"
-            style={{
-              fontSize: "clamp(30px, 4.2vw, 60px)",
-              letterSpacing: "-.035em",
-              lineHeight: 1,
-            }}
-          >
+          <SectionH2 className="mt-8 max-w-[22ch]">
             You won&rsquo;t get all of it back.
-          </h2>
+          </SectionH2>
           <p className="mt-6 max-w-[68ch] text-[15.5px] leading-[1.62] text-neutral-400">
             The figure above is what the manual work costs, not what a build
             hands back to you. Three reasons the recovered amount is smaller —
@@ -227,20 +206,13 @@ export default function RoiCalculatorPage() {
         </div>
       </section>
 
-      <Section ground="surface" borderTop>
+      <Section ground="surface">
         <div className="grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[.7fr_1.3fr]">
           <div>
             <SectionLabel number="04">STRAIGHT ANSWERS</SectionLabel>
-            <h2
-              className="mt-5 font-extrabold"
-              style={{
-                fontSize: "clamp(28px, 3.6vw, 50px)",
-                letterSpacing: "-.035em",
-                lineHeight: 1,
-              }}
-            >
+            <SectionH2 size="md" className="mt-8">
               About the number.
-            </h2>
+            </SectionH2>
 
             <nav className="mt-10 border-t-2 border-t-ink pt-5">
               <p className="eyebrow text-neutral-700">RELATED</p>

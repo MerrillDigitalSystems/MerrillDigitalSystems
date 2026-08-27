@@ -15,8 +15,8 @@ export const contentType = "image/png";
  * others without making its favicon pick a coin toss.
  */
 export default async function AppleIcon() {
-  const archivo = await readFile(
-    join(process.cwd(), "src/app/_fonts/Archivo-ExtraBold.ttf")
+  const display = await readFile(
+    join(process.cwd(), "src/app/_fonts/BricolageGrotesque-ExtraBold.ttf")
   );
 
   return new ImageResponse(
@@ -26,21 +26,22 @@ export default async function AppleIcon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          // Same solved offset as app/icon.tsx, fitted to Satori's raster
-          // output: 180/2 - 0.5345*160 = 4.48. Rounded up rather than to
-          // nearest — at 4 the ink measured 34/36, at 5 it measures 35/35.
+          // Same treatment as app/icon.tsx, scaled: lineHeight 1 so the glyph
+          // is not pushed low by Satori's 1.2 default, then paddingTop fitted
+          // by measuring the rendered PNG. See the long note there.
           alignItems: "flex-start",
           justifyContent: "center",
-          paddingTop: 5,
+          paddingTop: 9,
           background: "#1442cf",
           color: "#f3f2f2",
-          fontFamily: "Archivo",
+          fontFamily: "Bricolage Grotesque",
           fontSize: 160,
+          lineHeight: 1,
         }}
       >
         M
       </div>
     ),
-    { ...size, fonts: [{ name: "Archivo", data: archivo, weight: 800, style: "normal" }] }
+    { ...size, fonts: [{ name: "Bricolage Grotesque", data: display, weight: 800, style: "normal" }] }
   );
 }

@@ -10,7 +10,7 @@ import {
 } from "@/lib/schema";
 import { PageHero } from "@/components/page/PageHero";
 import { PageContact } from "@/components/page/PageContact";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { Faq } from "@/components/ui/Faq";
 import { Btn } from "@/components/ui/Btn";
@@ -95,18 +95,11 @@ export default function PunchlessPage() {
       </section>
 
       {/* The strategic point of the page. */}
-      <Section borderTop id="why">
+      <Section id="why">
         <SectionLabel number="01">WHY I, OF ALL PEOPLE, BUILT A SAAS</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           {data.why.heading}
-        </h2>
+        </SectionH2>
         <div className="mt-8 max-w-[68ch]">
           {data.why.paragraphs.map((para) => (
             <p
@@ -125,18 +118,11 @@ export default function PunchlessPage() {
         </div>
       </Section>
 
-      <Section ground="surface" borderTop id="how">
+      <Section ground="surface" id="how">
         <SectionLabel number="02">HOW IT WORKS</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           No app to remember. The geofence does the work.
-        </h2>
+        </SectionH2>
 
         <GridCells
           cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-4"
@@ -144,7 +130,10 @@ export default function PunchlessPage() {
         >
           {data.steps.map((step) => (
             <Cell key={step.n} ground="surface">
-              <p className="text-[26px] font-extrabold leading-none tracking-[-.035em] text-neutral-300">
+              <p
+                aria-hidden="true"
+                className="text-[26px] font-extrabold leading-none tracking-[-.035em] text-neutral-300"
+              >
                 {step.n}
               </p>
               <h3 className="mt-4 text-[17px] font-extrabold leading-[1.12] tracking-[-.02em]">
@@ -158,18 +147,11 @@ export default function PunchlessPage() {
         </GridCells>
       </Section>
 
-      <Section borderTop id="features">
+      <Section id="features">
         <SectionLabel number="03">WHAT&rsquo;S INSIDE</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           Everything a crew business needs to trust its hours.
-        </h2>
+        </SectionH2>
 
         <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-3">
           {data.features.map((feature) => (
@@ -192,18 +174,11 @@ export default function PunchlessPage() {
         </div>
       </Section>
 
-      <Section ground="surface" borderTop id="pricing">
+      <Section ground="surface" id="pricing">
         <SectionLabel number="04">PRICING</SectionLabel>
-        <h2
-          className="mt-5 max-w-[20ch] font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 60px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8 max-w-[20ch]">
           Priced so a two-truck shop can start today.
-        </h2>
+        </SectionH2>
         <p className="mt-6 max-w-[62ch] text-[15.5px] leading-[1.62] text-neutral-800">
           Every plan starts with a 30-day free trial and no credit card. This is
           Punchless pricing — my build pricing lives on the pricing page.
@@ -250,20 +225,13 @@ export default function PunchlessPage() {
         </div>
       </Section>
 
-      <Section borderTop id="faq">
+      <Section id="faq">
         <div className="grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[.7fr_1.3fr]">
           <div>
             <SectionLabel number="05">COMMON QUESTIONS</SectionLabel>
-            <h2
-              className="mt-5 font-extrabold"
-              style={{
-                fontSize: "clamp(28px, 3.6vw, 50px)",
-                letterSpacing: "-.035em",
-                lineHeight: 1,
-              }}
-            >
+            <SectionH2 size="md" className="mt-8">
               Punchless, answered straight.
-            </h2>
+            </SectionH2>
 
             <nav className="mt-10 border-t-2 border-t-ink pt-5">
               <p className="eyebrow text-neutral-700">RELATED</p>

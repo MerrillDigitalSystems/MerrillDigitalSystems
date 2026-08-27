@@ -1,5 +1,4 @@
-import { Section, SectionLabel } from "@/components/ui/Section";
-import { GridCells, Cell } from "@/components/ui/GridCells";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { WHEN_NOT_TO } from "@/content/home";
 
@@ -10,41 +9,41 @@ import { WHEN_NOT_TO } from "@/content/home";
  */
 export function WhenNotTo() {
   return (
-    <Section id="when-not-to" ground="surface" borderTop>
-      <SectionLabel number="07">WHEN NOT TO HIRE ME</SectionLabel>
-      <h2
-        className="mt-5 max-w-[22ch] font-extrabold"
-        style={{
-          fontSize: "clamp(30px, 4.2vw, 64px)",
-          letterSpacing: "-.035em",
-          lineHeight: 1,
-        }}
-      >
+    <Section id="when-not-to" ground="surface">
+      <SectionLabel number="06">WHEN NOT TO HIRE ME</SectionLabel>
+      <SectionH2 size="display" className="mt-8 max-w-[24ch]">
         Three times I&rsquo;ll tell you to spend the money elsewhere.
-      </h2>
-      <p className="mt-6 max-w-[68ch] text-[15px] leading-[1.62] text-neutral-800">
+      </SectionH2>
+      <p className="mt-6 max-w-[64ch] text-[15px] leading-[1.6] text-neutral-800">
         {WHEN_NOT_TO.lede}
       </p>
 
-      <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[900px]:grid-cols-3">
+      {/*
+        Ruled columns, not boxes. Three bordered cards here read as a features
+        row — the last thing this section should look like. A single 2px accent
+        rule over open copy reads as a list of admissions, which is what it is.
+      */}
+      <div className="mt-[clamp(26px,3.5vw,44px)] grid gap-[clamp(22px,3vw,40px)] min-[640px]:grid-cols-2 min-[1041px]:grid-cols-3">
         {WHEN_NOT_TO.cases.map((item, i) => (
-          <Cell key={item.eyebrow}>
-            <Reveal index={i} className="flex h-full flex-col">
-              <p className="eyebrow text-accent-700">{item.eyebrow}</p>
-              <h3 className="mt-3 text-[19px] font-extrabold leading-[1.12] tracking-[-.02em]">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-[13.5px] leading-[1.55] text-neutral-800">
-                {item.body}
-              </p>
-              <p className="mt-auto border-t border-t-neutral-300 pt-5 text-[13.5px] leading-[1.5]">
-                <strong className="font-extrabold">What I&rsquo;ll do instead:</strong>{" "}
-                {item.instead}
-              </p>
-            </Reveal>
-          </Cell>
+          <Reveal key={item.eyebrow} index={i} className="border-t-2 border-t-accent pt-[18px]">
+            <p className="font-display text-[14px] font-extrabold tracking-[.02em] text-accent-700">
+              {item.eyebrow}
+            </p>
+            <h3 className="mt-[10px] font-display text-[22px] font-bold leading-[1.08] tracking-[-.02em]">
+              {item.title}
+            </h3>
+            <p className="mt-3 text-[14px] leading-[1.5] text-neutral-800">
+              {item.body}
+            </p>
+            <p className="mt-[13px] text-[13.5px] leading-[1.48] text-neutral-800">
+              <strong className="font-extrabold text-ink">
+                What I&rsquo;ll do instead:
+              </strong>{" "}
+              {item.instead}
+            </p>
+          </Reveal>
         ))}
-      </GridCells>
+      </div>
     </Section>
   );
 }

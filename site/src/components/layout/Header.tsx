@@ -147,7 +147,15 @@ export function Header() {
   return (
     <>
       <ScrollProgress />
-      <header className="sticky top-0 z-[120] min-h-[74px] border-b-2 border-b-divider bg-bg">
+      {/*
+        Translucent and blurred rather than solid: the editorial layout runs one
+        continuous sheet of paper from the hero to the FAQ, and a solid bar
+        slicing across it reads as a lid. At 88% the page still shows through
+        as the content scrolls under, and the 2px ink rule keeps the edge as
+        hard as every other rule on the page. `supports` guards the fallback —
+        without backdrop-filter the bar goes opaque rather than transparent.
+      */}
+      <header className="sticky top-0 z-[120] min-h-[74px] border-b-2 border-b-ink bg-bg supports-[backdrop-filter]:bg-bg/88 supports-[backdrop-filter]:backdrop-blur-[8px]">
         {/* No px here — site-container carries the inset now, so the logo
             lands on the same left edge as every heading on the page. */}
         <div className="site-container flex min-h-[74px] items-center gap-6">
@@ -161,7 +169,11 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[11.5px] font-semibold uppercase tracking-[.11em] text-ink no-underline transition-colors hover:text-accent-700"
+                // py-3 rather than none: the label is 14px tall, and a 14px
+                // hit area is under the 24px WCAG 2.5.8 floor even with a
+                // mouse. The padding is vertical only so the row's rhythm is
+                // unchanged.
+                className="py-3 text-[11.5px] font-semibold uppercase tracking-[.11em] text-ink no-underline transition-colors hover:text-accent-700"
               >
                 {item.label}
               </Link>
@@ -188,7 +200,7 @@ export function Header() {
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="mobile-nav"
-              className="inline-flex items-center gap-[9px] border-2 border-ink px-[14px] py-[11px] text-[11px] font-extrabold uppercase tracking-[.14em] leading-none min-[1041px]:hidden"
+              className="inline-flex min-h-[44px] items-center gap-[9px] border-2 border-ink px-[14px] text-[11px] font-extrabold uppercase tracking-[.14em] leading-none min-[1041px]:hidden"
             >
               <span aria-hidden="true" className="flex flex-col gap-[3px]">
                 <span className="block h-[2px] w-[15px] bg-ink" />

@@ -5,30 +5,76 @@
  */
 
 export const HERO = {
-  status: ["FOUNDER-LED", "CUSTOM-BUILT", "YOU OWN THE CODE"],
-  lines: { first: "Replace the", second: "mess of", third: "with one system." },
+  /**
+   * Three lines, and the second one rotates. The words are the mess a
+   * prospect recognises as their own — every one of them came out of a real
+   * discovery call, which is why "fourteen SaaS tabs" is oddly specific.
+   */
+  lines: {
+    first: "Your business deserves",
+    second: "better than",
+    third: "One system.",
+    outlined: "Yours.",
+  },
   words: [
     "spreadsheets",
-    "six SaaS tabs",
     "group texts",
-    "paper tickets",
     "whiteboards",
+    "sticky notes",
+    "triple data entry",
+    "fourteen SaaS tabs",
   ],
-  lede: "Custom software and websites built around how your business actually runs — the edge cases, the crew quirks, the workflow no off-the-shelf tool has a field for. Scoped, priced, and shipped by the one engineer you talk to. You own the code outright.",
+  lede: "Custom software built around how your operation actually runs — the edge cases, the crew quirks, the workflow no off-the-shelf tool has a field for. Scoped, priced and shipped by the one engineer you talk to. The number comes first, and the code is yours outright.",
   primaryCta: "BOOK A FREE DISCOVERY CALL →",
   secondaryCta: "SEE CLIENT RESULTS",
   card: {
     photoAlt: "Kruz Merrill, founder and engineer",
-    name: "Kruz Merrill",
+    name: "KRUZ MERRILL",
     role: "FOUNDER & ENGINEER",
     quote:
       "You talk to me. I build it. No agency layer, no junior handoff, no disappearing act after launch.",
-    stats: [
-      { value: "5.0", caption: "CLUTCH RATING", accent: true },
-      { value: "#3", caption: "MANIFEST, UTAH", accent: false },
-    ],
   },
 } as const;
+
+/**
+ * The three doors, as an index row directly under the hero. Each one is a real
+ * internal link rather than an on-page anchor — this row is the first thing a
+ * crawler meets after the H1, so it is worth spending on the three pages that
+ * carry the money queries.
+ */
+export const SERVICE_INDEX = [
+  {
+    n: "01",
+    scope: "ops" as const,
+    price: "From $25,000",
+    title: "Operations software",
+    body: "Dispatch, work orders, portals, reporting — one hub your team actually runs on.",
+    href: "/operations-software",
+  },
+  {
+    n: "02",
+    scope: "web" as const,
+    price: "From $3,000",
+    title: "Websites that rank",
+    body: "Custom-coded, fast, built for local search — not the template your competitor bought.",
+    href: "/web-design-utah",
+  },
+  {
+    n: "03",
+    scope: "app" as const,
+    price: "From $25,000",
+    title: "Apps & products",
+    body: "iOS, Android, SaaS MVPs — from rough idea to the app store, backend included.",
+    href: "/pricing",
+  },
+] as const;
+
+/** The count-ups over the work carousel. Every number is a real result. */
+export const WORK_STATS = [
+  { value: 100, suffix: "/100", caption: "SEO SCORE, BK TOOLBOX" },
+  { value: 40, suffix: "%", caption: "MORE LEAD CAPTURE, CCL PRO" },
+  { value: 15, suffix: "HRS", caption: "SAVED WEEKLY, OPERATIONS OS" },
+] as const;
 
 export const TICKER = [
   "★ 5.0 ON CLUTCH",
@@ -177,6 +223,65 @@ export const COMPARE = {
     body: "If you need it live in 48 hours, need 24/7 staffed phone support, or need ten people building in parallel — an agency or an existing SaaS product is genuinely the better buy. I'll tell you that on the first call instead of taking a deposit.",
   },
 } as const;
+
+/**
+ * The work carousel. One list, in the order it scrolls — the four with a case
+ * study lead, so the two that are only a card sit at the end where a visitor
+ * who has already found the links reaches them.
+ *
+ * `href: null` means there is genuinely no page yet. Do not point those at a
+ * placeholder; a dead-end link costs more than a card that isn't one.
+ */
+export const WORK = [
+  {
+    kicker: "INTERIOR DESIGN · REMODELING · UTAH",
+    title: "BK Toolbox",
+    body: "Migrated fully off Wix — domain, email, and site — onto a custom platform they own outright. Two service lines, local SEO, self-managed VPS.",
+    stat: "100 SEO / 99 performance",
+    status: "LIVE",
+    href: "/work/bktoolbox",
+  },
+  {
+    kicker: "LANDSCAPING · WEB + DIGITAL",
+    title: "CCL Pro",
+    body: "Website plus the full digital stack: search-friendly structure, Google Business optimization, analytics. A brochure turned into a local lead engine.",
+    stat: "40% more lead capture",
+    status: "LIVE",
+    href: "/work/ccl-pro",
+  },
+  {
+    kicker: "DENTAL GROUP · DIRECTORY",
+    title: "BrightPath Dental",
+    body: "Announcements, role-based permissions, location verification, HR, training, and compliance for a multi-location dental group.",
+    stat: "5.0 Clutch · on schedule",
+    status: "LIVE",
+    href: "/work/brightpath-dental",
+  },
+  {
+    kicker: "LOCAL BUSINESS · BAKERY · UTAH",
+    title: "Bay's Baked Goods",
+    body: "Custom site for a West Jordan home bakery: mobile-first ordering story, menu structure, local SEO plus Google Business setup.",
+    stat: "Local-ready launch",
+    status: "LIVE",
+    href: "/work/bays-baked-goods",
+  },
+  {
+    kicker: "BOOKKEEPING · OPERATIONS",
+    title: "Operations OS",
+    body: "Job tracking, reporting, and team coordination in one hub. Killed triple data entry across three disjointed SaaS tools.",
+    stat: "15 hrs/week saved",
+    status: "LIVE",
+    href: null,
+  },
+  {
+    kicker: "iOS & ANDROID · PRODUCTS",
+    title: "Primis & Structura",
+    body: "A fitness app with macro tracking and streaks, and a multi-tenant recurring-checklist platform for teams that run the same process weekly.",
+    stat: "Beta program open",
+    status: "BETA",
+    href: null,
+  },
+] as const;
 
 export const CASE_STUDIES = [
   {

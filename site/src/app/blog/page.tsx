@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { blogSchema, breadcrumbSchema } from "@/lib/schema";
 import { PageHero } from "@/components/page/PageHero";
 import { PageContact } from "@/components/page/PageContact";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { GridCells, Cell } from "@/components/ui/GridCells";
 import { POSTS, OPS_POSTS, WEB_POSTS, type Post } from "@/content/blog";
 
@@ -92,18 +92,11 @@ export default function BlogIndexPage() {
         secondaryHref="/pricing"
       />
 
-      <Section borderTop>
+      <Section>
         <SectionLabel number="01">OPERATIONS &amp; FIELD SOFTWARE</SectionLabel>
-        <h2
-          className="mt-5 font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 64px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8">
           Start with the bottleneck.
-        </h2>
+        </SectionH2>
         <p className="mt-6 max-w-[64ch] text-[15px] leading-[1.62] text-neutral-800">
           These are the conversations owners usually want to have before they
           book a call: what the tools really cost, when a subscription stops
@@ -118,18 +111,11 @@ export default function BlogIndexPage() {
         </GridCells>
       </Section>
 
-      <Section ground="surface" borderTop>
+      <Section ground="surface">
         <SectionLabel number="02">WEBSITES, SEO &amp; LEADS</SectionLabel>
-        <h2
-          className="mt-5 font-extrabold"
-          style={{
-            fontSize: "clamp(30px, 4.2vw, 64px)",
-            letterSpacing: "-.035em",
-            lineHeight: 1,
-          }}
-        >
+        <SectionH2 className="mt-8">
           Website strategy for Utah businesses.
-        </h2>
+        </SectionH2>
         <p className="mt-6 max-w-[64ch] text-[15px] leading-[1.62] text-neutral-800">
           What a site costs, what it should be built on, and why a good-looking
           page can still go a month without producing a single phone call.

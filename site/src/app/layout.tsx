@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo } from "next/font/google";
+import { Barlow, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import { Header } from "@/components/layout/Header";
@@ -9,9 +9,27 @@ import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
 import { orgGraph } from "@/lib/schema";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+/**
+ * Two faces, both self-hosted by next/font — no Google Fonts request leaves
+ * the visitor's browser, which is what keeps the LCP headline from waiting on
+ * a third-party round trip.
+ *
+ * Bricolage is variable on wght AND opsz. Only wght is loaded: the optical
+ * size axis would otherwise ship a second set of instances for a difference
+ * nothing on the site sets. `adjustFontFallback` is left on so the metric
+ * override absorbs the swap instead of shifting the hero.
+ */
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
+  weight: ["500", "700", "800"],
+  display: "swap",
+});
+
+const barlow = Barlow({
+  variable: "--font-barlow",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -45,7 +63,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={archivo.variable}>
+    <html lang="en" className={`${bricolage.variable} ${barlow.variable}`}>
       <body>
         <SkipLink />
         <Header />

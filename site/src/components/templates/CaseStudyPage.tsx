@@ -136,7 +136,7 @@ export function CaseStudyPage({ data }: { data: CaseStudyData }) {
         </div>
       </Section>
 
-      <Section ground="surface" borderTop>
+      <Section ground="surface">
         <SectionLabel number="02">WHAT GOT BUILT</SectionLabel>
         <GridCells cols="mt-[clamp(28px,4vw,56px)] grid-cols-1 min-[600px]:grid-cols-2 min-[1041px]:grid-cols-3" ground="surface">
           {data.built.map((item) => (

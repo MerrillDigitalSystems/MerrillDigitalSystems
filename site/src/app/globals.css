@@ -1,22 +1,44 @@
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════════════════════════════════
-   Modernist — Merrill Digital Systems
-   Flat, architectural, one family (Archivo). Zero radius, 2px rules, flush
-   left, grayscale photography, cobalt used sparingly. The rules are load
-   bearing: soften them and the design stops working.
+   Kinetic Editorial — Merrill Digital Systems
+   Flat and architectural still: zero radius, 2px rules, flush left, grayscale
+   photography, cobalt used sparingly. What the 2026-08 redesign added is
+   editorial structure — every section opens with a ruled row carrying an
+   accent ordinal, headlines run enormous in Bricolage Grotesque against Barlow
+   body copy, and panels that hold a number sit on an 8px cobalt offset.
+
+   Two families now, not one. Bricolage carries every display size and the
+   micro-labels; Barlow carries running prose. The split is load bearing: at
+   the sizes this page sets headlines, Bricolage's tight optical fit is what
+   keeps a 116px line from falling apart, and Barlow is what keeps 15px prose
+   underneath it readable. Do not collapse them back to one family.
    ══════════════════════════════════════════════════════════════════════ */
 
 @theme {
   /* Ground and ink */
   --color-bg: #f3f2f2;
   --color-surface: #eae9e9;
+  /* Panels sit LIGHTER than the page, not darker — the redesign's tonal move.
+     A card that recedes into a grey box reads as a box; one that lifts toward
+     white reads as a sheet laid on top, which is what the offset shadow is
+     already saying. `surface` stays for the few places that genuinely want to
+     recede. */
+  --color-panel: #faf9f9;
   --color-ink: #201e1d;
   --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
 
   /* Cobalt accent ramp — overrides the system's default red.
      Base against --color-bg is ~3:1: fine for large text, icons and chrome,
-     NOT for paragraph copy. Use accent-700 on light, accent-400 on dark. */
+     NOT for paragraph copy. Use accent-700 on light, accent-400 on dark.
+
+     The redesign handoff specified a muted steel blue (#5980a6) here. This
+     ramp stays instead, for two reasons that the design file could not know:
+     the cobalt is already struck into the icons, the share card, the Google
+     Business assets and printed collateral, and #5980a6 fails AA as a button
+     ground (3.71:1 against a page-bg label). Everything else in the handoff —
+     the ruled headers, the offset shadows, the accent washes — is applied as
+     drawn, just in this hue. */
   --color-accent: #1442cf;
   --color-accent-100: #eef2ff;
   --color-accent-200: #dbe4ff;
@@ -39,7 +61,12 @@
   --color-neutral-800: #444141;
   --color-neutral-900: #2d2b2b;
 
-  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  /* Barlow runs prose; Bricolage runs every headline, ordinal and micro-label.
+     `--font-sans` is the body face because it is what Tailwind's `font-sans`
+     and the bare `body` rule resolve to — anything not explicitly marked
+     display should be reading text. */
+  --font-sans: var(--font-barlow), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-barlow), system-ui, sans-serif;
 
   /* Radius is zero everywhere. Not a default — a rule. */
   --radius-none: 0px;
@@ -85,6 +112,7 @@
   h4,
   h5,
   h6 {
+    font-family: var(--font-display);
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.12;
@@ -150,6 +178,19 @@
   box-shadow: 4px 4px 0 var(--color-ink);
 }
 
+/* The redesign's signature: a panel that holds a number stands 8px off the
+   page on a soft cobalt shadow. Reserved for the four panels that answer a
+   question the visitor asked — the ROI figure, the scope range, the contact
+   form, the Punchless card. Put it on a fifth thing and it stops meaning
+   anything. */
+@utility shadow-offset-accent {
+  box-shadow: 8px 8px 0 color-mix(in srgb, var(--color-accent) 34%, transparent);
+}
+
+@utility shadow-offset-accent-sm {
+  box-shadow: 6px 6px 0 color-mix(in srgb, var(--color-accent) 34%, transparent);
+}
+
 /* Every content photograph goes through this. Never tint or colorize. */
 @utility grayscale-photo {
   filter: grayscale(1) contrast(1.08);
@@ -185,6 +226,112 @@
 
   @media (min-width: 600px) {
     font-size: 10.5px;
+  }
+}
+
+/* ── Punchless cross-brand card ────────────────────────────────────────── */
+/*
+   The two CTAs on the Punchless card carry that product's palette, not this
+   site's. They live here rather than inline because a hover state cannot be
+   expressed in a style attribute, and because routing them through <Btn> and
+   overriding its colours through className loses to Btn's own utilities on
+   stylesheet order — the bug that once shipped an ink label on an ink ground.
+*/
+.pl-cta,
+.pl-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.pl-cta {
+  padding: 13px 22px;
+  background: #b3372a;
+  color: #f4f1ea;
+}
+
+.pl-cta:hover {
+  background: #7d2318;
+}
+
+.pl-cta-ghost {
+  padding: 11px 20px;
+  border: 2px solid #1a1712;
+  color: #1a1712;
+}
+
+.pl-cta-ghost:hover {
+  background: #1a1712;
+  color: #f4f1ea;
+}
+
+/* ── The work carousel ─────────────────────────────────────────────────── */
+/*
+   One track, two behaviours, chosen by what the visitor is holding.
+
+   On a device with a real pointer the track marquees and pauses on hover —
+   which is the design, and which satisfies WCAG 2.2.2 because a mouse can
+   reach the pause. A finger cannot hover, so on touch the animation never
+   starts and the same track becomes a snap-scrolling shelf you swipe. That
+   also means no `overflow: hidden` fighting a scroll gesture, and no
+   off-screen animation burning battery on a phone.
+
+   The duplicate half of the track only exists to make the loop seamless, so
+   it is hidden from assistive tech and from scroll-snapping alike.
+*/
+.work-track {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  padding-inline: 4px;
+}
+
+.work-rail {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.work-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.work-track > * {
+  scroll-snap-align: start;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-rail {
+    overflow-x: hidden;
+    scroll-snap-type: none;
+  }
+
+  .work-track {
+    animation: mdMarq 46s linear infinite;
+  }
+
+  .work-rail:hover .work-track,
+  .work-rail:focus-within .work-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-rail {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .work-track {
+    animation: none;
   }
 }
 
@@ -273,7 +420,10 @@
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 20px;
+  /* 24px, not 20: once the thumb is authored rather than left to the user
+     agent, WCAG 2.5.8's user-agent exception no longer applies and 24x24 is
+     the floor. Coarse pointers get more still, below. */
+  height: 24px;
   background: transparent;
   cursor: grab;
 }
@@ -295,17 +445,17 @@
 .roi-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  height: 20px;
-  width: 20px;
-  margin-top: -9px;
+  height: 24px;
+  width: 24px;
+  margin-top: -11px;
   border: 2px solid var(--color-ink);
   border-radius: 0;
   background: var(--color-accent);
 }
 
 .roi-slider::-moz-range-thumb {
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
   border: 2px solid var(--color-ink);
   border-radius: 0;
   background: var(--color-accent);
@@ -366,6 +516,18 @@
   }
 }
 
+/* The hero rotator strikes the word out before swapping it. Scale from the
+   left edge so the rule is drawn through the word rather than growing out of
+   its middle. */
+@keyframes mdStrike {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes mdBlink {
   0%,
   55% {
@@ -391,6 +553,10 @@
 
 @utility animate-blink {
   animation: mdBlink 2.2s steps(1) infinite;
+}
+
+@utility animate-strike {
+  animation: mdStrike 0.35s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 /* Reduced motion: collapse everything, including the JS-driven pieces

@@ -14,8 +14,8 @@ export const contentType = "image/png";
  * The font is vendored so the Docker build never needs the network.
  */
 export default async function OpengraphImage() {
-  const archivo = await readFile(
-    join(process.cwd(), "src/app/_fonts/Archivo-ExtraBold.ttf")
+  const display = await readFile(
+    join(process.cwd(), "src/app/_fonts/BricolageGrotesque-ExtraBold.ttf")
   );
 
   return new ImageResponse(
@@ -29,7 +29,7 @@ export default async function OpengraphImage() {
           justifyContent: "space-between",
           background: "#f3f2f2",
           padding: 84,
-          fontFamily: "Archivo",
+          fontFamily: "Bricolage Grotesque",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
@@ -108,7 +108,7 @@ export default async function OpengraphImage() {
     ),
     {
       ...size,
-      fonts: [{ name: "Archivo", data: archivo, weight: 800, style: "normal" }],
+      fonts: [{ name: "Bricolage Grotesque", data: display, weight: 800, style: "normal" }],
     }
   );
 }

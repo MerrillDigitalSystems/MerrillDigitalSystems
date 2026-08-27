@@ -4,7 +4,7 @@ import { blogPostingSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { PageContact } from "@/components/page/PageContact";
 import { Prose } from "@/components/page/Prose";
 import { Faq } from "@/components/ui/Faq";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { Btn } from "@/components/ui/Btn";
 import { SITE } from "@/lib/site";
 import type { FaqItem } from "@/content/faq";
@@ -164,20 +164,13 @@ export function ArticlePage({
         </Section>
 
         {meta.faq?.length ? (
-          <Section ground="surface" borderTop>
+          <Section ground="surface">
             <div className="grid gap-[clamp(24px,4vw,56px)] min-[900px]:grid-cols-[.7fr_1.3fr]">
               <div>
                 <SectionLabel number="FAQ">STRAIGHT ANSWERS</SectionLabel>
-                <h2
-                  className="mt-5 font-extrabold"
-                  style={{
-                    fontSize: "clamp(28px, 3.6vw, 50px)",
-                    letterSpacing: "-.035em",
-                    lineHeight: 1,
-                  }}
-                >
+                <SectionH2 size="md" className="mt-8">
                   Related questions.
-                </h2>
+                </SectionH2>
               </div>
               <Faq items={meta.faq} />
             </div>

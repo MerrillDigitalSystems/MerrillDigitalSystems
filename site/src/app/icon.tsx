@@ -14,12 +14,13 @@ export const contentType = "image/png";
  * app/favicon.ico and app/apple-icon.tsx carry the same M — Google will
  * consider any of the three, so they have to agree or the pick is a coin toss.
  *
- * Generated through Satori with the vendored Archivo so the letterforms match
- * the wordmark exactly and the build never needs the network.
+ * Generated through Satori with the vendored Bricolage Grotesque so the
+ * letterforms match the wordmark exactly and the build never needs the
+ * network.
  */
 export default async function Icon() {
-  const archivo = await readFile(
-    join(process.cwd(), "src/app/_fonts/Archivo-ExtraBold.ttf")
+  const display = await readFile(
+    join(process.cwd(), "src/app/_fonts/BricolageGrotesque-ExtraBold.ttf")
   );
 
   return new ImageResponse(
@@ -29,22 +30,30 @@ export default async function Icon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          // Archivo's caps have no descender, so centring the line box leaves
-          // the ink high; align-items:center plus a margin cannot fix it,
-          // because flexbox centres the margin box. Corrected with
-          // flex-start + paddingTop = height/2 - 0.5345*fontSize.
+          // The M has no descender, so centring the line box leaves the ink
+          // low; align-items:center plus a margin cannot fix it, because
+          // flexbox centres the margin box. Corrected with flex-start and an
+          // explicit paddingTop.
           //
-          // That coefficient is fitted to Satori's raster output, NOT the 0.42
-          // MdBlock uses — that one was fitted to the browser's line-box
-          // rounding for the DOM lockup and lands ~5% of the canvas low here.
-          // 512/2 - 0.5345*456 = 12. Verified: ink margins 100/100 both axes.
+          // lineHeight:1 is load-bearing. Satori defaults to 1.2, and
+          // Bricolage's content box is 1.20em tall (ascent .93 + descent .27),
+          // so at the default the glyph sits a full 0.27em low and no
+          // NON-NEGATIVE padding can pull it back to centre. At lineHeight 1
+          // the half-leading goes negative, the ink starts 77px down, and 28px
+          // of padding lands it on 105/105. Measured from the rendered PNG,
+          // not derived — re-measure if the face or the size changes.
+          //
+          // These numbers are fitted to Satori's raster output, NOT the 0.5
+          // coefficient MdBlock uses; that one is fitted to the browser's
+          // line-box rounding for the DOM lockup.
           alignItems: "flex-start",
           justifyContent: "center",
-          paddingTop: 12,
+          paddingTop: 28,
           background: "#1442cf",
           color: "#f3f2f2",
-          fontFamily: "Archivo",
+          fontFamily: "Bricolage Grotesque",
           fontSize: 456,
+          lineHeight: 1,
           // No letterSpacing, unlike the MD lockup: tracking is applied after
           // the final glyph too, so on one letter it only pads the text box
           // and drags the M off centre.
@@ -53,6 +62,6 @@ export default async function Icon() {
         M
       </div>
     ),
-    { ...size, fonts: [{ name: "Archivo", data: archivo, weight: 800, style: "normal" }] }
+    { ...size, fonts: [{ name: "Bricolage Grotesque", data: display, weight: 800, style: "normal" }] }
   );
 }

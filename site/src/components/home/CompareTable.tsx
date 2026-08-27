@@ -1,20 +1,13 @@
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section, SectionLabel, SectionH2 } from "@/components/ui/Section";
 import { COMPARE } from "@/content/home";
 
 export function CompareTable() {
   return (
-    <Section id="compare" borderTop>
-      <SectionLabel number="04">THE HONEST COMPARISON</SectionLabel>
-      <h2
-        className="mt-5 max-w-[22ch] font-extrabold"
-        style={{
-          fontSize: "clamp(30px, 4.2vw, 64px)",
-          letterSpacing: "-.035em",
-          lineHeight: 1,
-        }}
-      >
+    <Section id="compare">
+      <SectionLabel number="03">THE HONEST COMPARISON</SectionLabel>
+      <SectionH2 size="display" className="mt-8 max-w-[24ch]">
         Four ways to solve this. I&rsquo;m not always the right one.
-      </h2>
+      </SectionH2>
 
       {/*
         Two layouts, same data. The table needs 860px and a phone has 375, so
@@ -24,7 +17,7 @@ export function CompareTable() {
         a fix for that; one card per option is, because the concession only
         works if you can actually read the columns it concedes to.
       */}
-      <div className="mt-[clamp(28px,4vw,56px)] border-2 border-ink">
+      <div className="mt-[clamp(26px,3.5vw,44px)] border-2 border-ink bg-panel">
         <div className="hidden overflow-x-auto min-[1000px]:block">
           <table className="w-full min-w-[860px] border-collapse text-left">
             <thead>
@@ -119,9 +112,11 @@ export function CompareTable() {
           The concession is the strategy, not a weakness. It is the reason the
           rest of the page is believable. Do not soften or remove it.
         */}
-        <div className="border-t-2 border-t-ink bg-surface p-[clamp(18px,2.4vw,34px)]">
-          <p className="eyebrow text-accent-700">{COMPARE.concession.heading}</p>
-          <p className="mt-4 max-w-[80ch] text-[15px] leading-[1.62]">
+        <div className="flex flex-wrap items-baseline gap-x-5 gap-y-3 border-t-2 border-t-ink bg-accent-100 p-[clamp(18px,2.4vw,28px)]">
+          <p className="font-display text-[15px] font-extrabold whitespace-nowrap text-accent-700">
+            {COMPARE.concession.heading}
+          </p>
+          <p className="min-w-[280px] flex-1 text-[14.5px] leading-[1.52] text-neutral-800">
             {COMPARE.concession.body}
           </p>
         </div>
