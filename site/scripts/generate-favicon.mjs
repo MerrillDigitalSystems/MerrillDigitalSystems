@@ -46,28 +46,30 @@ const MASTER = 768;
 
 /**
  * Mark metrics, fitted to Satori's raster output by measuring ink bounds — NOT
- * the 0.42 coefficient MdBlock uses. That one was fitted against the browser's
- * line-box rounding for the DOM lockup and does not transfer: rendered through
- * ImageResponse it leaves the glyph ~5% of the canvas below centre.
+ * the 0.5 coefficient MdBlock uses. That one was fitted against the browser's
+ * line-box rounding for the DOM lockup and does not transfer.
  *
- * Measured, and consistent across canvases at 512 and 768:
- *   ink top within the text box = 0.192 * fontSize
- *   cap height                  = 0.685 * fontSize
+ * Bricolage Grotesque 800, rendered with lineHeight: 1 (load-bearing — the
+ * face's content box is 1.20em tall, and at Satori's default 1.2 line height
+ * the glyph sits a full 0.27em low, past what any non-negative padding can
+ * correct). Measured at 512, consistent at 768:
+ *   ink top within the text box = 0.169 * fontSize
+ *   cap height                  = 0.660 * fontSize
  * so centring the ink means:
- *   paddingTop = height/2 - 0.5345 * fontSize
+ *   paddingTop = height/2 - 0.499 * fontSize
  *
- * FONT_RATIO puts the M's ink at ~68% of the canvas width (0.68 / 0.761 ink-em),
- * tight enough to hold up at 16px with enough cobalt left to read as the block.
+ * FONT_RATIO 0.89 puts the M's ink at ~72% of the canvas width (Bricolage's M
+ * is wider than Archivo's was), matching what src/app/icon.tsx renders.
  *
  * Mirrored in src/app/icon.tsx and src/app/apple-icon.tsx — change all three.
  */
 const FONT_RATIO = 0.89;
-const INK_OFFSET = 0.5345;
+const INK_OFFSET = 0.499;
 
 /* ── Render the master ──────────────────────────────────────────────────── */
 
-const archivo = await readFile(
-  resolve(siteRoot, "src/app/_fonts/Archivo-ExtraBold.ttf")
+const display = await readFile(
+  resolve(siteRoot, "src/app/_fonts/BricolageGrotesque-ExtraBold.ttf")
 );
 
 const fontSize = Math.round(MASTER * FONT_RATIO);
@@ -86,8 +88,9 @@ const master = Buffer.from(
           paddingTop: Math.round(MASTER / 2 - INK_OFFSET * fontSize),
           background: COBALT,
           color: BG,
-          fontFamily: "Archivo",
+          fontFamily: "Bricolage Grotesque",
           fontSize,
+          lineHeight: 1,
           // No letterSpacing here, unlike the MD lockup. Tracking is applied
           // after the final glyph too, so on a single letter it does nothing
           // but pad the text box and drag the M off centre.
@@ -99,7 +102,12 @@ const master = Buffer.from(
       width: MASTER,
       height: MASTER,
       fonts: [
-        { name: "Archivo", data: archivo, weight: 800, style: "normal" },
+        {
+          name: "Bricolage Grotesque",
+          data: display,
+          weight: 800,
+          style: "normal",
+        },
       ],
     }
   ).arrayBuffer()
